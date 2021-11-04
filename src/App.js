@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { EstimationRow } from './components/estimation-row/estimation-row.component';
+import { EstimationBlock, EstimationRow } from './components/estimation-row/estimation-block.component';
 import './App.css';
 import estimations from './data/estimation.json';
 
@@ -25,11 +25,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <EstimationRow name="mike">
-          {this.state.estimations.map(estimation => (
-            <h1 key={estimation.id}> {estimation.name} </h1>
-          ))}
-          </EstimationRow>
+          <EstimationBlock estimations={this.state.estimations}></EstimationBlock>
         </header>
       </div>
     )
