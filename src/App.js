@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import { EstimationBlock, EstimationRow } from './components/estimation-block/estimation-block.component';
+import { Search } from './components/search/search.component';
 import './App.css';
 import estimations from './data/estimation.json';
 
@@ -30,11 +31,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <input
-            type="search"
-            placeholder="Search Projects"
-            onChange={e => this.setState({ searchField: e.target.value })}
-          />
+          <Search placeholder="Search Estimations" handleChange={e => this.setState({ searchField: e.target.value })} />
           <EstimationBlock estimations={filteredEstimations}></EstimationBlock>
         </header>
       </div>
