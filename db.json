@@ -1,23 +1,23 @@
 {
     "estimations": [
         {
-            "name": "Estimate 1",
+            "name": "River Renew",
             "id": 1
         },
         {
-            "name": "Estimate 2",
+            "name": "Fly Richmond",
             "id": 2
         },
         {
-            "name": "Estimate 2",
+            "name": "Diamond Something",
             "id": 3
         },
         {
-            "name": "Estimate 2",
+            "name": "Database tool",
             "id": 4
         },
         {
-            "name": "Estimate 2",
+            "name": "BitCoin Project",
             "id": 5
         }
     ]

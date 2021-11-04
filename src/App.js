@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { EstimationBlock, EstimationRow } from './components/estimation-row/estimation-block.component';
+import { EstimationBlock, EstimationRow } from './components/estimation-block/estimation-block.component';
 import './App.css';
 import estimations from './data/estimation.json';
 

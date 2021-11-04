@@ -1,0 +1,7 @@
+.estimation-list-item {
+    margin: 0 auto;
+    background-color:black;
+    padding: 4px;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    /* grid-gap: 20px; */
+}
