@@ -10,7 +10,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      estimations: []
+      estimations: [],
+      searchField: ''
     }
   }
 
@@ -21,11 +22,20 @@ class App extends Component {
   }
 
   render() {
+    const { estimations, searchField } = this.state;
+    const filteredEstimations = estimations.filter(estimation =>
+      estimation.name.toLowerCase().includes(searchField.toLowerCase())
+    )
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <EstimationBlock estimations={this.state.estimations}></EstimationBlock>
+          <input
+            type="search"
+            placeholder="Search Projects"
+            onChange={e => this.setState({ searchField: e.target.value })}
+          />
+          <EstimationBlock estimations={filteredEstimations}></EstimationBlock>
         </header>
       </div>
     )
