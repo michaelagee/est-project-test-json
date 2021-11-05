@@ -3,7 +3,7 @@ import React, { Component, ReactDOM } from 'react';
 
 export const EstimationNameInputGroup = (props) => (
 
-    <>
+    <form onSubmit={props.handleSubmit}>
         {/* <InputGroup size="sm" className="mb-3">
             <InputGroup.Text id="inputGroup-sizing-sm">Small</InputGroup.Text>
             <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
@@ -16,7 +16,7 @@ export const EstimationNameInputGroup = (props) => (
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Estimation Project Name"
             />
-            <Button variant="outline-secondary" id="button-addon2" onClick={props.addNew}>
+            <Button variant="outline-secondary" id="button-addon2" type="submit" value="Submit">
                 Add New Estimation
             </Button>
         </InputGroup>
@@ -25,7 +25,7 @@ export const EstimationNameInputGroup = (props) => (
             <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
             <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
         </InputGroup> */}
-    </>
+    </form>
 
 
 )

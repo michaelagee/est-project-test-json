@@ -35,16 +35,20 @@ class App extends Component {
 
   addNewEstimation = (e) => {
     const {estimations} = this.state;
-    console.log(estimations.length);
+    const newEstimationName = e.target[0].value;
     const estimationLength = estimations.length;
     // const estimation = new Estimation(estimations.length + 1, "new Project");
     const addEstimation = {
-      name: "new project",
+      name: newEstimationName,
       id: estimationLength + 1
     }
     estimations.push(addEstimation);
     this.setState({ estimations: estimations});
     console.log(this.state.estimations);
+  }
+
+  handleSubmit = (e) => {
+    console.log(e.target[0].value);
   }
 
   render() {
@@ -58,7 +62,7 @@ class App extends Component {
         <header className="App-header">
           <NavBar />
           <img src={logo} className="App-logo" alt="logo" />
-          <EstimationNameInputGroup addNew={this.addNewEstimation} />
+          <EstimationNameInputGroup handleSubmit={this.addNewEstimation}  />
           {/* // <AddEstimationButton onPress={this.addNewEstimation} /> */}
           <Search placeholder="Search Estimations" handleChange={this.handleChange} />
           <EstimationBlock estimations={filteredEstimations}></EstimationBlock>
