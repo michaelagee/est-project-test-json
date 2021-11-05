@@ -64,12 +64,12 @@ class App extends Component {
           <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
           {/* // <AddEstimationButton onPress={this.addNewEstimation} /> */}
           <Search placeholder="Search Estimations" handleChange={this.handleChange} />
-          {/* <EstimationBlock estimations={filteredEstimations}></EstimationBlock> */}
-          <ListGroup>
+          <EstimationBlock estimations={filteredEstimations}></EstimationBlock>
+          {/* <ListGroup className="dashboard-list-group">
             {estimations.map(estimation => (
-              <ListGroup.Item>{estimation.name}</ListGroup.Item>
+              <ListGroup.Item key={estimation.id}>{estimation.name}</ListGroup.Item>
             ))}
-          </ListGroup>
+          </ListGroup> */}
       </div>
     )
   }
