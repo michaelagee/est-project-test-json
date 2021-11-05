@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { EstimationBlock, EstimationRow } from './components/estimation-block/estimation-block.component';
+import { EstimationBlock } from './components/estimation-block/estimation-block.component';
 import { Search } from './components/search/search.component';
 import './App.css';
 // import estimations from './data/estimation.json';
-import { AddEstimationButton } from './components/add-estimation/add-estimation.component';
 // import { Estimation } from './classes/Estimation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavBar } from './components/navigation/vertical.nav.menu.component';
 import { EstimationNameInputGroup } from './components/input/input.group.component';
+import { ListGroup } from 'react-bootstrap';
 
 
 class App extends Component {
 
   constructor() {
     super();
-    
+
     this.state = {
       estimations: [],
       searchField: '',
@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   addNewEstimation = (e) => {
-    const {estimations} = this.state;
+    const { estimations } = this.state;
     const newEstimationName = e.target[0].value;
     const estimationLength = estimations.length;
     // const estimation = new Estimation(estimations.length + 1, "new Project");
@@ -43,7 +43,7 @@ class App extends Component {
       id: estimationLength + 1
     }
     estimations.push(addEstimation);
-    this.setState({ estimations: estimations});
+    this.setState({ estimations: estimations });
     console.log(this.state.estimations);
   }
 
@@ -59,14 +59,17 @@ class App extends Component {
     )
     return (
       <div className="App">
-        <header className="App-header">
           <NavBar />
           <img src={logo} className="App-logo" alt="logo" />
-          <EstimationNameInputGroup handleSubmit={this.addNewEstimation}  />
+          <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
           {/* // <AddEstimationButton onPress={this.addNewEstimation} /> */}
           <Search placeholder="Search Estimations" handleChange={this.handleChange} />
-          <EstimationBlock estimations={filteredEstimations}></EstimationBlock>
-        </header>
+          {/* <EstimationBlock estimations={filteredEstimations}></EstimationBlock> */}
+          <ListGroup>
+            {estimations.map(estimation => (
+              <ListGroup.Item>{estimation.name}</ListGroup.Item>
+            ))}
+          </ListGroup>
       </div>
     )
   }
