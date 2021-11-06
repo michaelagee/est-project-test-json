@@ -1,4 +1,4 @@
-export default function Expenses() {
+export default function NewEstimation() {
     return (
       <main style={{ padding: "1rem 0" }}>
         <h2>Add New Estimation</h2>

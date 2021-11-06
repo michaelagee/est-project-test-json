@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import EstimationNavigationBar from './components/navigation/vertical.nav.menu.component';
 import { EstimationNameInputGroup } from './components/input/input.group.component';
 
+let savedEstimations = [];
 
 class App extends Component {
 
@@ -25,9 +26,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
-      .then(response => response.json())
-      .then(estimations => this.setState({ estimations: estimations }));
+    if (savedEstimations && savedEstimations.length > 0) {
+      // do nothing, as estimations already exist
+      this.setState({ estimations: savedEstimations});
+    } else {
+      fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
+        .then(response => response.json())
+        .then(estimations => this.setState({ estimations: estimations }));
+    }
+  }
+
+  componentWillUnmount() {
+    savedEstimations = this.state.estimations;
   }
 
   handleChange = (e) => {
@@ -35,16 +45,19 @@ class App extends Component {
   }
 
   addNewEstimation = (e) => {
+    e.preventDefault();
     const { estimations } = this.state;
     const newEstimationName = e.target[0].value;
     const estimationLength = estimations.length;
-    // const estimation = new Estimation(estimations.length + 1, "new Project");
+
     const addEstimation = {
       name: newEstimationName,
       id: estimationLength + 1
     }
+
     estimations.push(addEstimation);
     this.setState({ estimations: estimations });
+    e.target[0].value = "";
     console.log(this.state.estimations);
   }
 

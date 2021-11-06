@@ -12,7 +12,7 @@ const EstimationNavigationBar = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link onClick={() => { navigate("/")}}>Dashboard</Nav.Link>
-                        <Nav.Link onClick={() => { navigate("/invoices")}}>Add a new Estimation</Nav.Link>
+                        <Nav.Link onClick={() => { navigate("/newestimation")}}>Add a new Estimation</Nav.Link>
                         <Nav.Link href="#link">Edit</Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
