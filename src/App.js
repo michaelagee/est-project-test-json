@@ -77,11 +77,10 @@ class App extends Component {
     )
     return (
       <div className="App">
-          <EstimationNavigationBar />
+          <EstimationNavigationBar searchHandler={this.handleChange} />
           <img src={logo} className="App-logo" alt="logo" />
           <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
           {/* // <AddEstimationButton onPress={this.addNewEstimation} /> */}
-          <Search placeholder="Search Estimations" handleChange={this.handleChange} />
           <EstimationBlock listItemClick={this.handleListItemClick} estimations={filteredEstimations}></EstimationBlock>
       </div>
     )

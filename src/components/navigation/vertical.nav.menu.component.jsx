@@ -1,5 +1,6 @@
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { useParams, useNavigate } from 'react-router-dom';
+import Search from "../search/search.component";
 
 const EstimationNavigationBar = (props) => {
     let navigate = useNavigate();
@@ -21,6 +22,7 @@ const EstimationNavigationBar = (props) => {
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
+                        <Search placeholder="Search Estimations" handleChange={props.searchHandler} />
                     </Nav>
                 </Navbar.Collapse>
             </Container>
