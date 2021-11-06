@@ -6,9 +6,8 @@ import './App.css';
 // import estimations from './data/estimation.json';
 // import { Estimation } from './classes/Estimation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { NavBar } from './components/navigation/vertical.nav.menu.component';
+import EstimationNavigationBar from './components/navigation/vertical.nav.menu.component';
 import { EstimationNameInputGroup } from './components/input/input.group.component';
-import { ListGroup } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -21,6 +20,8 @@ class App extends Component {
       searchField: '',
       currentEstimation: {}
     };
+
+    
   }
 
   componentDidMount() {
@@ -51,6 +52,10 @@ class App extends Component {
     console.log(e.target[0].value);
   }
 
+  handleListItemClick = (e) => {
+    console.log('wtf');
+  }
+
   render() {
     const { estimations, searchField } = this.state;
     console.log(estimations)
@@ -59,17 +64,12 @@ class App extends Component {
     )
     return (
       <div className="App">
-          <NavBar />
+          <EstimationNavigationBar />
           <img src={logo} className="App-logo" alt="logo" />
           <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
           {/* // <AddEstimationButton onPress={this.addNewEstimation} /> */}
           <Search placeholder="Search Estimations" handleChange={this.handleChange} />
-          <EstimationBlock estimations={filteredEstimations}></EstimationBlock>
-          {/* <ListGroup className="dashboard-list-group">
-            {estimations.map(estimation => (
-              <ListGroup.Item key={estimation.id}>{estimation.name}</ListGroup.Item>
-            ))}
-          </ListGroup> */}
+          <EstimationBlock listItemClick={this.handleListItemClick} estimations={filteredEstimations}></EstimationBlock>
       </div>
     )
   }
