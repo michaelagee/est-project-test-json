@@ -16,6 +16,14 @@ ReactDOM.render(
         <Route exact path="/expenses" element={<Expenses />} />
         <Route exact path="/invoices" element={<Invoices />} />
         <Route exact path="/newestimation" element={<NewEstimation />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
       </Routes>
     </BrowserRouter>Î
   </React.StrictMode>,

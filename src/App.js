@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { EstimationBlock } from './components/estimation-block/estimation-block.component';
+import EstimationBlock from './components/estimation-block/estimation-block.component';
 import { Search } from './components/search/search.component';
 import './App.css';
 // import estimations from './data/estimation.json';
@@ -21,14 +21,12 @@ class App extends Component {
       searchField: '',
       currentEstimation: {}
     };
-
-    
   }
 
   componentDidMount() {
     if (savedEstimations && savedEstimations.length > 0) {
       // do nothing, as estimations already exist
-      this.setState({ estimations: savedEstimations});
+      this.setState({ estimations: savedEstimations });
     } else {
       fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
         .then(response => response.json())
@@ -77,11 +75,10 @@ class App extends Component {
     )
     return (
       <div className="App">
-          <EstimationNavigationBar searchHandler={this.handleChange} />
-          <img src={logo} className="App-logo" alt="logo" />
-          <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
-          {/* // <AddEstimationButton onPress={this.addNewEstimation} /> */}
-          <EstimationBlock listItemClick={this.handleListItemClick} estimations={filteredEstimations}></EstimationBlock>
+        <EstimationNavigationBar searchHandler={this.handleChange} />
+        <img src={logo} className="App-logo" alt="logo" />
+        <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
+        <EstimationBlock listItemClick={this.handleListItemClick} estimations={filteredEstimations}></EstimationBlock>
       </div>
     )
   }
