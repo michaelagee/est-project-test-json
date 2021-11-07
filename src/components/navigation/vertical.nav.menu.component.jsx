@@ -9,6 +9,7 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import Search from "../search/search.component";
 
+// TODO: Create a page component that wraps all routes
 const EstimationNavigationBar = (props) => {
     let navigate = useNavigate();
 
