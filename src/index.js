@@ -4,16 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Expenses from "./routes/expenses";
+import Estimations from "./routes/estimations";
 import Invoices from "./routes/invoices";
 import NewEstimation from './routes/addNewEstimation';
+import Estimation from './routes/estimation';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<App />} />
-        <Route exact path="/expenses" element={<Expenses />} />
+        <Route exact path="/estimations" element={<Estimations />}>
+          <Route path=":estimationId" element={<Estimation />} />
+        </Route>
         <Route exact path="/invoices" element={<Invoices />} />
         <Route exact path="/newestimation" element={<NewEstimation />} />
         <Route
