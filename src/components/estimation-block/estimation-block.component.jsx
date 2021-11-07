@@ -13,7 +13,8 @@ const EstimationBlock = (props) => {
                 <ListGroup.Item
                     key={estimation.id}
                     action onClick={props.listItemClick} 
-                    onClick={() => navigate(`/estimations/${estimation.id}`)}>
+                    onClick={() => navigate(`/estimations/${estimation.id}`)}
+                    key={estimation.id}>
                     {estimation.name}
                 </ListGroup.Item>
             ))}

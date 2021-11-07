@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import EstimationBlock from './components/estimation-block/estimation-block.component';
-import { Search } from './components/search/search.component';
 import './App.css';
-// import estimations from './data/estimation.json';
-// import { Estimation } from './classes/Estimation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EstimationNavigationBar from './components/navigation/vertical.nav.menu.component';
 import { EstimationNameInputGroup } from './components/input/input.group.component';
