@@ -8,27 +8,31 @@ import Estimations from "./routes/estimations";
 import Invoices from "./routes/invoices";
 import NewEstimation from './routes/addNewEstimation';
 import Estimation from './routes/estimation';
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<App />} />
-        <Route exact path="/estimations" element={<Estimations />}>
-          <Route path=":estimationId" element={<Estimation />} />
-        </Route>
-        <Route exact path="/invoices" element={<Invoices />} />
-        <Route exact path="/newestimation" element={<NewEstimation />} />
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: "1rem" }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
-        />
-      </Routes>
-    </BrowserRouter>Î
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<App />} />
+          <Route exact path="/estimations" element={<Estimations />}>
+            <Route path=":estimationId" element={<Estimation />} />
+          </Route>
+          <Route exact path="/invoices" element={<Invoices />} />
+          <Route exact path="/newestimation" element={<NewEstimation />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
