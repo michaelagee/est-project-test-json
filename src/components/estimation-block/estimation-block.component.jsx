@@ -1,8 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import './estimation-block.styles.css';
 import { ListGroup } from 'react-bootstrap';
-import { useRecoilValue } from 'recoil';
-import estimationsState from '../../state/atoms/estimationsState';
 const OffCanvasPanel = React.lazy(() => import('../off-canvas/off-canvas.component'));
 
 const EstimationBlock = (props) => {

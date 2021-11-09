@@ -6,8 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import EstimationNavigationBar from './components/navigation/vertical.nav.menu.component';
 import { EstimationNameInputGroup } from './components/input/input.group.component';
 
-let savedEstimations = [];
-
 class App extends Component {
 
   constructor() {
@@ -21,13 +19,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-      fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
+      fetch('http://localhost:3001/estimations')
         .then(response => response.json())
         .then(estimations => this.setState({ estimations: estimations }));
-  }
-
-  componentWillUnmount() {
-    savedEstimations = this.state.estimations;
   }
 
   handleChange = (e) => {
