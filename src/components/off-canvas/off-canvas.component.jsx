@@ -11,11 +11,11 @@ const OffCanvasPanel = (props) => {
     console.log(props);
     useEffect(() => {
         currentEstimation = props.currentEstimation
-        console.log(currentEstimation);
+        console.log('wtf man 2', currentEstimation);
     });
 
     function updateEstimationData() {
-        console.log('wtf man')
+        console.log('wtf man 1', currentEstimation)
         currentEstimation = props.currentEstimation
     }
 
