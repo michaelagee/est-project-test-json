@@ -1,6 +1,6 @@
 let estimations = [
     {
-        name: "Estimate 1",
+        name: "RiverRenew",
         id: 1,
         hourly_rate: 225,
         platform: {
@@ -264,7 +264,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 2",
+        name: "Diamond",
         id: 2,
         hourly_rate: 225,
         platform: {
@@ -528,7 +528,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 2",
+        name: "Database Tool",
         id: 2,
         hourly_rate: 225,
         platform: {
@@ -792,7 +792,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 3",
+        name: "Bitcoin Project",
         id: 3,
         hourly_rate: 225,
         platform: {
@@ -1056,7 +1056,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 4",
+        name: "Fly Richmond",
         id: 4,
         hourly_rate: 225,
         platform: {
@@ -1320,7 +1320,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 5",
+        name: "Estimation Tool",
         id: 5,
         hourly_rate: 225,
         platform: {
@@ -1584,7 +1584,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 6",
+        name: "Citibank",
         id: 6,
         hourly_rate: 225,
         platform: {
@@ -1848,7 +1848,7 @@ let estimations = [
         }
     },
     {
-        name: "Estimate 7",
+        name: "Apple",
         id: 7,
         hourly_rate: 225,
         platform: {
