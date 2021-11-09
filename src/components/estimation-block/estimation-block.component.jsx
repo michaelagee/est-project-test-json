@@ -6,14 +6,9 @@ import estimationsState from '../../state/atoms/estimationsState';
 const OffCanvasPanel = React.lazy(() => import('../off-canvas/off-canvas.component'));
 
 const EstimationBlock = (props) => {
-    console.log(props.estimations);
-    // let navigate = useNavigate();
-    // let currentEstimation = {};
     const [show, setShow] = useState(false);
     const [currentEstimation, setCurrentEstimation] = useState('');
-    // const estimations = useRecoilValue(estimationsState);
     const handleClose = () => setShow(false);
-
 
     function handleShow(estimation) {
         setCurrentEstimation(estimation);
@@ -26,9 +21,7 @@ const EstimationBlock = (props) => {
                 {props.estimations.map(estimation => (
                     <ListGroup.Item
                         key={estimation.id}
-                        // action onClick={props.listItemClick}
                         onClick={() => handleShow({ estimation })}
-                        // onClick={() => navigate(`/estimations/${estimation.id}`)}
                         item={estimation}>
                         {estimation.name}
                     </ListGroup.Item>
@@ -38,7 +31,6 @@ const EstimationBlock = (props) => {
             <Suspense fallback={<div>Loading...</div>}>
                 <OffCanvasPanel show={show} currentEstimation={currentEstimation.estimation} onHide={handleClose} />
             </Suspense>
-                
         </>
     )
 };
