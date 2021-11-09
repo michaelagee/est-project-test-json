@@ -21,14 +21,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (savedEstimations && savedEstimations.length > 0) {
-      // do nothing, as estimations already exist
-      this.setState({ estimations: savedEstimations });
-    } else {
       fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
         .then(response => response.json())
         .then(estimations => this.setState({ estimations: estimations }));
-    }
   }
 
   componentWillUnmount() {
@@ -66,7 +61,7 @@ class App extends Component {
 
   render() {
     const { estimations, searchField } = this.state;
-    console.log(estimations)
+    console.log("estimations", estimations)
     const filteredEstimations = estimations.filter(estimation =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     )

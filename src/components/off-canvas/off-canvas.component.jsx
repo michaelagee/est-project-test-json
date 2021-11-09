@@ -1,29 +1,36 @@
-import React, { useState }  from "react";
-import { Button, Offcanvas } from 'react-bootstrap';
+import React, { useEffect, Component } from "react";
+import { useState } from 'react';
+import { Offcanvas, show } from "react-bootstrap";
+import { getEstimation } from '../../data/data';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { currentEstimationState } from '../../state/atoms/estimationsState'
+import EstimationDetails from "../estimation-details/estimation.details.component";
 
-function OffCanvasSidePanel(props) {
-    const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
+
+const OffCanvasPanel = (props) => {
+    let currentEstimation = useRecoilValue(currentEstimationState);
+    const setCurrentEstimation = useSetRecoilState(currentEstimationState);
+    console.log('current estimation: ', currentEstimation)
+    console.log(props);
+
+    function updateEstimationData() {
+        setCurrentEstimation(props.currentEstimation);
+        console.log('wtf man 1', currentEstimation)
+        currentEstimation = props.currentEstimation
+    }
+
     return (
-      <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch
-        </Button>
-  
-        <Offcanvas show={show} onHide={handleClose}>
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            Some text as placeholder. In real life you can have the elements you
-            have chosen. Like, text, images, lists, etc.
-          </Offcanvas.Body>
-        </Offcanvas>
-      </>
-    );
-  }
-  
-export default OffCanvasSidePanel;
+        <>
+            <Offcanvas placement='end' show={props.show} onEntering={updateEstimationData} onHide={props.onHide}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>{currentEstimation.name}</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <p>{currentEstimation.name}</p>
+                </Offcanvas.Body>
+            </Offcanvas>
+        </>
+    )
+}
+
+export default OffCanvasPanel;
