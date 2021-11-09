@@ -25,9 +25,9 @@ class App extends Component {
       // do nothing, as estimations already exist
       this.setState({ estimations: savedEstimations });
     } else {
-      fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
-        .then(response => response.json())
-        .then(estimations => this.setState({ estimations: estimations }));
+      // fetch('https://my-json-server.typicode.com/michaelagee/est-project-test-json/estimations')
+      //   .then(response => response.json())
+      //   .then(estimations => this.setState({ estimations: estimations }));
     }
   }
 

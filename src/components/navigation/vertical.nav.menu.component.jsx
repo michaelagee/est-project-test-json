@@ -1,12 +1,10 @@
-import { 
-    Nav, 
-    Navbar, 
-    Container, 
-    Form,
-    FormControl,
-    Button,
-    NavDropdown } from "react-bootstrap";
-import { useParams, useNavigate } from 'react-router-dom';
+import {
+    Nav,
+    Navbar,
+    Container,
+    Form
+} from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import Search from "../search/search.component";
 
 // TODO: Create a page component that wraps all routes
@@ -29,14 +27,6 @@ const EstimationNavigationBar = (props) => {
                         <Nav.Link onClick={() => { navigate("/manage-estimations") }}>Manage Estimations</Nav.Link>
                     </Nav>
                     <Form className="d-flex">
-                        {/* <FormControl
-                            placeholder="Search Estimations"
-                            type="search"
-                            placeholder="Search Estimations"
-                            className="me-2"
-                            handleChange={props.searchHandler}
-                            aria-label="Search"
-                        /> */}
                         <Search placeholder="Search Estimations" handleChange={props.searchHandler} />
                     </Form>
                 </Navbar.Collapse>

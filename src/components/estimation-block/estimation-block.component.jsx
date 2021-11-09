@@ -1,41 +1,43 @@
-import React from 'react';
-import { EstimationListItem } from '../estimation-list-item/estimation-list-item.component';
+import React, { Suspense, useState } from 'react';
 import './estimation-block.styles.css';
 import { ListGroup } from 'react-bootstrap';
-import { useNavigate } from 'react-router';
-import { Button, Offcanvas } from 'react-bootstrap';
-import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import estimationsState from '../../state/atoms/estimationsState';
+const OffCanvasPanel = React.lazy(() => import('../off-canvas/off-canvas.component'));
 
 const EstimationBlock = (props) => {
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
+    // let currentEstimation = {};
     const [show, setShow] = useState(false);
-
+    const [currentEstimation, setCurrentEstimation] = useState('');
+    const estimations = useRecoilValue(estimationsState);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+
+    function handleShow(estimation) {
+        setCurrentEstimation(estimation);
+        setShow(true);
+    }
+
     return (
         <>
             <ListGroup className="dashboard-list-group">
-                {props.estimations.map(estimation => (
+                {estimations.map(estimation => (
                     <ListGroup.Item
                         key={estimation.id}
-                        action onClick={props.listItemClick}
-                        onClick={handleShow}
+                        // action onClick={props.listItemClick}
+                        onClick={() => handleShow({ estimation })}
                         // onClick={() => navigate(`/estimations/${estimation.id}`)}
-                        key={estimation.id}>
+                        item={estimation}>
                         {estimation.name}
                     </ListGroup.Item>
                 ))}
             </ListGroup>
 
-            <Offcanvas placement='end' show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the elements you
-                    have chosen. Like, text, images, lists, etc.
-                </Offcanvas.Body>
-            </Offcanvas>
+            <Suspense fallback={<div>Loading...</div>}>
+                <OffCanvasPanel show={show} currentEstimation={currentEstimation.estimation} onHide={handleClose} />
+            </Suspense>
+                
         </>
     )
 };
