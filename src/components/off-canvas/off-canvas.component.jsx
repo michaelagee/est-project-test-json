@@ -26,7 +26,20 @@ const OffCanvasPanel = (props) => {
                     <Offcanvas.Title>{currentEstimation.name}</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <p>{currentEstimation.name}</p>
+                    {/* <EstimationDetails estimationDetailsId={currentEstimation.id} /> */}
+                        <p>Project ID: {currentEstimation.id}</p>
+                        <p>Project Platform: {currentEstimation.platform}</p>
+                        <p>Application Type: {currentEstimation.application_type}</p>
+                        {/* <ul>Views: {currentEstimation.application_type.views.map((view) => <li>{view}</li>)}</ul> */}
+                        {/* {Object.keys(currentEstimation).map(function(keyName, keyIndex) {
+    		return (
+      			<p key={keyName}>
+					{keyName}: 
+
+          		</p>
+    		)
+		})} */}
+
                 </Offcanvas.Body>
             </Offcanvas>
         </>
