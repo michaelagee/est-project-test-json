@@ -59,6 +59,7 @@ class App extends Component {
     const filteredEstimations = estimations.filter(estimation =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     )
+    console.log(filteredEstimations, 'filtered estimations');
     return (
       <div className="App">
         <EstimationNavigationBar searchHandler={this.handleChange} />
