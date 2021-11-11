@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './estimation-block.styles.css';
 import { ListGroup } from 'react-bootstrap';
 import EstimationDetails from './estimation-details/estimation.details.component'; 
@@ -8,7 +8,7 @@ const EstimationBlock = (props) => {
 
     useEffect(() => {
         setCurrentEstimation(currentEstimation);
-    })
+    }, [currentEstimation])
 
     console.log(currentEstimation, "current estmation")
     return (

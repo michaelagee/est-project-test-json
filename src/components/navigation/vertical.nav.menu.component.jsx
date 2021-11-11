@@ -1,10 +1,8 @@
-import { Nav, Navbar, Container, Form } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Nav, Navbar, Container } from 'react-bootstrap'
 import Search from '../search/search.component'
 
 // TODO: Create a page component that wraps all routes
 const EstimationNavigationBar = props => {
-  let navigate = useNavigate()
   return (
     <Navbar bg='light' expand='lg'>
       <Container fluid>
@@ -14,8 +12,8 @@ const EstimationNavigationBar = props => {
           <Nav
             className='me-auto my-2 my-lg-0'
             style={{ maxHeight: '100px' }}
-            navbarScroll
-          ></Nav>
+            navbarScroll>
+          </Nav>
 
           <Search
             onSubmit={props.handleSubmit}

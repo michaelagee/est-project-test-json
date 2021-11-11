@@ -5,10 +5,10 @@ const EstimationDetails = props => {
 
   useEffect(() => {
     setCurrentEstimation(currentEstimation)
-  })
+  }, [currentEstimation])
 
   console.log('yo pops, whats the props', props)
-  if (props.estimationsCount < 1) {
+  if (currentEstimation) {
     return (
       <div>
         <h1>Nothing to see here</h1> <p> please create a new estimation</p>
