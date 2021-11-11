@@ -19,9 +19,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-      fetch('http://localhost:3001/estimations')
+    // change the fetch to http://localhost:<json-server-port>/estimations to interact with live data.
+      fetch('estimation.json')
         .then(response => response.json())
-        .then(estimations => this.setState({ estimations: estimations }));
+        .then(estimations => this.setState({ estimations: estimations.estimations }));
   }
 
   handleChange = (e) => {
@@ -59,7 +60,6 @@ class App extends Component {
     const filteredEstimations = estimations.filter(estimation =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     )
-    console.log(filteredEstimations, 'filtered estimations');
     return (
       <div className="App">
         <EstimationNavigationBar searchHandler={this.handleChange} />
