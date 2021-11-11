@@ -13,7 +13,7 @@ const EstimationBlock = (props) => {
         setShow(true);
     }
 
-    console.log(currentEstimation.views, "current fucking estmation")
+    console.log(currentEstimation.views, "current estmation")
     // const listItem = currentEstimation.views.map((view) => {
     //     <li>{view}</li>
     // })

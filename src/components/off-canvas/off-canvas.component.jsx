@@ -20,9 +20,7 @@ const OffCanvasPanel = (props) => {
 
     function updateEstimationData() {
         setCurrentEstimation(props.currentEstimation);
-        console.log('wtf man 1', currentEstimation)
         currentEstimation = props.currentEstimation
-
     }
     
 
