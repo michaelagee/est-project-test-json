@@ -16,6 +16,7 @@ class App extends Component {
       estimations: [{ name: 'No Project', id: 0 }],
       searchField: '',
       searchButtonTitle: 'Search',
+      filteredEstimation: [],
       currentEstimation: {}
     }
   }
@@ -39,9 +40,7 @@ class App extends Component {
   }
 
   handleChange = e => {
-    console.log(e.target.value)
     const { estimations, searchField } = this.state
-    console.log('estimations', estimations)
     const filteredEstimations = estimations.filter(estimation =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     )
@@ -50,11 +49,17 @@ class App extends Component {
   }
 
   searchEstimations = e => {
-    console.log('wtf maaaaaaan');
-  } 
+    console.log(this.state.estimations, 'this.state.estimations')
+    if (this.state.estimations > 0) {
+      const { estimations, searchField } = this.state
+      const filteredEstimations = estimations.filter(estimation =>
+        estimation.name.toLowerCase().includes(searchField.toLowerCase())
+      )
+      this.setState({ estimations: filteredEstimations })
+    }
+  }
 
   addNewEstimation = e => {
-    console.log('new estimation added');
     e.preventDefault()
     const { estimations } = this.state
     const newEstimationName = e.target[0].value
@@ -68,14 +73,12 @@ class App extends Component {
     estimations.push(addEstimation)
     this.setState({ estimations: estimations })
     e.target[0].value = ''
-    console.log(this.state.estimations)
   }
 
   handleListItemClick = e => {}
 
   render () {
     const { estimations, searchField } = this.state
-    console.log('estimations', estimations)
     const filteredEstimations = estimations.filter(estimation =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     )
@@ -84,15 +87,18 @@ class App extends Component {
         <EstimationNavigationBar
           estimationsCount={filteredEstimations.length}
           searchHandler={this.handleChange}
-          handleSubmit={filteredEstimations.length > 0 ? this.searchEstimations : this.addNewEstimation}
+          handleSubmit={
+            filteredEstimations.length > 0
+              ? this.searchEstimations
+              : this.addNewEstimation
+          }
         />
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <EstimationNameInputGroup handleSubmit={this.addNewEstimation} /> */}
         <div className='dashboard-container'>
           <EstimationBlock
             className='dashboard-item'
             listItemClick={this.handleListItemClick}
-            estimations={estimations}
+            estimationsCount={filteredEstimations.length}
+            estimations={filteredEstimations.length > 0 ? filteredEstimations : this.state.estimations}
           ></EstimationBlock>
         </div>
       </div>

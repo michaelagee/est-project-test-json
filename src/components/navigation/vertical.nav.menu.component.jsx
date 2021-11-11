@@ -5,7 +5,6 @@ import Search from '../search/search.component'
 // TODO: Create a page component that wraps all routes
 const EstimationNavigationBar = props => {
   let navigate = useNavigate()
-  console.log('nav props', props)
   return (
     <Navbar bg='light' expand='lg'>
       <Container fluid>
