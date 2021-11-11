@@ -13,7 +13,7 @@ const EstimationBlock = (props) => {
         setShow(true);
     }
 
-    console.log(currentEstimation.views, "current estmation")
+    console.log(currentEstimation, "current estmation")
     // const listItem = currentEstimation.views.map((view) => {
     //     <li>{view}</li>
     // })
@@ -43,7 +43,8 @@ const EstimationBlock = (props) => {
                         <p>Project Platform: {currentEstimation.platform}</p>
                         <p>Application Type: {currentEstimation.application_type || <span className="alert">"No Information"</span>}</p>
                         <p>Application Views: {currentEstimation.views || <span className="alert">"No Information"</span>}</p>
-                        <p>Application Views: {currentEstimation.random || <span className="alert">"No Information"</span>}</p>
+                        <p>General Requirements Gathering Hours: {currentEstimation.estimate_default_requirements_gathering || <span className="alert">"No Information"</span>}</p>
+                        <p>Native Capabilities: {currentEstimation.general_estimate_features || <span className="alert">"No Information"</span>}</p>
                         {/* <ul>{currentEstimation.views.map((view) => {
                             <li>{view}</li>
                         })}
