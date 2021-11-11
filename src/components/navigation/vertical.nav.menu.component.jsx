@@ -22,12 +22,12 @@ const EstimationNavigationBar = (props) => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link onClick={() => { navigate("/") }}>Dashboard</Nav.Link>
+                        {/* <Nav.Link onClick={() => { navigate("/") }}>Dashboard</Nav.Link>
                         <Nav.Link onClick={() => { navigate("/newestimation") }}>Add a new Estimation</Nav.Link>
-                        <Nav.Link onClick={() => { navigate("/manage-estimations") }}>Manage Estimations</Nav.Link>
+                        <Nav.Link onClick={() => { navigate("/manage-estimations") }}>Manage Estimations</Nav.Link> */}
                     </Nav>
                     <Form className="d-flex">
-                        <Search placeholder="Search Estimations" handleChange={props.searchHandler} />
+                        <Search placeholder="Search Estimations" buttonTitle={props.buttonTitle} handleChange={props.searchHandler} />
                     </Form>
                 </Navbar.Collapse>
             </Container>

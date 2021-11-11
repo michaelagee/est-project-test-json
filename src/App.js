@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import EstimationBlock from './components/estimation-block/estimation-block.component';
 import './App.css';
+import './dashboard/dashboard.styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EstimationNavigationBar from './components/navigation/vertical.nav.menu.component';
 import { EstimationNameInputGroup } from './components/input/input.group.component';
+
 
 class App extends Component {
 
@@ -12,20 +14,45 @@ class App extends Component {
     super();
 
     this.state = {
-      estimations: [],
+      env: 'local',
+      estimations: [{name: "No Project", id: 0}],
       searchField: '',
+      searchButtonTitle: 'Search',
       currentEstimation: {}
     };
   }
 
+  
   componentDidMount() {
-    // change the fetch to http://localhost:<json-server-port>/estimations to interact with live data.
-      fetch('estimation.json')
+    if (this.state.env == 'local') {
+      // change the fetch to http://localhost:<json-server-port>/estimations to interact with live data.
+        fetch('http://localhost:3001/estimations')
+          .then(response => response.json())
+          // oh and you'll have to change the estimations in state to estimations.estimations <>_<>
+          .then(estimations => this.setState({ estimations: estimations }));
+    } else {
+      // change the fetch to http://localhost:<json-server-port>/estimations to interact with live data.
+      fetch('estimations.json')
         .then(response => response.json())
+        // oh and you'll have to change the estimations in state to estimations.estimations <>_<>
         .then(estimations => this.setState({ estimations: estimations.estimations }));
+    }
   }
 
   handleChange = (e) => {
+    console.log(e.target.value);
+    const { estimations, searchField } = this.state;
+    console.log("estimations", estimations)
+    const filteredEstimations = estimations.filter(estimation =>
+      estimation.name.toLowerCase().includes(searchField.toLowerCase())
+    )
+    console.log(filteredEstimations, 'filteredEstimations');
+    if (filteredEstimations.length == 0) {
+      console.log('no frank, you fucked up');
+    } else {
+      console.log('you a tiger, a lady tiger')
+      this.setState({ searchButtonTitle: 'Add New' });
+    }
     this.setState({ searchField: e.target.value })
   }
 
@@ -46,10 +73,6 @@ class App extends Component {
     console.log(this.state.estimations);
   }
 
-  handleSubmit = (e) => {
-    console.log(e.target[0].value);
-  }
-
   handleListItemClick = (e) => {
 
   }
@@ -62,10 +85,12 @@ class App extends Component {
     )
     return (
       <div className="App">
-        <EstimationNavigationBar searchHandler={this.handleChange} />
-        <img src={logo} className="App-logo" alt="logo" />
-        <EstimationNameInputGroup handleSubmit={this.addNewEstimation} />
-        <EstimationBlock listItemClick={this.handleListItemClick} estimations={filteredEstimations}></EstimationBlock>
+        <EstimationNavigationBar buttonTitle={this.state.searchButtonTitle} searchHandler={this.handleChange} handleSubmit={this.addNewEstimation} />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        {/* <EstimationNameInputGroup handleSubmit={this.addNewEstimation} /> */}
+        <div className="dashboard-container">
+          <EstimationBlock className="dashboard-item" listItemClick={this.handleListItemClick} estimations={estimations}></EstimationBlock>
+          </div>
       </div>
     )
   }

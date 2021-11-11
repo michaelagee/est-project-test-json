@@ -4,7 +4,7 @@ import { InputGroup } from "react-bootstrap";
 import { FormControl, Button } from "react-bootstrap";
 
 // TODO: Disable this on interior routes
-const Search = ({ placeholder, handleChange }) => {
+const Search = ({ placeholder, handleChange, onPress, buttonTitle }) => {
     return (
         <InputGroup className="mb-3">
             <FormControl
@@ -15,7 +15,7 @@ const Search = ({ placeholder, handleChange }) => {
                 onChange={handleChange}
             />
             <Button variant="outline-success">
-                Search
+                {buttonTitle}
             </Button>
         </InputGroup>
     )
