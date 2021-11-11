@@ -51,7 +51,7 @@ class App extends Component {
   }
 
   handleListItemClick = (e) => {
-    console.log('wtf');
+
   }
 
   render() {
