@@ -1,19 +1,22 @@
 import React, { Suspense, useState } from 'react';
 import './estimation-block.styles.css';
 import { ListGroup, Offcanvas } from 'react-bootstrap';    
-const OffCanvasPanel = React.lazy(() => import('../off-canvas/off-canvas.component'));
 
+const LastOffCanvas = React.lazy(() => import(Offcanvas));
 const EstimationBlock = (props) => {
     const [show, setShow] = useState(false);
     const [currentEstimation, setCurrentEstimation] = useState('');
     const handleClose = () => setShow(false);
 
     function handleShowEvent(estimation) {
-        console.log(estimation.estimation)
         setCurrentEstimation(estimation.estimation);
         setShow(true);
-        console.log(currentEstimation, "current estimation")
     }
+
+    console.log(currentEstimation.views, "current fucking estmation")
+    // const listItem = currentEstimation.views.map((view) => {
+    //     <li>{view}</li>
+    // })
 
     return (
         <>
@@ -29,6 +32,7 @@ const EstimationBlock = (props) => {
             </ListGroup>
 
 
+            <Suspense fallback={<div>Loading...</div>}>
             <Offcanvas placement='end' show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>{currentEstimation.name}</Offcanvas.Title>
@@ -37,8 +41,13 @@ const EstimationBlock = (props) => {
                     {/* <EstimationDetails estimationDetailsId={currentEstimation.id} /> */}
                         <p>Project ID: {currentEstimation.id}</p>
                         <p>Project Platform: {currentEstimation.platform}</p>
-                        <p>Application Type: {currentEstimation.application_type}</p>
-                        {/* <ul>Views: {currentEstimation.application_type.views.map((view) => <li>{view}</li>)}</ul> */}
+                        <p>Application Type: {currentEstimation.application_type || <span className="alert">"No Information"</span>}</p>
+                        <p>Application Views: {currentEstimation.views || <span className="alert">"No Information"</span>}</p>
+                        <p>Application Views: {currentEstimation.random || <span className="alert">"No Information"</span>}</p>
+                        {/* <ul>{currentEstimation.views.map((view) => {
+                            <li>{view}</li>
+                        })}
+                        </ul> */}
                         {/* {Object.keys(currentEstimation).map(function(keyName, keyIndex) {
     		return (
       			<p key={keyName}>
@@ -50,6 +59,7 @@ const EstimationBlock = (props) => {
 
                 </Offcanvas.Body>
             </Offcanvas>
+            </Suspense>
         </>
     )
 };
