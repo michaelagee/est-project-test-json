@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import EstimationBlock from './components/estimation-block/estimation-block.component'
 import './App.css'
 import './dashboard/dashboard.styles.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import EstimationNavigationBar from './components/navigation/vertical.nav.menu.component'
-import { EstimationNameInputGroup } from './components/input/input.group.component'
 
 class App extends Component {
   constructor () {
@@ -22,20 +20,16 @@ class App extends Component {
   }
 
   componentDidMount () {
-    if (this.state.env == 'local') {
-      // change the fetch to http://localhost:<json-server-port>/estimations to interact with live data.
+    if (this.state.env === 'local') {
       fetch('http://localhost:3001/estimations')
         .then(response => response.json())
-        // oh and you'll have to change the estimations in state to estimations.estimations <>_<>
         .then(estimations => this.setState({ estimations: estimations }))
-    } else {
-      // change the fetch to http://localhost:<json-server-port>/estimations to interact with live data.
-      fetch('estimations.json')
+    }
+    
+    if (this.state.env === 'amplify') {
+      fetch('estimation.json')
         .then(response => response.json())
-        // oh and you'll have to change the estimations in state to estimations.estimations <>_<>
-        .then(estimations =>
-          this.setState({ estimations: estimations.estimations })
-        )
+        .then(estimations => this.setState({ estimations: estimations.estimations }))
     }
   }
 
