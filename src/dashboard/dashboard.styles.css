@@ -1,0 +1,15 @@
+.dashboard-container {
+    display: flex;
+}
+
+.dashboard-item {
+    flex-grow: 1;
+}
+
+.detailPanel {
+    flex-grow: 1;
+}
+
+.list-group {
+    flex-grow: 1;
+}
