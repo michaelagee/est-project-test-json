@@ -24,6 +24,7 @@ const EstimationBlock = (props) => {
             <ListGroup className="dashboard-list-group">
                 {props.estimations.map(estimation => (
                     <ListGroup.Item
+                        action
                         key={estimation.id}
                         onClick={() => handleShowEvent({ estimation })}
                         item={estimation}>
