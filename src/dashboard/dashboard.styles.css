@@ -8,6 +8,8 @@
 
 .detailPanel {
     flex-grow: 1;
+    text-align: left;
+    padding: 10px;
 }
 
 .list-group {

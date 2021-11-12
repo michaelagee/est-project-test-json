@@ -7,6 +7,7 @@ const EstimationDetails = (props) => {
     console.log("huh", props);
     return (
       <div>
+        <h1>Project Details</h1>
         <p>Estimation Name: {props.estimation.name}</p>
         <p>Project ID: {props.estimation.id}</p>
         <p>Project Platform: {props.estimation.platform}</p>
