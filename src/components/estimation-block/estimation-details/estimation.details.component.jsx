@@ -1,31 +1,20 @@
 import React, { useState, useEffect } from 'react'
 
-const EstimationDetails = props => {
-  const [currentEstimation, setCurrentEstimation] = useState('')
+const EstimationDetails = (props) => {
+  
+  console.log(props.estimation, 'pop props');
 
-  useEffect(() => {
-    setCurrentEstimation(currentEstimation)
-  }, [currentEstimation])
-
-  console.log('yo pops, whats the props', props)
-  if (currentEstimation) {
+    console.log("huh", props);
     return (
       <div>
-        <h1>Nothing to see here</h1> <p> please create a new estimation</p>
+        <p>Estimation Name: {props.estimation.name}</p>
+        <p>Project ID: {props.estimation.id}</p>
+        <p>Project Platform: {props.estimation.platform}</p>
+        <p>Project Hourly: {props.estimation.hourly_rate}</p>
+        <p>Application Type: {props.estimation.application_type}</p>
+        <p>Application Views: {props.estimation.views}</p>
       </div>
     )
-  } else {
-    return (
-      <div>
-        <p>Estimation Name: {currentEstimation.name}</p>
-        <p>Project ID: {currentEstimation.id}</p>
-        <p>Project Platform: {currentEstimation.platform}</p>
-        <p>Project Hourly: {currentEstimation.hourly_rate}</p>
-        <p>Application Type: {currentEstimation.application_type}</p>
-        <p>Application Views: {currentEstimation.views}</p>
-      </div>
-    )
-  }
 }
 
 export default EstimationDetails
