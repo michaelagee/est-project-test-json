@@ -1,9 +1,9 @@
 import React, { Suspense, useState } from 'react';
 import './estimation-block.styles.css';
-import { ListGroup, Offcanvas } from 'react-bootstrap';
-import EstimationDetails from './estimation-details/estimation.details.component'; 
+import { ListGroup } from 'react-bootstrap';
+import EstimationDetails from './estimation.details.component'; 
 
-const LastOffCanvas = React.lazy(() => import(Offcanvas));
+
 const EstimationBlock = (props) => {
     const [show, setShow] = useState(false);
     const [currentEstimation, setCurrentEstimation] = useState('');
@@ -13,11 +13,6 @@ const EstimationBlock = (props) => {
         setCurrentEstimation(estimation.estimation);
         setShow(true);
     }
-
-    console.log(currentEstimation, "current estmation")
-    // const listItem = currentEstimation.views.map((view) => {
-    //     <li>{view}</li>
-    // })
 
     return (
         <>

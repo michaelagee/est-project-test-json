@@ -10,12 +10,12 @@ class App extends Component {
     super()
 
     this.state = {
-      env: 'amplify',
+      env: 'local',
       estimations: [{ name: 'No Project', id: 0 }],
       searchField: '',
       searchButtonTitle: 'Search',
       filteredEstimation: [],
-      currentEstimation: {}
+      currentEstimationHours: 0
     }
   }
 
@@ -38,12 +38,10 @@ class App extends Component {
     const filteredEstimations = estimations.filter(estimation =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     )
-    console.log(filteredEstimations, 'filteredEstimations')
     this.setState({ searchField: e.target.value })
   }
 
   searchEstimations = e => {
-    console.log(this.state.estimations, 'this.state.estimations')
     if (this.state.estimations > 0) {
       const { estimations, searchField } = this.state
       const filteredEstimations = estimations.filter(estimation =>
