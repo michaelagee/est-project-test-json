@@ -10,7 +10,7 @@ class App extends Component {
     super()
 
     this.state = {
-      env: 'local',
+      env: 'amplify',
       estimations: [{ name: 'No Project', id: 0 }],
       searchField: '',
       searchButtonTitle: 'Search',
