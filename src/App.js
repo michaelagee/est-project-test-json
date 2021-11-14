@@ -34,6 +34,7 @@ class App extends Component {
       searchButtonTitle: "Search",
       filteredEstimation: [],
       currentEstimationHours: 0,
+      totalCost: 0
     };
   }
 
@@ -110,6 +111,7 @@ class App extends Component {
             className="dashboard-item"
             listItemClick={this.handleListItemClick}
             estimationsCount={filteredEstimations.length}
+            totalCost={this.state.totalCost}
             estimations={
               filteredEstimations.length > 0
                 ? filteredEstimations
