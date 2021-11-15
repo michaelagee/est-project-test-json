@@ -11,6 +11,7 @@ class App extends Component {
 
     this.state = {
       env: "local",
+      totalCost: 1,
       estimations: [
         {
           name: "No Project",
@@ -32,9 +33,7 @@ class App extends Component {
       ],
       searchField: "",
       searchButtonTitle: "Search",
-      filteredEstimation: [],
-      currentEstimationHours: 0,
-      totalCost: 0
+      filteredEstimation: []
     };
   }
 
@@ -75,6 +74,7 @@ class App extends Component {
   addNewEstimation = (e) => {
     e.preventDefault();
     const { estimations } = this.state;
+    console.log(estimations, 'estimatinos' );
     const newEstimationName = e.target[0].value;
     const estimationLength = estimations.length;
 
@@ -87,8 +87,6 @@ class App extends Component {
     this.setState({ estimations: estimations });
     e.target[0].value = "";
   };
-
-  handleListItemClick = (e) => {};
 
   render() {
     const { estimations, searchField } = this.state;
@@ -109,7 +107,6 @@ class App extends Component {
         <div className="dashboard-container">
           <EstimationBlock
             className="dashboard-item"
-            listItemClick={this.handleListItemClick}
             estimationsCount={filteredEstimations.length}
             totalCost={this.state.totalCost}
             estimations={

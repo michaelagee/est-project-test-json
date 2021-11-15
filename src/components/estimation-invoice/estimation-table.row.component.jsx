@@ -1,16 +1,28 @@
 import React from 'react';
 
 function EstimationTableRow(props) {
-    console.log(props, "table row props");
+
+    let subTotal = props.totalCost;
+    let total = 0
+    let iterator = 0
+
+    props.dataField.map(field => {
+
+        subTotal += (field.hours * props.rate)
+        total = total + subTotal
+        });
+        
+    console.log(subTotal, "SUBTOTAL");
+    console.log(total, "TOTAL");
     return (
         props.dataField.map((field) =>
-            <tr key={`table=row${field}`}>
-                <td></td>
-                <td>{field.item}</td>
-                <td>{field.description}</td>
-                <td>{field.hours}</td>
-                <td>{props.rate}</td>
-                <td>{field.hours * props.rate}</td>
+            <tr key={`${field}-table-row-${iterator++}`}>
+                <td key={`${field}-${iterator++}`}></td>
+                <td key={`${field}-${iterator++}`}>{field.item}</td>
+                <td key={`${field}-${iterator++}`}>{field.description}</td>
+                <td key={`${field}-${iterator++}`}>{field.hours}</td>
+                <td key={`${field}-${iterator++}`}>{props.rate}</td>
+                <td key={`${field}-${iterator++}`}>{field.hours * props.rate} </td>
             </tr>
         ))
 }

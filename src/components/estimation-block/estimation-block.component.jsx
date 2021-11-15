@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import './estimation-block.styles.css';
 import { ListGroup } from 'react-bootstrap';
-import EstimationDetails from './estimation.details.component'; 
+import EstimationDetails from './estimation.details.component';
 
 
 const EstimationBlock = (props) => {

@@ -14,6 +14,7 @@ const EstimationDetails = (props) => {
       <div>
         <h1>Estimate Details : {props.estimation.name} - {props.estimation.application_type}</h1>
         <p>Total Hours: 780 : Rate: ${rate}</p>
+        <button onClick={() => props.updateCost()}>Get total</button>
         <EstimationForm totalCost={props.totalCost} rate={rate} estimation={props.estimation}/>
       </div>
     )
