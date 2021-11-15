@@ -5,7 +5,7 @@ import EstimationTableRow from './estimation-table.row.component';
 function EstimationInvoice(props) {
 
     console.log(props, "invoice props");
-    let finalCost = props.totalCost + 243000;
+    let finalCost = "$297000";
     return (
         <Table striped bordered hover>
             <thead>

@@ -4,6 +4,7 @@ import "./App.css";
 import "./dashboard/dashboard.styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
+import { GlobalContext } from "./context/global-state";
 
 class App extends Component {
   constructor() {
@@ -33,7 +34,7 @@ class App extends Component {
       ],
       searchField: "",
       searchButtonTitle: "Search",
-      filteredEstimation: []
+      filteredEstimation: [],
     };
   }
 
@@ -54,10 +55,6 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    const { estimations, searchField } = this.state;
-    const filteredEstimations = estimations.filter((estimation) =>
-      estimation.name.toLowerCase().includes(searchField.toLowerCase())
-    );
     this.setState({ searchField: e.target.value });
   };
 
@@ -74,7 +71,7 @@ class App extends Component {
   addNewEstimation = (e) => {
     e.preventDefault();
     const { estimations } = this.state;
-    console.log(estimations, 'estimatinos' );
+    console.log(estimations, "estimatinos");
     const newEstimationName = e.target[0].value;
     const estimationLength = estimations.length;
 
@@ -88,35 +85,51 @@ class App extends Component {
     e.target[0].value = "";
   };
 
+  updateTotalCost(addedCost) {
+    const { totalCost } = this.state;
+    if (totalCost) {
+      let subTotal = totalCost;
+      console.log(subTotal, "SUBTOTAL!!!");
+
+      this.setState({ totalCost: totalCost });
+    }
+    console.log("guess i'm just stuck in my waaays");
+  }
+
   render() {
     const { estimations, searchField } = this.state;
     const filteredEstimations = estimations.filter((estimation) =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     );
     return (
-      <div className="App">
-        <EstimationNavigationBar
-          estimationsCount={filteredEstimations.length}
-          searchHandler={this.handleChange}
-          handleSubmit={
-            filteredEstimations.length > 0
-              ? this.searchEstimations
-              : this.addNewEstimation
-          }
-        />
-        <div className="dashboard-container">
-          <EstimationBlock
-            className="dashboard-item"
+      <GlobalContext.Provider value={this.state.estimations}>
+        <div className="App">
+          <EstimationNavigationBar
             estimationsCount={filteredEstimations.length}
-            totalCost={this.state.totalCost}
-            estimations={
+            searchHandler={this.handleChange}
+            handleSubmit={
               filteredEstimations.length > 0
-                ? filteredEstimations
-                : this.state.estimations
+                ? this.searchEstimations
+                : this.addNewEstimation
             }
-          ></EstimationBlock>
+          />
+          <div className="dashboard-container">
+            <EstimationBlock
+              className="dashboard-item"
+              estimationsCount={filteredEstimations.length}
+              totalCost={this.state.totalCost}
+              updateCost={() =>
+                this.updateTotalCost.bind(this, this.state.totalCost)
+              }
+              estimations={
+                filteredEstimations.length > 0
+                  ? filteredEstimations
+                  : this.state.estimations
+              }
+            ></EstimationBlock>
+          </div>
         </div>
-      </div>
+      </GlobalContext.Provider>
     );
   }
 }

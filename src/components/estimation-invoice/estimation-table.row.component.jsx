@@ -14,8 +14,8 @@ function EstimationTableRow(props) {
         // total += featureCost
         totalHours += field.hours
         total += totalHours
-        });
-        
+    });
+
     console.log(featureCost, "FEATURECOST");
     console.log(total, "TOTAL");
     return (

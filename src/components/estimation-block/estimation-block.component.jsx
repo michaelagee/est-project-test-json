@@ -1,17 +1,14 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import './estimation-block.styles.css';
 import { ListGroup } from 'react-bootstrap';
 import EstimationDetails from './estimation.details.component';
 
 
 const EstimationBlock = (props) => {
-    const [show, setShow] = useState(false);
     const [currentEstimation, setCurrentEstimation] = useState('');
-    const handleClose = () => setShow(false);
 
     function handleShowEvent(estimation) {
         setCurrentEstimation(estimation.estimation);
-        setShow(true);
     }
 
     return (
@@ -28,7 +25,7 @@ const EstimationBlock = (props) => {
                 ))}
             </ListGroup>
             <div className="detailPanel">
-                <EstimationDetails totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
+                <EstimationDetails updateCost={props.updateCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
             </div>
         </>
     )
