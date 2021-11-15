@@ -9,6 +9,7 @@ import Invoices from "./routes/invoices";
 import NewEstimation from './routes/addNewEstimation';
 import Estimation from './routes/estimation';
 import { RecoilRoot } from 'recoil';
+import { GlobalContext } from './context/global-state';
 
 
 ReactDOM.render(

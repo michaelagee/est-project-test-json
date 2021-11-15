@@ -3,15 +3,17 @@
 }
 
 .dashboard-item {
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 .detailPanel {
     flex-grow: 1;
     text-align: left;
     padding: 10px;
+    flex-shrink: 19;
 }
 
 .list-group {
     flex-grow: 1;
+    min-width: 20%;
 }
