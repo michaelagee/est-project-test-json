@@ -3,16 +3,20 @@ import React from 'react';
 function EstimationTableRow(props) {
 
     let subTotal = props.totalCost;
-    let total = 0
+    let featureCost = 0
+    let totalHours = 0
     let iterator = 0
+    let total = 0
 
     props.dataField.map(field => {
 
-        subTotal += (field.hours * props.rate)
-        total = total + subTotal
+        featureCost += (field.hours * props.rate)
+        // total += featureCost
+        totalHours += field.hours
+        total += totalHours
         });
         
-    console.log(subTotal, "SUBTOTAL");
+    console.log(featureCost, "FEATURECOST");
     console.log(total, "TOTAL");
     return (
         props.dataField.map((field) =>
