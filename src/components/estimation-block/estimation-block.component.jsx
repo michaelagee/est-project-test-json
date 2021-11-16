@@ -25,7 +25,7 @@ const EstimationBlock = (props) => {
                 ))}
             </ListGroup>
             <div className="detailPanel">
-                <EstimationDetails updateCost={props.updateCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
+                <EstimationDetails getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
             </div>
         </>
     )
