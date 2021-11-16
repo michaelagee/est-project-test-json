@@ -4,7 +4,7 @@ import "./App.css";
 import "./dashboard/dashboard.styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
-import { GlobalContext } from "./context/global-state";
+import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 
 class App extends Component {
   constructor() {
@@ -12,7 +12,9 @@ class App extends Component {
 
     this.state = {
       env: "amplify",
-      totalCost: 1,
+      totalCost: 0,
+      getTotalCost: this.getTotalCost,
+      updateTotalCost: this.updateTotalCost,
       estimations: [
         {
           name: "No Project",
@@ -38,6 +40,7 @@ class App extends Component {
     };
   }
 
+  
   componentDidMount() {
     if (this.state.env === "local") {
       fetch("http://localhost:3001/estimations")
@@ -52,6 +55,10 @@ class App extends Component {
           this.setState({ estimations: estimations.estimations })
         );
     }
+  }
+
+  getTotalCost = () => {
+    return this.state.totalCost;
   }
 
   handleChange = (e) => {
@@ -70,7 +77,7 @@ class App extends Component {
 
   addNewEstimation = (e) => {
     e.preventDefault();
-    const { estimations } = this.state;
+    const { estimations, totalCost } = this.state;
     console.log(estimations, "estimatinos");
     const newEstimationName = e.target[0].value;
     const estimationLength = estimations.length;
@@ -85,15 +92,8 @@ class App extends Component {
     e.target[0].value = "";
   };
 
-  updateTotalCost(addedCost) {
-    const { totalCost } = this.state;
-    if (totalCost) {
-      let subTotal = totalCost;
-      console.log(subTotal, "SUBTOTAL!!!");
-
-      this.setState({ totalCost: totalCost });
-    }
-    console.log("guess i'm just stuck in my waaays");
+  updateTotalCost = (totalCost) => {
+    console.log(totalCost, 'TOTALCOST')
   }
 
   render() {
@@ -102,7 +102,7 @@ class App extends Component {
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     );
     return (
-      <GlobalContext.Provider value={this.state.estimations}>
+      <CurrentEstimationTotalCost.Provider value={this.state}>
         <div className="App">
           <EstimationNavigationBar
             estimationsCount={filteredEstimations.length}
@@ -118,9 +118,8 @@ class App extends Component {
               className="dashboard-item"
               estimationsCount={filteredEstimations.length}
               totalCost={this.state.totalCost}
-              updateCost={() =>
-                this.updateTotalCost.bind(this, this.state.totalCost)
-              }
+              updateTotalCost={this.updateTotalCost}
+              getTotalCost={this.getTotalCost}
               estimations={
                 filteredEstimations.length > 0
                   ? filteredEstimations
@@ -129,7 +128,7 @@ class App extends Component {
             ></EstimationBlock>
           </div>
         </div>
-      </GlobalContext.Provider>
+      </CurrentEstimationTotalCost.Provider>
     );
   }
 }
