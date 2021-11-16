@@ -5,7 +5,11 @@ import { CurrentEstimationTotalCost } from '../../context/currentEstimationTotal
 
 function EstimationInvoice(props) {
     let finalCost = 0;
-    let requirements = [props.estimation.views, props.estimation.general_estimate_features, props.estimation.capabilities, props.estimation.media]
+    let requirements = [
+        props.estimation.views, 
+        props.estimation.general_estimate_features, 
+        props.estimation.capabilities, 
+        props.estimation.media]
     let featureCost = 0
     let totalCost = props.getTotalCost();
 
@@ -14,13 +18,13 @@ function EstimationInvoice(props) {
             featureCost += (field.hours * props.rate)
 
             totalCost += (field.hours * props.rate);
-            console.log('name', field.item, 'hours: ', field.hours, 'totalCost', (field.hours * props.rate), 'totalCost: ', totalCost);
+            // console.log('name', field.item, 'hours: ', field.hours, 'totalCost', (field.hours * props.rate), 'totalCost: ', totalCost);
         }));
-finalCost = totalCost;
-        props.updateTotalCost(totalCost);
+    finalCost = totalCost;
+    props.updateTotalCost(finalCost);
     return (
         <CurrentEstimationTotalCost.Consumer>
-            {({totalCost}) => (
+            {({ totalCost }) => (
                 <Table striped bordered hover>
                     <thead>
                         <tr>

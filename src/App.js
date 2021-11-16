@@ -92,15 +92,8 @@ class App extends Component {
     e.target[0].value = "";
   };
 
-  updateTotalCost = (addedCost) => {
-    let totalCost = CurrentEstimationTotalCost.totalCost;
+  updateTotalCost = (totalCost) => {
     console.log(totalCost, 'TOTALCOST')
-    let newTotalCost = totalCost+= addedCost;
-    let subTotal = newTotalCost;
-    console.log(subTotal, "SUBTOTAL!!!");
-
-    // this.setState({ totalCost: totalCost });
-    console.log(this.state.totalCost, 'global total cost')
   }
 
   render() {
