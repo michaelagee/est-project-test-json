@@ -1897,6 +1897,22 @@
           "hours": 10
         }
       ]
+    },
+    {
+      "name": "fdafdsfs",
+      "id": 9,
+      "views": [
+        "landing"
+      ],
+      "general_estimate_features": [
+        "geolocationn"
+      ],
+      "capabilities": [
+        "biometrics"
+      ],
+      "media": [
+        "Image Optimzation"
+      ]
     }
   ],
   "newEstimation": {
@@ -1929,7 +1945,10 @@
       "camera",
       "file viewing and storage"
     ],
-    "platform_specific_features": ["ios", "android"],
+    "platform_specific_features": [
+      "ios",
+      "android"
+    ],
     "capabilities": [
       "biometrics",
       "email",

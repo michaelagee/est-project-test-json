@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import AddEstimationWizard from '../../pages/detail.page.component';
 import EstimationInvoice from '../estimation-invoice/estimation.invoice.component';
 import { Button } from 'react-bootstrap';
@@ -6,11 +6,6 @@ import { Button } from 'react-bootstrap';
 const EstimationDetails = (props) => {
   let rate = 225;
   const [showEditForm, setShowEditForm] = useState(false);
-  
-  // useEffect(() => {
-  //   console.log(props.showStepWizard)
-  //   setShowEditForm(props.showStepWizard)
-  // }, [props.showStepWizard])
 
   const onClick = () => {
     if (showEditForm) {
