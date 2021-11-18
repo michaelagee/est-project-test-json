@@ -21,7 +21,7 @@ class App extends Component {
           id: 0,
           views: ["landing"],
           general_estimate_features: ["geolocationn"],
-          platform_specific_features: ["camera"],
+          // platform_specific_features: ["camera"],
           capabilities: ["biometrics"],
           media: ["Image Optimzation"],
           random: [
@@ -37,10 +37,18 @@ class App extends Component {
       searchField: "",
       searchButtonTitle: "Search",
       filteredEstimation: [],
+      newEstimation: {
+        name: '',
+        id: 0,
+        views: ["landing"],
+        general_estimate_features: ["geolocationn"],
+        // platform_specific_features: ["camera"],
+        capabilities: ["biometrics"],
+        media: ["Image Optimzation"],
+      },
     };
   }
 
-  
   componentDidMount() {
     if (this.state.env === "local") {
       fetch("http://localhost:3001/estimations")
@@ -59,42 +67,53 @@ class App extends Component {
 
   getTotalCost = () => {
     return this.state.totalCost;
-  }
+  };
 
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
   };
-
+  
   searchEstimations = (e) => {
+    e.preventDefault();
     if (this.state.estimations > 0) {
       const { estimations, searchField } = this.state;
+      console.log(searchField, 'searchField');
       const filteredEstimations = estimations.filter((estimation) =>
-        estimation.name.toLowerCase().includes(searchField.toLowerCase())
+      estimation.name.toLowerCase().includes(searchField.toLowerCase())
       );
       this.setState({ estimations: filteredEstimations });
     }
   };
+  
+  addNewEstimation = async (e) => {
+    const { estimations } = this.state;
+    
+    let newEstimation = {...this.state.newEstimation}
+    newEstimation.id = estimations.length += 1
+    newEstimation.name = this.state.searchField
 
-  addNewEstimation = (e) => {
-    e.preventDefault();
-    const { estimations, totalCost } = this.state;
-    console.log(estimations, "estimatinos");
-    const newEstimationName = e.target[0].value;
-    const estimationLength = estimations.length;
+    // TODO: MOVE THIS TO AN API LAYER
+    const response = await fetch("http://localhost:3001/estimations", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(newEstimation),
+    });
 
-    const addEstimation = {
-      name: newEstimationName,
-      id: estimationLength + 1,
-    };
-
-    estimations.push(addEstimation);
-    this.setState({ estimations: estimations });
-    e.target[0].value = "";
+    this.setState({
+      newEstimation
+    });
   };
 
   updateTotalCost = (totalCost) => {
-    console.log(totalCost, 'TOTALCOST')
-  }
+    console.log(totalCost, "TOTALCOST");
+  };
 
   render() {
     const { estimations, searchField } = this.state;
