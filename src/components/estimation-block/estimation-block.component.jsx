@@ -6,9 +6,14 @@ import EstimationDetails from './estimation.details.component';
 
 const EstimationBlock = (props) => {
     const [currentEstimation, setCurrentEstimation] = useState('');
+    const [showStepWizard, setShowStepWizard] = useState(false);
 
     function handleShowEvent(estimation) {
-        setCurrentEstimation(estimation.estimation);
+        if (showStepWizard) {
+            console.log('the wizard is showing!!!')
+        } else {
+            setCurrentEstimation(estimation.estimation);
+        }
     }
 
     return (
@@ -25,7 +30,7 @@ const EstimationBlock = (props) => {
                 ))}
             </ListGroup>
             <div className="detailPanel">
-                <EstimationDetails getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
+                <EstimationDetails setShowStepWizard={setShowStepWizard} getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
             </div>
         </>
     )
