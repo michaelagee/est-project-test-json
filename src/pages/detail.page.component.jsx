@@ -15,10 +15,18 @@ function AddEstimationWizard(props) {
     const rate = 225;
 
     const [form, setForm] = useState({
+        stepsStarted: [],
+        stepCompleted: 0,
         projectName: '',
+        clientBudget: false,
         clientName: '',
         authorName: '',
-        clientAddress: ''
+        clientAddress: '',
+        clientAddress2: '',
+        clientAddressCity: '', 
+        clientAddressState: '', 
+        clientAddressZip: '',
+        newOrExistingProject: '', 
     });
     // const [estimationName, updateEstimationName] = useState(props.estimation.name);
     // const { name, updateName } = useContext(FormContext)
@@ -31,15 +39,28 @@ function AddEstimationWizard(props) {
         };
         updatedForm[e.target.name] = e.target.value;
         // currentFieldValue = e.target.value
-        console.log('form updated: ', form);
+        console.log('form updated: ', updatedForm);
 
         setForm(updatedForm);
+    }
+
+    const onStepChange = (currentStep, started, completed) => {
+
+        const updatedFormProgress = {
+            ...form
+        };
+        console.log(currentStep.activeStep, 'currentStep')
+        let latestStepCompleted = Math.max(updatedFormProgress.stepCompleted, currentStep.activeStep);
+        // updatedFormProgress.stepCompleted.push(latestStepCompleted)
+        updatedFormProgress.stepCompleted = latestStepCompleted
+        setForm(updatedFormProgress)
+        console.log('formProgressUpdated', updatedFormProgress);
     }
 
     return (
         <FormContext.Consumer>
         {({form}) =>
-        < StepWizard initialStep={1} >
+        < StepWizard onStepChange={onStepChange} initialStep={1} >
             <AddEstimationForm1
                 formValues={form}
                 estimation={props.estimation}

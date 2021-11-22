@@ -53,18 +53,32 @@ function AddEstimationForm1(props) {
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
                 <Form.Label>Client Address 2</Form.Label>
-                <Form.Control placeholder="Apartment, studio, or floor" />
+                <Form.Control
+                    type="text"
+                    name="clientAddress2"
+                    value={props.formValues.clientAddress2}
+                    onChange={props.handleChange}
+                    placeholder="Apartment, studio, or floor" />
             </Form.Group>
 
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>City</Form.Label>
-                    <Form.Control />
+                    <Form.Control
+                        type="text"
+                        name="clientAddressCity"
+                        value={props.formValues.clientAddressCity}
+                        onChange={props.handleChange} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>State</Form.Label>
-                    <Form.Select defaultValue="Choose...">
+                    <Form.Select
+                        type="select"
+                        name="clientAddressState"
+                        value={props.formValues.clientAddressState}
+                        onChange={props.handleChange}
+                        defaultValue="Choose...">
                         <option>Choose...</option>
                         {stateAbreviations}
                     </Form.Select>
@@ -72,12 +86,35 @@ function AddEstimationForm1(props) {
 
                 <Form.Group as={Col} controlId="formGridZip">
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control />
+                    <Form.Control
+                        type="text"
+                        name="clientAddressZip"
+                        value={props.formValues.clientAddressZip}
+                        onChange={props.handleChange}
+                    />
                 </Form.Group>
             </Row>
 
+            <Form.Group as={Col} controlId="formGridNewOrExisting">
+                    <Form.Label>Is this a new or existing project?</Form.Label>
+                    <Form.Select
+                        type="select"
+                        name="newOrExistingProject"
+                        value={props.formValues.newOrExistingProject}
+                        onChange={props.handleChange}
+                        defaultValue="Choose...">
+                        <option>Choose...</option>
+                        <option>New</option>
+                        <option>Existing</option>
+                    </Form.Select>
+                </Form.Group>
+
             <Form.Group className="mb-3" id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Did the client give a budget estimation?" />
+                <Form.Check 
+                type="checkbox" 
+                name="clientBudget"
+                value={props.formValues.clientBudget}
+                label="Did the client give a budget estimation?" />
             </Form.Group>
 
             <Button variant="primary" onClick={props.nextStep}>
