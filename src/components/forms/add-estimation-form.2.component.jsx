@@ -1,18 +1,29 @@
 import React from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap'
+import { applicationPlatforms, mobileApplicationTypes } from '../../constants/application-types';
 
 function AddEstimationForm2(props) {
+
+    let platforms = applicationPlatforms.map((appPlatform) => <option>{appPlatform}</option>);
+    let mobileAppTypes = mobileApplicationTypes.map((mobileAppType) => <option>{mobileAppType}</option>);
+
     return (
         <Form>
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Rage Name</Form.Label>
-                    <Form.Control type="input" placeholder="Enter a Project Name" />
+                <Form.Group as={Col} controlId="formGridState">
+                    <Form.Label>Web or Mobile?</Form.Label>
+                    <Form.Select defaultValue="Choose...">
+                        <option></option>
+                        { platforms }
+                    </Form.Select>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                <Form.Group as={Col} controlId="formGridState">
+                    <Form.Label>Application Type (What kind of project is it?)</Form.Label>
+                    <Form.Select defaultValue="Choose...">
+                        <option>Choose...</option>
+                        { mobileAppTypes }
+                    </Form.Select>
                 </Form.Group>
             </Row>
 

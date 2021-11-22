@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       env: "local",
       totalCost: 0,
+      updateName: this.updateName,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
       estimations: [
@@ -87,6 +88,10 @@ class App extends Component {
     return this.state.totalCost;
   };
 
+  updateName = (newName) => {
+    console.log('new name', newName)
+  }
+
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
   };
@@ -157,6 +162,7 @@ class App extends Component {
               totalCost={this.state.totalCost}
               updateTotalCost={this.updateTotalCost}
               getTotalCost={this.getTotalCost}
+              updateName={this.updateName}
               estimations={
                 filteredEstimations.length > 0
                   ? filteredEstimations
