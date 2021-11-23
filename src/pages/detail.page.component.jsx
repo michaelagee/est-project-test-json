@@ -10,34 +10,30 @@ import AddEstimationForm7 from '../components/forms/add-estimation-form.7.compon
 import AddEstimationForm8 from '../components/forms/add-estimation-form.8.component';
 import AddEstimationForm9 from '../components/forms/add-estimation-form.9.component';
 import StepWizard from 'react-step-wizard';
+import { InitialFormValues } from '../components/forms/form.initial-values';
 
 function AddEstimationWizard(props) {
     const rate = 225;
 
     const [form, setForm] = useState({
-        stepsStarted: [],
-        stepCompleted: 0,
-        projectName: '',
-        clientBudget: false,
-        clientName: '',
-        authorName: '',
-        clientAddress: '',
-        clientAddress2: '',
-        clientAddressCity: '', 
-        clientAddressState: '', 
-        clientAddressZip: '',
-        newOrExistingProject: '', 
+        ...InitialFormValues
     });
     // const [estimationName, updateEstimationName] = useState(props.estimation.name);
     // const { name, updateName } = useContext(FormContext)
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         const updatedForm = {
             ...form,
             [name]: value
         };
-        updatedForm[e.target.name] = e.target.value;
+        console.log(e, 'target')
+        if (e.target.type === 'checkbox') {
+            console.log('we have a checkbox captain')
+            updatedForm[e.target.name] = e.target.checked;
+        } else {
+            updatedForm[e.target.name] = e.target.value;
+        }
         // currentFieldValue = e.target.value
         console.log('form updated: ', updatedForm);
 
@@ -59,23 +55,55 @@ function AddEstimationWizard(props) {
 
     return (
         <FormContext.Consumer>
-        {({form}) =>
-        < StepWizard onStepChange={onStepChange} initialStep={1} >
-            <AddEstimationForm1
-                formValues={form}
-                estimation={props.estimation}
-                handleChange={handleChange}
-                stepName={"initialDetails"} />
-            <AddEstimationForm2 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm3 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm4 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm5 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm6 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm7 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm8 handleChange={handleChange} stepName={"applicationType"} />
-            <AddEstimationForm9 handleChange={handleChange} stepName={"applicationType"} />
-        </StepWizard>
-        }
+            {({ form }) =>
+                < StepWizard onStepChange={onStepChange} initialStep={1} >
+                    <AddEstimationForm1
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"initialDetails"} />
+                    <AddEstimationForm2
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                    <AddEstimationForm3
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"userManagement"} />
+                    <AddEstimationForm4
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                    <AddEstimationForm5
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                    <AddEstimationForm6
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                    <AddEstimationForm7
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                    <AddEstimationForm8
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                    <AddEstimationForm9
+                        formValues={form}
+                        estimation={props.estimation}
+                        handleChange={handleChange}
+                        stepName={"applicationType"} />
+                </StepWizard>
+            }
         </FormContext.Consumer >
     )
 }

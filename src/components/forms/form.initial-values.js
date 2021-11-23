@@ -1,0 +1,16 @@
+export const InitialFormValues = {
+  stepsStarted: [],
+  stepCompleted: 0,
+  projectName: "",
+  clientBudget: false,
+  clientName: "",
+  authorName: "",
+  clientAddress: "",
+  clientAddress2: "",
+  clientAddressCity: "",
+  clientAddressState: "",
+  clientAddressZip: "",
+  newOrExistingProject: "",
+  userHotState: true,
+  userSocialLoginOrRegistration: false,
+};

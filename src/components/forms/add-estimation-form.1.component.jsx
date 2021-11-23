@@ -17,7 +17,8 @@ function AddEstimationForm1(props) {
                         name="projectName"
                         value={props.formValues.projectName}
                         onChange={props.handleChange}
-                        placeholder='random shite' />
+                        placeholder={props.estimation.name}
+                        defaultValue={props.estimation.name} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="form1-client-name">
@@ -113,6 +114,8 @@ function AddEstimationForm1(props) {
                 <Form.Check 
                 type="checkbox" 
                 name="clientBudget"
+                checked={props.formValues.clientBudget}
+                onChange={props.handleChange}
                 value={props.formValues.clientBudget}
                 label="Did the client give a budget estimation?" />
             </Form.Group>
