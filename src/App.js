@@ -5,14 +5,16 @@ import "./dashboard/dashboard.styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
+import { NewEstimation } from './data/newEstimation';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      env: "amplify",
+      env: "local",
       totalCost: 0,
+      updateName: this.updateName,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
       estimations: [
@@ -55,9 +57,26 @@ class App extends Component {
         .then((response) => response.json())
         .then((estimations) => this.setState({ estimations: estimations }));
     }
-
+  
     if (this.state.env === "amplify") {
       fetch("estimation.json")
+        .then((response) => response.json())
+        .then((estimations) =>
+          this.setState({ estimations: estimations.estimations })
+        );
+    }
+  }
+
+  // TODO: MOVE TO API LAYER
+  getEstimations = async() => {
+    if (this.state.env === "local") {
+      await fetch("http://localhost:3001/estimations")
+        .then((response) => response.json())
+        .then((estimations) => this.setState({ estimations: estimations }));
+    }
+  
+    if (this.state.env === "amplify") {
+      await fetch("estimation.json")
         .then((response) => response.json())
         .then((estimations) =>
           this.setState({ estimations: estimations.estimations })
@@ -68,6 +87,10 @@ class App extends Component {
   getTotalCost = () => {
     return this.state.totalCost;
   };
+
+  updateName = (newName) => {
+    console.log('new name', newName)
+  }
 
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
@@ -88,7 +111,7 @@ class App extends Component {
   addNewEstimation = async (e) => {
     const { estimations } = this.state;
     
-    let newEstimation = {...this.state.newEstimation}
+    let newEstimation = {...NewEstimation}
     newEstimation.id = estimations.length += 1
     newEstimation.name = this.state.searchField
 
@@ -107,7 +130,7 @@ class App extends Component {
     });
 
     this.setState({
-      newEstimation
+      ...newEstimation
     });
   };
 
@@ -139,6 +162,7 @@ class App extends Component {
               totalCost={this.state.totalCost}
               updateTotalCost={this.updateTotalCost}
               getTotalCost={this.getTotalCost}
+              updateName={this.updateName}
               estimations={
                 filteredEstimations.length > 0
                   ? filteredEstimations

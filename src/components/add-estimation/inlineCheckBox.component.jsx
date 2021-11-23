@@ -8,6 +8,7 @@ function InlineCheckBoxes(props) {
         props.objectField.map((field) =>
             <Form.Check
                 inline
+                name={props.name}
                 key={`inline-checkbox-${field}`}
                 label={field}
                 type="checkbox"
