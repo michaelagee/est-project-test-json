@@ -13,4 +13,10 @@ export const InitialFormValues = {
   newOrExistingProject: "",
   userHotState: true,
   userSocialLoginOrRegistration: false,
+  userProfileRequired: false,
+  mediaSharing: false,
+  formMediaMgmt: "",
+  mediaUpdateFrequency: "",
+  formUserMediaMgmt: "",
+  mediaSharing: ""
 };

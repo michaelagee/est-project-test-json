@@ -10,7 +10,7 @@ import AddEstimationForm7 from '../components/forms/add-estimation-form.7.compon
 import AddEstimationForm8 from '../components/forms/add-estimation-form.8.component';
 import AddEstimationForm9 from '../components/forms/add-estimation-form.9.component';
 import StepWizard from 'react-step-wizard';
-import { InitialFormValues } from '../components/forms/form.initial-values';
+import { InitialFormValues } from '../components/forms/initialValues/form.initial-values';
 
 function AddEstimationWizard(props) {
     const rate = 225;
@@ -18,8 +18,6 @@ function AddEstimationWizard(props) {
     const [form, setForm] = useState({
         ...InitialFormValues
     });
-    // const [estimationName, updateEstimationName] = useState(props.estimation.name);
-    // const { name, updateName } = useContext(FormContext)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,30 +25,25 @@ function AddEstimationWizard(props) {
             ...form,
             [name]: value
         };
-        console.log(e, 'target')
+
         if (e.target.type === 'checkbox') {
-            console.log('we have a checkbox captain')
             updatedForm[e.target.name] = e.target.checked;
         } else {
             updatedForm[e.target.name] = e.target.value;
         }
-        // currentFieldValue = e.target.value
-        console.log('form updated: ', updatedForm);
-
+        // console.log('form updated: ', updatedForm);
         setForm(updatedForm);
     }
 
     const onStepChange = (currentStep, started, completed) => {
-
         const updatedFormProgress = {
             ...form
         };
-        console.log(currentStep.activeStep, 'currentStep')
+
         let latestStepCompleted = Math.max(updatedFormProgress.stepCompleted, currentStep.activeStep);
-        // updatedFormProgress.stepCompleted.push(latestStepCompleted)
         updatedFormProgress.stepCompleted = latestStepCompleted
         setForm(updatedFormProgress)
-        console.log('formProgressUpdated', updatedFormProgress);
+        // console.log('formProgressUpdated', updatedFormProgress);
     }
 
     return (
@@ -76,7 +69,7 @@ function AddEstimationWizard(props) {
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
-                        stepName={"applicationType"} />
+                        stepName={"media"} />
                     <AddEstimationForm5
                         formValues={form}
                         estimation={props.estimation}

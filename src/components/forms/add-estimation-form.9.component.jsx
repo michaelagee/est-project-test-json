@@ -34,7 +34,7 @@ function AddEstimationForm2(props) {
                         <Form.Control />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridState">
+                    <Form.Group as={Col} controlId="formGrifdState">
                         <Form.Label>State</Form.Label>
                         <Form.Select defaultValue="Choose...">
                             <option>Choose...</option>

@@ -10,7 +10,7 @@ function AddEstimationForm2(props) {
     return (
         <Form>
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridState">
+                <Form.Group as={Col} controlId="formWebOrMobile">
                     <Form.Label>Web or Mobile?</Form.Label>
                     <Form.Select defaultValue="Choose...">
                         <option></option>
@@ -18,7 +18,7 @@ function AddEstimationForm2(props) {
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridState">
+                <Form.Group as={Col} controlId="formApplicationType">
                     <Form.Label>Application Type (What kind of project is it?)</Form.Label>
                     <Form.Select defaultValue="Choose...">
                         <option>Choose...</option>

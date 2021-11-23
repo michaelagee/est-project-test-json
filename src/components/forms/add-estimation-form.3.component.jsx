@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap'
 
 function AddEstimationForm3(props) {
-    console.log(props, 'form 3 props')
     return (
         <>
             <h3>User Features & Session Management</h3>
@@ -19,7 +18,7 @@ function AddEstimationForm3(props) {
                             label="Will your users need to login to interact with the application?" />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" id="userMgmtFormHotState">
+                    <Form.Group className="mb-3" id="userMgmtSocialLogin">
                         <Form.Check
                             type="checkbox"
                             name="userSocialLoginOrRegistration"
@@ -28,6 +27,17 @@ function AddEstimationForm3(props) {
                             onChange={props.handleChange}
                             defaultValue={props.formValues.userSocialLoginOrRegistration}
                             label="Will users be able to register or login with social media accounts?" />
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3" id="userMgmtFormProfile">
+                        <Form.Check
+                            type="checkbox"
+                            name="userProfileRequired"
+                            checked={props.formValues.userProfileRequired}
+                            value={props.formValues.userProfileRequired}
+                            onChange={props.handleChange}
+                            defaultValue={props.formValues.userProfileRequired}
+                            label="Will users be able to manage or update their profile?" />
                     </Form.Group>
                 </Row>
 

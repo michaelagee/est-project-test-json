@@ -4,7 +4,6 @@ import { states } from '../../constants/states';
 
 
 function AddEstimationForm1(props) {
-    console.log(props, 'form 1 props')
     let stateAbreviations = states.map((state) => <option key={state}>{state}</option>);
 
     return (
