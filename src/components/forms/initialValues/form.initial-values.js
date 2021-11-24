@@ -18,5 +18,10 @@ export const InitialFormValues = {
   formMediaMgmt: "",
   mediaUpdateFrequency: "",
   formUserMediaMgmt: "",
-  mediaSharing: ""
+  mediaSharing: "",
+  contentUpdateFrequency: "",
+  contentManagement: "",
+  UserContentMgmt: "",
+  projectAnalytics: false,
+  projectCrashReporting: false
 };

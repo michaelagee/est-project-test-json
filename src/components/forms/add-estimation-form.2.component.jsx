@@ -27,6 +27,32 @@ function AddEstimationForm2(props) {
                 </Form.Group>
             </Row>
 
+            <Row className="mb-3">
+                <Form.Group className="mb-3" id="projectAnalytics">
+                    <Form.Check
+                        type="checkbox"
+                        name="projectAnalytics"
+                        checked={props.formValues.projectAnalytics}
+                        value={props.formValues.projectAnalytics}
+                        onChange={props.handleChange}
+                        defaultValue={props.formValues.projectAnalytics}
+                        label="Will the project need performance or user tracking analytics?" />
+                </Form.Group>
+            </Row>
+            
+            <Row className="mb-3">
+                <Form.Group className="mb-3" id="projectCrashReporting">
+                    <Form.Check
+                        type="checkbox"
+                        name="projectCrashReporting"
+                        checked={props.formValues.projectCrashReporting}
+                        value={props.formValues.projectCrashReporting}
+                        onChange={props.handleChange}
+                        defaultValue={props.formValues.projectCrashReporting}
+                        label="Will the project need crash reporting?" />
+                </Form.Group>
+            </Row>
+
             <Button variant="primary" onClick={props.previousStep}>
                 Previous Step
             </Button>
