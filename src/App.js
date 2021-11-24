@@ -12,7 +12,7 @@ class App extends Component {
     super();
 
     this.state = {
-      env: "amplify",
+      env: "local",
       totalCost: 0,
       updateName: this.updateName,
       getTotalCost: this.getTotalCost,
