@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 import { NewEstimation } from './data/newEstimation';
+import request from './message-control/renderer';
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,9 @@ class App extends Component {
     this.state = {
       env: "local",
       totalCost: 0,
+      setMessage: this.setMessage,
+      setResponses: this.setResponses,
+      responses: [],
       updateName: this.updateName,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
@@ -22,6 +26,8 @@ class App extends Component {
           name: "No Project",
           id: 0,
           views: ["landing"],
+          message: '',
+          responses: [],
           general_estimate_features: ["geolocationn"],
           // platform_specific_features: ["camera"],
           capabilities: ["biometrics"],
@@ -65,6 +71,7 @@ class App extends Component {
           this.setState({ estimations: estimations.estimations })
         );
     }
+
   }
 
   // TODO: MOVE TO API LAYER
@@ -95,6 +102,10 @@ class App extends Component {
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
   };
+
+  setMessage = () => {
+    console.log('heeeeey fuck you buddy!');
+  }
   
   searchEstimations = (e) => {
     e.preventDefault();
@@ -143,6 +154,10 @@ class App extends Component {
     const filteredEstimations = estimations.filter((estimation) =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     );
+
+    const { message, setMessage } = this.state;
+    const { responses, setResponses } = this.state;
+
     return (
       <CurrentEstimationTotalCost.Provider value={this.state}>
         <div className="App">
@@ -155,6 +170,26 @@ class App extends Component {
                 : this.addNewEstimation
             }
           />
+          <article>
+                <p>
+                    Say <i>ping</i> to the main process.
+                </p>
+                <input
+                    type="text"
+                    value={message}
+                    onChange={({ target: { value } }) => setMessage(value)}
+                />
+                <button type="button" onClick={() => request(message)}>
+                    Send
+                </button>
+                <br />
+                <p>Main process responses:</p>
+                <br />
+                <pre>
+                    {(responses && responses.join('\n')) ||
+                        'the main process seems quiet!'}
+                </pre>
+            </article>
           <div className="dashboard-container">
             <EstimationBlock
               className="dashboard-item"
