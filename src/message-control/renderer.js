@@ -1,7 +1,8 @@
 const electron = window.require('electron');
 const { ipcRenderer } = electron;
 
-export default function send(message) {
+export default function request(message) {
+    console.log('wtf', message);
     return new Promise((resolve) => {
         ipcRenderer.once('asynchronous-reply', (_, arg) => {
             resolve(arg);

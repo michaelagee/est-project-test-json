@@ -15,6 +15,7 @@ class App extends Component {
     this.state = {
       env: "local",
       totalCost: 0,
+      message: '',
       setMessage: this.setMessage,
       setResponses: this.setResponses,
       responses: [],
@@ -103,8 +104,8 @@ class App extends Component {
     this.setState({ searchField: e.target.value });
   };
 
-  setMessage = () => {
-    console.log('heeeeey fuck you buddy!');
+  setMessage = (e) => {
+    this.setState({ message: e.target.value });
   }
   
   searchEstimations = (e) => {
@@ -177,7 +178,7 @@ class App extends Component {
                 <input
                     type="text"
                     value={message}
-                    onChange={({ target: { value } }) => setMessage(value)}
+                    onChange={this.setMessage}
                 />
                 <button type="button" onClick={() => request(message)}>
                     Send
