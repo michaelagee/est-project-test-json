@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   getEstimations = async () => {
-    const response = await fetch('http://localhost:1020/estimations');
+    const response = await fetch('http://localhost:3000/estimations');
     const body = await response.json();
 
     if (response.status !== 200) {
