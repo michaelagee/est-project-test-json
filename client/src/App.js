@@ -112,6 +112,7 @@ class App extends Component {
   };
   
   addNewEstimation = async (e) => {
+    e.preventDefault();
     const { estimations } = this.state;
     
     let newEstimation = {...NewEstimation}
@@ -120,7 +121,7 @@ class App extends Component {
 
     // TODO: MOVE THIS TO AN API LAYER
     const response = await fetch("http://localhost:1020/estimations", {
-      method: "PUT",
+      method: "POST",
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
@@ -132,9 +133,19 @@ class App extends Component {
       body: JSON.stringify(newEstimation),
     });
 
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message) 
+    }
+    console.log(body, 'body')
+    // return body;
+
     this.setState({
       ...newEstimation
     });
+
+
   };
 
   updateTotalCost = (totalCost) => {
