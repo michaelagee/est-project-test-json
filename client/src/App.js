@@ -52,37 +52,40 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (this.state.env === "local") {
-      fetch("http://localhost:3001/estimations")
-        .then((response) => response.json())
-        .then((estimations) => this.setState({ estimations: estimations }));
-    }
-  
-    if (this.state.env === "amplify") {
-      fetch("estimation.json")
-        .then((response) => response.json())
-        .then((estimations) =>
-          this.setState({ estimations: estimations.estimations })
-        );
-    }
+
+    this.getEstimations()
+      .then(res => this.setState({ estimations: res.estimations }))
+      .catch(err => console.log(err));
   }
 
+  getEstimations = async () => {
+    const response = await fetch('http://localhost:1020/estimations');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message) 
+    }
+    console.log(body, 'body')
+    return body;
+  };
+
+
   // TODO: MOVE TO API LAYER
-  getEstimations = async() => {
-    if (this.state.env === "local") {
-      await fetch("http://localhost:3001/estimations")
-        .then((response) => response.json())
-        .then((estimations) => this.setState({ estimations: estimations }));
-    }
+  // getEstimations = async() => {
+  //   if (this.state.env === "local") {
+  //     await fetch("http://localhost:3001/estimations")
+  //       .then((response) => response.json())
+  //       .then((estimations) => this.setState({ estimations: estimations }));
+  //   }
   
-    if (this.state.env === "amplify") {
-      await fetch("estimation.json")
-        .then((response) => response.json())
-        .then((estimations) =>
-          this.setState({ estimations: estimations.estimations })
-        );
-    }
-  }
+  //   if (this.state.env === "amplify") {
+  //     await fetch("estimation.json")
+  //       .then((response) => response.json())
+  //       .then((estimations) =>
+  //         this.setState({ estimations: estimations.estimations })
+  //       );
+  //   }
+  // }
 
   getTotalCost = () => {
     return this.state.totalCost;
