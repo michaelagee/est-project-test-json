@@ -1,6 +1,6 @@
 
 export const NewEstimation = {
-    "name": "Apple",
+    "name": "NewEstimation",
     "id": 8,
     "hourly_rate": 225,
     "platform": "web",

@@ -119,8 +119,8 @@ class App extends Component {
     newEstimation.name = this.state.searchField
 
     // TODO: MOVE THIS TO AN API LAYER
-    const response = await fetch("http://localhost:3001/estimations", {
-      method: "POST",
+    const response = await fetch("http://localhost:1020/estimations", {
+      method: "PUT",
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
