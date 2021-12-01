@@ -59,7 +59,9 @@ class App extends Component {
   }
 
   getEstimations = async () => {
-    const response = await fetch('http://localhost:3000/estimations');
+    const response = await fetch('http://localhost:1020/estimations', {
+      cache: 'no-cache'
+    });
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -116,9 +118,13 @@ class App extends Component {
     const { estimations } = this.state;
     
     let newEstimation = {...NewEstimation}
-    newEstimation.id = estimations.length += 1
+    newEstimation.id = estimations.length + 1
     newEstimation.name = this.state.searchField
+    estimations.push(newEstimation)
 
+    console.log(estimations, 'estimations')
+    let newEstimationsCollection = estimations
+    console.log(newEstimationsCollection, 'new estimations')
     // TODO: MOVE THIS TO AN API LAYER
     const response = await fetch("http://localhost:1020/estimations", {
       method: "POST",
@@ -130,7 +136,7 @@ class App extends Component {
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",
-      body: JSON.stringify(newEstimation),
+      body: JSON.stringify({"estimations": newEstimationsCollection}),
     });
 
     const body = await response.json();
@@ -142,9 +148,10 @@ class App extends Component {
     // return body;
 
     this.setState({
-      ...newEstimation
+      estimations: body.estimations
     });
 
+    this.getEstimations();
 
   };
 

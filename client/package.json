@@ -2,7 +2,7 @@
   "name": "estimation-tool-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./client/build/",
+  "homepage": "./build/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.11.4",
