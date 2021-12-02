@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   getEstimations = async () => {
-    const response = await fetch('https://0zn0kksez5.execute-api.us-east-1.amazonaws.com/dev/estimations', {
+    const response = await fetch('https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations', {
       cache: 'no-cache'
     });
     const body = await response.json();
