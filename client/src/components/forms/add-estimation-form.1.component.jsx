@@ -13,7 +13,7 @@ function AddEstimationForm1(props) {
                     <Form.Label>Project Name</Form.Label>
                     <Form.Control
                         type="text"
-                        name="projectName"
+                        name="name"
                         value={props.formValues.projectName}
                         onChange={props.handleChange}
                         placeholder={props.estimation.name}
@@ -104,7 +104,7 @@ function AddEstimationForm1(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>New</option>
+                        <option value="40">New</option>
                         <option>Existing</option>
                     </Form.Select>
                 </Form.Group>

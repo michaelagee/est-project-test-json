@@ -4,16 +4,19 @@ import { applicationPlatforms, mobileApplicationTypes } from '../../constants/ap
 
 function AddEstimationForm2(props) {
 
-    let platforms = applicationPlatforms.map((appPlatform) => <option>{appPlatform}</option>);
+    let platforms = applicationPlatforms.map((appPlatform) => <option value={appPlatform.hours}>{appPlatform.platform}</option>);
     let mobileAppTypes = mobileApplicationTypes.map((mobileAppType) => <option>{mobileAppType}</option>);
 
     return (
         <Form>
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formWebOrMobile">
+                <Form.Group as={Col} controlId="platform">
                     <Form.Label>Web or Mobile?</Form.Label>
-                    <Form.Select defaultValue="Choose...">
-                        <option></option>
+                    <Form.Select 
+                    name="platform"
+                    defaultValue="Choose..."
+                    onChange={props.handleChange}
+                    >
                         { platforms }
                     </Form.Select>
                 </Form.Group>

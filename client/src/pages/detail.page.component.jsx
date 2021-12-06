@@ -13,25 +13,31 @@ import StepWizard from 'react-step-wizard';
 import { InitialFormValues } from '../components/forms/initialValues/form.initial-values';
 
 function AddEstimationWizard(props) {
+    console.log(props, 'detail page props')
     const rate = 225;
 
     const [form, setForm] = useState({
-        ...InitialFormValues
+        ...props.estimation
     });
+
+    console.log('the form', form);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         const updatedForm = {
-            ...form,
+            ...props.estimation,
             [name]: value
         };
+
+        // let updateForm2 = {...props.estimation}
+        // console.log('updated form 2 : ', updateForm2, e.target.value)
 
         if (e.target.type === 'checkbox') {
             updatedForm[e.target.name] = e.target.checked;
         } else {
             updatedForm[e.target.name] = e.target.value;
         }
-        // console.log('form updated: ', updatedForm);
+        console.log('form updated: ', updatedForm);
         setForm(updatedForm);
     }
 
@@ -43,7 +49,7 @@ function AddEstimationWizard(props) {
         let latestStepCompleted = Math.max(updatedFormProgress.stepCompleted, currentStep.activeStep);
         updatedFormProgress.stepCompleted = latestStepCompleted
         setForm(updatedFormProgress)
-        // console.log('formProgressUpdated', updatedFormProgress);
+        console.log('formProgressUpdated', updatedFormProgress);
     }
 
     return (

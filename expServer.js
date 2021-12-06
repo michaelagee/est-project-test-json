@@ -29,7 +29,7 @@ app.post("/estimations", (req, res) => {
       return;
     }
     console.log("Data written successfully to file");
-    res.send(db);
+    // res.send(db);
   });
 });
 

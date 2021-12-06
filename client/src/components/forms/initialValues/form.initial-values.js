@@ -23,5 +23,6 @@ export const InitialFormValues = {
   contentManagement: "",
   UserContentMgmt: "",
   projectAnalytics: false,
-  projectCrashReporting: false
+  projectCrashReporting: false,
+  socialMediaIntegration: []
 };
