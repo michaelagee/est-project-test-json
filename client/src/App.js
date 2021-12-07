@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 import { NewEstimation } from "./data/newEstimation";
-import { GlobalContext } from "./context/global-state";
 
 class App extends Component {
   constructor() {
@@ -15,26 +14,11 @@ class App extends Component {
     this.state = {
       env: "local",
       totalCost: 0,
-      updateName: this.updateName,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
       estimations: [
         {
-          name: "No Project",
-          id: 0,
-          views: ["landing"],
-          general_estimate_features: ["geolocationn"],
-          // platform_specific_features: ["camera"],
-          capabilities: ["biometrics"],
-          media: ["Image Optimzation"],
-          random: [
-            {
-              ios: {
-                enabled: true,
-                hours: 20,
-              },
-            },
-          ],
+          ...NewEstimation,
         },
       ],
       searchField: "",
@@ -53,6 +37,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log("app component mount");
     this.getEstimations()
       .then((res) => this.setState({ estimations: res.estimations }))
       .catch((err) => console.log(err));
@@ -62,15 +47,16 @@ class App extends Component {
     if (this.state.env === "local") {
       const response = await fetch("http://localhost:1020/estimations", {
         cache: "no-cache",
-      });
-
-      const body = await response.json();
-
-      if (response.status !== 200) {
-        throw Error(body.message);
-      }
-      console.log(body, "body");
-      return body;
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("success: ", data);
+          return data;
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+        });
+      return response;
     } else {
       const response = await fetch(
         "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations",
@@ -89,29 +75,8 @@ class App extends Component {
     }
   };
 
-  // TODO: MOVE TO API LAYER
-  // getEstimations = async() => {
-  //   if (this.state.env === "local") {
-  //     await fetch("http://localhost:3001/estimations")
-  //       .then((response) => response.json())
-  //       .then((estimations) => this.setState({ estimations: estimations }));
-  //   }
-
-  //   if (this.state.env === "amplify") {
-  //     await fetch("estimation.json")
-  //       .then((response) => response.json())
-  //       .then((estimations) =>
-  //         this.setState({ estimations: estimations.estimations })
-  //       );
-  //   }
-  // }
-
   getTotalCost = () => {
     return this.state.totalCost;
-  };
-
-  updateName = (newName) => {
-    console.log("new name", newName);
   };
 
   handleChange = (e) => {
@@ -122,7 +87,6 @@ class App extends Component {
     e.preventDefault();
     if (this.state.estimations > 0) {
       const { estimations, searchField } = this.state;
-      console.log(searchField, "searchField");
       const filteredEstimations = estimations.filter((estimation) =>
         estimation.name.toLowerCase().includes(searchField.toLowerCase())
       );
@@ -152,25 +116,18 @@ class App extends Component {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify({ estimations: newEstimationsCollection }),
-    });
-
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    console.log(body, "body");
-    // return body;
-
-    // this.setState({
-    //   estimations: body.estimations,
-    // });
-
-    // this.getEstimations();
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("success: ", data);
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
   };
 
   updateTotalCost = (totalCost) => {
-    console.log(totalCost, "TOTALCOST");
+    // console.log(totalCost, "TOTALCOST");
   };
 
   render() {
@@ -198,7 +155,6 @@ class App extends Component {
               totalCost={this.state.totalCost}
               updateTotalCost={this.updateTotalCost}
               getTotalCost={this.getTotalCost}
-              updateName={this.updateName}
               estimations={
                 filteredEstimations.length > 0
                   ? filteredEstimations

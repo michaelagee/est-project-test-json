@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { FormContext } from '../../context/Form.context';
 
 const EstimationDetails = (props) => {
-  console.log(props, 'estimations details props')
+  // console.log(props, 'estimations details props')
   let rate = 225;
   const [showEditForm, setShowEditForm] = useState(false);
   const [estimation, updateEstimation] = useState(props.estimation)
@@ -15,19 +15,15 @@ const EstimationDetails = (props) => {
   const onClick = () => {
     if (showEditForm) {
       toggleEditForm(false);
-      // POST a change to the db.json here on save. 
-      // Either a PUT or update the entire object array at the given index?'
-      console.log(estimation, 'form saved')
       updateEstimation(estimation)
       props.setCurrentEstimation(estimation)
-      console.log(estimation, 'afterwards')
     } else {
       toggleEditForm(true)
     }
   };
 
   function updateCurrentEstimation(estimation) {
-    console.log(estimation, 'updateCurrentEstimation')
+    // console.log(estimation, 'updateCurrentEstimation')
     updateEstimation(estimation)
   }
 
@@ -52,7 +48,7 @@ const EstimationDetails = (props) => {
             updateTotalCost={props.updateTotalCost}
             totalCost={props.totalCost}
             rate={rate}
-            // updateEstimation={updateCurrentEstimation}
+            updateEstimation={updateCurrentEstimation}
             estimation={props.estimation} />
           :
           <EstimationInvoice
