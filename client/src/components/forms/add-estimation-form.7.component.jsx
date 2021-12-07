@@ -58,14 +58,14 @@ function AddEstimationForm7(props) {
             </Row>
 
             <Row className="mb-3">
-                <Form.Group className="mb-3" id="mediaSharing">
+                <Form.Group className="mb-3" id="change">
                     <Form.Check
                         type="checkbox"
-                        name="mediaSharing"
-                        checked={props.formValues.mediaSharing}
-                        value={props.formValues.mediaSharing}
+                        name="change"
+                        checked={props.formValues.change}
+                        value={props.formValues.change}
                         onChange={props.handleChange}
-                        defaultValue={props.formValues.mediaSharing}
+                        defaultValue={props.formValues.change}
                         label="Will users be able to share images or videos with others?" />
                 </Form.Group>
             </Row>

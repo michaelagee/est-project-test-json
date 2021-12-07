@@ -9,15 +9,17 @@ function AddEstimationForm2(props) {
 
     return (
         <Form>
+            <h4>Application Type, Build Automation & Quality Control</h4>
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="platform">
                     <Form.Label>Web or Mobile?</Form.Label>
-                    <Form.Select 
-                    name="platform"
-                    defaultValue="Choose..."
-                    onChange={props.handleChange}
+                    <Form.Select
+                        name="platform"
+                        value={props.formValues.platform}
+                        defaultValue="Choose..."
+                        onChange={props.handleChange}
                     >
-                        { platforms }
+                        {platforms}
                     </Form.Select>
                 </Form.Group>
 
@@ -25,12 +27,26 @@ function AddEstimationForm2(props) {
                     <Form.Label>Application Type (What kind of project is it?)</Form.Label>
                     <Form.Select defaultValue="Choose...">
                         <option>Choose...</option>
-                        { mobileAppTypes }
+                        {mobileAppTypes}
                     </Form.Select>
                 </Form.Group>
             </Row>
 
             <Row className="mb-3">
+
+
+
+                <Form.Group className="mb-3" id="automatedBuilds">
+                    <Form.Check
+                        type="checkbox"
+                        name="automatedBuilds"
+                        checked={props.formValues.automatedBuilds}
+                        value={props.formValues.automatedBuilds}
+                        onChange={props.handleChange}
+                        defaultValue={props.formValues.automatedBuilds}
+                        label="Will the project need automated builds?" />
+                </Form.Group>
+
                 <Form.Group className="mb-3" id="projectAnalytics">
                     <Form.Check
                         type="checkbox"
@@ -41,9 +57,7 @@ function AddEstimationForm2(props) {
                         defaultValue={props.formValues.projectAnalytics}
                         label="Will the project need performance or user tracking analytics?" />
                 </Form.Group>
-            </Row>
-            
-            <Row className="mb-3">
+
                 <Form.Group className="mb-3" id="projectCrashReporting">
                     <Form.Check
                         type="checkbox"

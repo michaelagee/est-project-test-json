@@ -21,7 +21,7 @@ app.get("/estimations", (req, res) => {
   res.send(db);
 });
 
-app.post("/estimations", (req, res) => {
+app.put("/estimations", (req, res) => {
   console.log(JSON.stringify(req.body), "yay");
   writeFileSync(dbFilePath, JSON.stringify(req.body), (error) => {
     if (error) {

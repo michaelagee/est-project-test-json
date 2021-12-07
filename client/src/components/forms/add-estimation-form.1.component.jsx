@@ -104,8 +104,8 @@ function AddEstimationForm1(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option value="40">New</option>
-                        <option>Existing</option>
+                        <option value={"new_40"}>New</option>
+                        <option value={"existing_90"}>Existing</option>
                     </Form.Select>
                 </Form.Group>
 

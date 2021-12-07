@@ -22,11 +22,11 @@ function AddEstimationForm6(props) {
                             onChange={props.handleChange}
                         />
                     </FloatingLabel> */}
-                <InlineCheckBoxes
-                    objectField={socialMediaPlatforms}
-                    value={props.formValues.socialMediaIntegration}
-                    checked={props.formValues.socialMediaIntegration}
-                    onChange={props.handleChange} />
+                    <InlineCheckBoxes
+                        objectField={socialMediaPlatforms}
+                        value={props.formValues.socialMediaIntegration}
+                        checked={props.formValues.socialMediaIntegration}
+                        onChange={props.handleChange} />
                 </Form.Group>
 
             </Row>
@@ -40,11 +40,11 @@ function AddEstimationForm6(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>Almost never</option>
-                        <option>Occasionally</option>
-                        <option>Often</option>
-                        <option>Frequently</option>
-                        <option>Daily</option>
+                        <option value={40}>Almost never</option>
+                        <option value={50}>Occasionally</option>
+                        <option value={60}>Often</option>
+                        <option value={70}>Frequently</option>
+                        <option value={100}>Daily</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -61,6 +61,22 @@ function AddEstimationForm6(props) {
                         <option>Yes</option>
                         <option>No</option>
                         <option>Users with special permissions can</option>
+                    </Form.Select>
+                </Form.Group>
+            </Row>
+            <Row>
+                <Form.Group as={Col} controlId="UserContentStoring">
+                    <Form.Label>How long do you want users to be able to pull up content they've submitted?</Form.Label>
+                    <Form.Select
+                        type="select"
+                        name="UserContentStorage"
+                        value={props.formValues.UserContentStoring}
+                        onChange={props.handleChange}
+                        defaultValue="Choose...">
+                        <option>Choose...</option>
+                        <option value={100}>A few weeks</option>
+                        <option value={125}>A certain amount of posts</option>
+                        <option value={200}>Forever</option>
                     </Form.Select>
                 </Form.Group>
             </Row>

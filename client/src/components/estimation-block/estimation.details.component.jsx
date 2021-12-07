@@ -16,11 +16,20 @@ const EstimationDetails = (props) => {
     if (showEditForm) {
       toggleEditForm(false);
       // POST a change to the db.json here on save. 
-      // Either a PUT or update the entire object array at the given index?
+      // Either a PUT or update the entire object array at the given index?'
+      console.log(estimation, 'form saved')
+      updateEstimation(estimation)
+      props.setCurrentEstimation(estimation)
+      console.log(estimation, 'afterwards')
     } else {
       toggleEditForm(true)
     }
   };
+
+  function updateCurrentEstimation(estimation) {
+    console.log(estimation, 'updateCurrentEstimation')
+    updateEstimation(estimation)
+  }
 
   function toggleEditForm(showForm) {
     setShowEditForm(showForm)
@@ -28,7 +37,7 @@ const EstimationDetails = (props) => {
   };
 
   return (
-    <FormContext.Provider value={{form}}>
+    <FormContext.Provider value={{ form }}>
       <div>
         <h1>Estimate Details : {props.estimation.name} - {props.estimation.application_type}</h1>
         <p>Total Hours: 780 : Rate: ${rate}</p>
@@ -37,15 +46,21 @@ const EstimationDetails = (props) => {
         </Button>
         {/* <AddEstimationWizard getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={rate} estimation={props.estimation} /> */}
         {showEditForm ?
-              <AddEstimationWizard
-                initialStep={1}
-                getTotalCost={props.getTotalCost}
-                updateTotalCost={props.updateTotalCost}
-                totalCost={props.totalCost}
-                rate={rate}
-                estimation={props.estimation} />
-           :
-          <EstimationInvoice getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={rate} estimation={props.estimation} />
+          <AddEstimationWizard
+            initialStep={1}
+            getTotalCost={props.getTotalCost}
+            updateTotalCost={props.updateTotalCost}
+            totalCost={props.totalCost}
+            rate={rate}
+            // updateEstimation={updateCurrentEstimation}
+            estimation={props.estimation} />
+          :
+          <EstimationInvoice
+            getTotalCost={props.getTotalCost}
+            updateTotalCost={props.updateTotalCost}
+            totalCost={props.totalCost}
+            rate={rate}
+            estimation={props.estimation} />
         }
       </div>
     </FormContext.Provider>

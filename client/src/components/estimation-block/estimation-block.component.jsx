@@ -19,24 +19,24 @@ const EstimationBlock = (props) => {
 
     return (
         <CurrentEstimationTotalCost.Consumer>
-            {({ currentEstimation }) =>
-                <>
-                    <ListGroup className="dashboard-list-group">
-                        {props.estimations.map(estimation => (
-                            <ListGroup.Item
-                                action
-                                key={estimation.id}
-                                onClick={() => handleShowEvent({ estimation })}
-                                item={estimation}>
-                                {estimation.name}
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-                    <div className="detailPanel">
-                        <EstimationDetails currentEstimationTotalCost={currentEstimation} setShowStepWizard={setShowStepWizard} getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
-                    </div>
-                </>
-            }
+            {({ CurrentEstimation }) =>
+<>
+            <ListGroup className="dashboard-list-group">
+                {props.estimations.map(estimation => (
+                    <ListGroup.Item
+                        action
+                        key={estimation.id}
+                        onClick={() => handleShowEvent({ estimation })}
+                        item={estimation}>
+                        {estimation.name}
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+            <div className="detailPanel">
+                <EstimationDetails setShowStepWizard={setShowStepWizard} getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} estimation={currentEstimation || props.estimations[0]} />
+            </div>
+            </>
+}
         </CurrentEstimationTotalCost.Consumer >
     )
 };
