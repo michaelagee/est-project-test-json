@@ -13,11 +13,14 @@ import StepWizard from 'react-step-wizard';
 import { InitialFormValues } from '../components/forms/initialValues/form.initial-values';
 
 function AddEstimationWizard(props) {
+    // console.log(props, 'detail page props')
     const rate = 225;
 
     const [form, setForm] = useState({
-        ...InitialFormValues
+        ...props.estimation
     });
+
+    // console.log('the form', form);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,13 +29,21 @@ function AddEstimationWizard(props) {
             [name]: value
         };
 
+        console.log(updatedForm, 'updatedForm')
+        // let updateForm2 = {...props.estimation}
+        // console.log('updated form 2 : ', updateForm2, e.target.value)
+
         if (e.target.type === 'checkbox') {
+            console.log(e)
             updatedForm[e.target.name] = e.target.checked;
+            updatedForm[e.target.name + "Hours"] = e.target.defaultValue
         } else {
+            console.log(e)
             updatedForm[e.target.name] = e.target.value;
         }
-        // console.log('form updated: ', updatedForm);
+        console.log('form updated: ', updatedForm);
         setForm(updatedForm);
+        props.updateEstimation(updatedForm)
     }
 
     const onStepChange = (currentStep, started, completed) => {
@@ -43,7 +54,27 @@ function AddEstimationWizard(props) {
         let latestStepCompleted = Math.max(updatedFormProgress.stepCompleted, currentStep.activeStep);
         updatedFormProgress.stepCompleted = latestStepCompleted
         setForm(updatedFormProgress)
-        // console.log('formProgressUpdated', updatedFormProgress);
+        console.log('formProgressUpdated', updatedFormProgress);
+
+        // const response = fetch("http://localhost:1020/estimations", {
+        //     method: "POST",
+        //     mode: "cors",
+        //     cache: "no-cache",
+        //     credentials: "same-origin",
+        //     headers: {
+        //         "Content-type": "application/json",
+        //     },
+        //     redirect: "follow",
+        //     referrerPolicy: "no-referrer",
+        //     body: JSON.stringify({ estimations: updatedFormProgress }),
+        // });
+
+        // const body = response.json();
+
+        // if (response.status !== 200) {
+        //     throw Error(body.message);
+        // }
+        // console.log(body, "body");
     }
 
     return (

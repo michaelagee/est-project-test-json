@@ -1,7 +1,16 @@
 export const applicationPlatforms = [
-    "Web",
-    "Mobile",
-    "Both (Hybrid)"
+    {
+        "platform": "Web",
+        "hours": 200
+    },
+    {
+        "platform": "Mobile",
+        "hours": 360
+    },
+    {
+        "platform": "Both (Hybrid)",
+        "hours": 560
+    }
 ]
 
 export const mobileApplicationTypes = [

@@ -50,9 +50,9 @@ function AddEstimationForm4(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>Users with special permissions can</option>
+                        <option value={"userMediaUpload_75"}>Yes</option>
+                        <option value={"userMediaUpload_125"}>No</option>
+                        <option value={"userMediaUpload_100"}>Users with special permissions can</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -63,10 +63,21 @@ function AddEstimationForm4(props) {
                         type="checkbox"
                         name="mediaSharing"
                         checked={props.formValues.mediaSharing}
-                        value={props.formValues.mediaSharing}
+                        value={80}
                         onChange={props.handleChange}
                         defaultValue={props.formValues.mediaSharing}
                         label="Will users be able to share images or videos with others?" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" id="imageCaching">
+                    <Form.Check
+                        type="checkbox"
+                        name="imageCaching"
+                        checked={props.formValues.imageCaching}
+                        value={100}
+                        onChange={props.handleChange}
+                        defaultValue={props.formValues.imageCaching}
+                        label="Will the project require image caching?" />
                 </Form.Group>
             </Row>
 

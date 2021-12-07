@@ -11,17 +11,19 @@ export const InitialFormValues = {
   clientAddressState: "",
   clientAddressZip: "",
   newOrExistingProject: "",
+  platform: "",
   userHotState: true,
   userSocialLoginOrRegistration: false,
   userProfileRequired: false,
   mediaSharing: false,
+  imageCaching: false,
   formMediaMgmt: "",
   mediaUpdateFrequency: "",
   formUserMediaMgmt: "",
-  mediaSharing: "",
   contentUpdateFrequency: "",
   contentManagement: "",
   UserContentMgmt: "",
   projectAnalytics: false,
-  projectCrashReporting: false
+  projectCrashReporting: false,
+  socialMediaIntegration: []
 };

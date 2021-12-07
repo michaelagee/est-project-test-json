@@ -1,4 +1,4 @@
-let estimations = [
+export const  estimationList = [
     {
         "estimations": [
           {
@@ -1992,11 +1992,11 @@ let estimations = [
 ];
 
 export function getEstimations() {
-    return estimations;
+    return estimationList;
 }
 
 export function getEstimation(id) {
-    return estimations.find(
+    return estimationList.find(
         estimation => estimation.id === id
     );
 }

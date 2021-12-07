@@ -11,6 +11,9 @@ function InlineCheckBoxes(props) {
                 name={props.name}
                 key={`inline-checkbox-${field}`}
                 label={field}
+                value={props.value}
+                checked={props.formValues}
+                onChange={props.handleChange}
                 type="checkbox"
                 id={`inline-checkbox-${field}`}
             />
