@@ -4,12 +4,29 @@ import { applicationPlatforms, mobileApplicationTypes } from '../../constants/ap
 
 function AddEstimationForm2(props) {
 
-    let platforms = applicationPlatforms.map((appPlatform) => <option value={appPlatform.hours}>{appPlatform.platform}</option>);
-    let mobileAppTypes = mobileApplicationTypes.map((mobileAppType) => <option>{mobileAppType}</option>);
+    let platforms = applicationPlatforms.map((appPlatform) => <option key={`${appPlatform}-${appPlatform.hours}`} value={appPlatform.hours}>{appPlatform.platform}</option>);
+    let mobileAppTypes = mobileApplicationTypes.map((mobileAppType) => <option key={mobileAppType}>{mobileAppType}</option>);
 
     return (
         <Form>
             <h4>Application Type, Build Automation & Quality Control</h4>
+            <p>User analytics, google firebase crash reporting and build automation are included in all application estimates</p>
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridNewOrExisting">
+                    <Form.Label>Is this a new or existing application?</Form.Label>
+                    <Form.Select
+                        type="select"
+                        name="newOrExistingProject"
+                        value={props.formValues.newOrExistingProject}
+                        onChange={props.handleChange}
+                        defaultValue="Choose...">
+                        <option>Choose...</option>
+                        <option value={"new_40"}>New</option>
+                        <option value={"existing_90"}>Existing</option>
+                    </Form.Select>
+                </Form.Group>
+            </Row>
+
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="platform">
                     <Form.Label>Web or Mobile?</Form.Label>
@@ -24,7 +41,7 @@ function AddEstimationForm2(props) {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formApplicationType">
-                    <Form.Label>Application Type (What kind of project is it?)</Form.Label>
+                    <Form.Label>Application Type (What kind of application is it?)</Form.Label>
                     <Form.Select defaultValue="Choose...">
                         <option>Choose...</option>
                         {mobileAppTypes}
@@ -32,9 +49,22 @@ function AddEstimationForm2(props) {
                 </Form.Group>
             </Row>
 
-            <Row className="mb-3">
+            {/* <Row className="mb-3">
+                <Form.Group as={Col} controlId="formApplicationType">
+                    <Form.Label>Do users need to login to the application?</Form.Label>
+                    <Form.Select defaultValue="Choose...">
+                        <option>Choose...</option>
+                        <option>Yes</option>
+                        <option>No</option>
 
+                    </Form.Select>
+                </Form.Group>
+            </Row> */}
 
+            {/* These below need to be included in the estimate, but not necessary for the customer
+            to choose because they are inherent to the project */}
+
+            {/* <Row className="mb-3">
 
                 <Form.Group className="mb-3" id="automatedBuilds">
                     <Form.Check
@@ -68,15 +98,19 @@ function AddEstimationForm2(props) {
                         defaultValue={props.formValues.projectCrashReporting}
                         label="Will the project need crash reporting?" />
                 </Form.Group>
+            </Row> */}
+
+
+            <Row className="mb-3">
+                <Button variant="primary" onClick={props.previousStep}>
+                    Previous Step
+                </Button>
             </Row>
-
-            <Button variant="primary" onClick={props.previousStep}>
-                Previous Step
-            </Button>
-
-            <Button variant="primary" onClick={props.nextStep}>
-                Next Step
-            </Button>
+            <Row className="mb-3">
+                <Button variant="primary" onClick={props.nextStep}>
+                    Next Step
+                </Button>
+            </Row>
         </Form>
     )
 }

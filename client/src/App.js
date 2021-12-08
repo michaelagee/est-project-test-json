@@ -12,7 +12,7 @@ class App extends Component {
     super();
 
     this.state = {
-      env: "amplify",
+      env: "local",
       totalCost: 0,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
@@ -37,20 +37,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("app component mount");
     this.getEstimations()
-      .then((res) => this.setState({ estimations: res.estimations }))
-      .catch((err) => console.log(err));
+    .then((res) => this.setState({ estimations: res.estimations }))
+    .catch((err) => console.log(err));
+    console.log("app component mount", this.state.estimations);
   }
 
   getEstimations = async () => {
     if (this.state.env === "local") {
-      const response = await fetch("http://localhost:1020/estimations", {
-        cache: "no-cache",
-      })
+      const response = await fetch("http://localhost:1020/estimations")
         .then((response) => response.json())
         .then((data) => {
-          console.log("success: ", data);
+          console.log("App.js -> success: ", data);
           return data;
         })
         .catch((error) => {
@@ -135,6 +133,7 @@ class App extends Component {
     const filteredEstimations = estimations.filter((estimation) =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     );
+    console.log('re-render');
     return (
       <CurrentEstimationTotalCost.Provider value={this.state}>
         <div className="App">

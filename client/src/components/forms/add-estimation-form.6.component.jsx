@@ -99,9 +99,9 @@ function AddEstimationForm6(props) {
                 Previous Step
             </Button>
 
-            <Button variant="primary" onClick={props.nextStep}>
+            {/* <Button variant="primary" onClick={props.nextStep}>
                 Next Step
-            </Button>
+            </Button> */}
         </Form>
     )
 }

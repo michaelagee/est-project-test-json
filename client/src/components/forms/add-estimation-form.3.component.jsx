@@ -4,7 +4,8 @@ import { Form, Row, Col, Button } from 'react-bootstrap'
 function AddEstimationForm3(props) {
     return (
         <>
-            <h3>User Features & Session Management</h3>
+        {/* This entire form can go away based on form 2, these are auto baked in based on logins */}
+            <h3>User Profile Management</h3>
             <Form>
                 <Row className="mb-3">
                     <Form.Group className="mb-3" id="userMgmtFormHotState">

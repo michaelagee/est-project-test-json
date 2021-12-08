@@ -10,27 +10,27 @@ const port = process.env.PORT || 1020;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
 // GET Routes
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.get("/estimations", (req, res) => {
-  res.send(db);
+  res.json(db);
 });
 
 app.put("/estimations", (req, res) => {
   console.log(JSON.stringify(req.body), "yay");
-  writeFileSync(dbFilePath, JSON.stringify(req.body), (error) => {
+  writeFile(dbFilePath, JSON.stringify(req.body), (error) => {
     if (error) {
       console.log("An error has occurred ", error);
       return;
     }
     console.log("Data written successfully to file");
-    // res.send(db);
   });
+  res.json(db);
 });
 
 // This displays message that the server running and listening to specified port

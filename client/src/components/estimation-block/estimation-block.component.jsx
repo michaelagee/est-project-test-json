@@ -20,29 +20,36 @@ const EstimationBlock = (props) => {
         }
     }
     
-    function handleSetCurrentEstimation(currentEstimation) {
+    const handleSetCurrentEstimation = async (currentEstimation) => {
         // console.log(estimations, props.estimations, 'estimation block estimation')
         let indexToBeReplaced = props.estimations.findIndex((el) => el.id == currentEstimation.id)
         let newCollection = props.estimations
         newCollection.splice(indexToBeReplaced, 1, currentEstimation);
         // console.log('new collection', newCollection)
         // console.log(props.estimations[indexToBeReplaced], 'indexToBeReplaced');
-        updateEstimations(newCollection);
         // console.log('estimations son', props.estimations)
-        setCurrentEstimation(currentEstimation)
+        
+        const response = await fetch("http://localhost:1020/estimations", {
+            method: "PUT",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-type": "application/json",
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify({ estimations: props.estimations }),
+        });
 
-        // const response = fetch("http://localhost:1020/estimations", {
-        //     method: "PUT",
-        //     mode: "cors",
-        //     cache: "no-cache",
-        //     credentials: "same-origin",
-        //     headers: {
-        //         "Content-type": "application/json",
-        //     },
-        //     redirect: "follow",
-        //     referrerPolicy: "no-referrer",
-        //     body: JSON.stringify({ estimations: props.estimations }),
-        // })
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        console.log(body, "body");
+        updateEstimations(newCollection);
+        setCurrentEstimation(currentEstimation)
         // .then(response => response.json())
         // .then(data => {
         //     console.log("success: ", data)

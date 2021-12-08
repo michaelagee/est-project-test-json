@@ -48,7 +48,7 @@ function AddEstimationForm1(props) {
                     name="clientAddress"
                     value={props.formValues.clientAddress}
                     onChange={props.handleChange}
-                    placeholder="1234 Main St" />
+                    placeholder="5 W Cary St" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
@@ -67,6 +67,7 @@ function AddEstimationForm1(props) {
                     <Form.Control
                         type="text"
                         name="clientAddressCity"
+                        placeholder="Richmond"
                         value={props.formValues.clientAddressCity}
                         onChange={props.handleChange} />
                 </Form.Group>
@@ -89,27 +90,14 @@ function AddEstimationForm1(props) {
                     <Form.Control
                         type="text"
                         name="clientAddressZip"
+                        placeholder="23320"
                         value={props.formValues.clientAddressZip}
                         onChange={props.handleChange}
                     />
                 </Form.Group>
             </Row>
 
-            <Form.Group as={Col} controlId="formGridNewOrExisting">
-                    <Form.Label>Is this a new or existing project?</Form.Label>
-                    <Form.Select
-                        type="select"
-                        name="newOrExistingProject"
-                        value={props.formValues.newOrExistingProject}
-                        onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option value={"new_40"}>New</option>
-                        <option value={"existing_90"}>Existing</option>
-                    </Form.Select>
-                </Form.Group>
-
-            <Form.Group className="mb-3" id="formGridCheckbox">
+            {/* <Form.Group className="mb-3" id="formGridCheckbox">
                 <Form.Check 
                 type="checkbox" 
                 name="clientBudget"
@@ -117,7 +105,7 @@ function AddEstimationForm1(props) {
                 onChange={props.handleChange}
                 value={props.formValues.clientBudget}
                 label="Did the client give a budget estimation?" />
-            </Form.Group>
+            </Form.Group> */}
 
             <Button variant="primary" onClick={props.nextStep}>
                 Next Step

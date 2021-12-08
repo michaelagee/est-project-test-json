@@ -91,27 +91,27 @@ function AddEstimationWizard(props) {
                         estimation={props.estimation}
                         handleChange={handleChange}
                         stepName={"applicationType"} />
-                    <AddEstimationForm3
+                    {/* <AddEstimationForm3
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
-                        stepName={"userManagement"} />
+                        stepName={"userManagement"} /> */}
                     <AddEstimationForm4
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
                         stepName={"media"} />
-                    <AddEstimationForm5
+                    {/* <AddEstimationForm5
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
-                        stepName={"applicationType"} />
+                        stepName={"applicationType"} /> */}
                     <AddEstimationForm6
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
                         stepName={"applicationType"} />
-                    <AddEstimationForm7
+                    {/* <AddEstimationForm7
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
@@ -125,7 +125,7 @@ function AddEstimationWizard(props) {
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
-                        stepName={"applicationType"} />
+                        stepName={"applicationType"} /> */}
                 </StepWizard>
             }
         </FormContext.Consumer >
