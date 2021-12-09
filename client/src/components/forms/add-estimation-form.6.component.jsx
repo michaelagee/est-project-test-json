@@ -74,7 +74,7 @@ function AddEstimationForm6(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option value={100}>A few weeks</option>
+                        <option label="A few weeks" value={100}>A few weeks</option>
                         <option value={125}>A certain amount of posts</option>
                         <option value={200}>Forever</option>
                     </Form.Select>
@@ -99,9 +99,9 @@ function AddEstimationForm6(props) {
                 Previous Step
             </Button>
 
-            {/* <Button variant="primary" onClick={props.nextStep}>
-                Next Step
-            </Button> */}
+            <Button variant="primary" onClick={props.nextStep}>
+                Calculate Estimate
+            </Button>
         </Form>
     )
 }

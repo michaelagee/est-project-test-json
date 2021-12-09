@@ -1,11 +1,12 @@
 import React from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap'
-import { applicationPlatforms, mobileApplicationTypes } from '../../constants/application-types';
+import { applicationPlatforms, mobileApplicationTypes, applicationCategories } from '../../constants/application-types';
 
 function AddEstimationForm2(props) {
 
     let platforms = applicationPlatforms.map((appPlatform) => <option key={`${appPlatform}-${appPlatform.hours}`} value={appPlatform.hours}>{appPlatform.platform}</option>);
-    let mobileAppTypes = mobileApplicationTypes.map((mobileAppType) => <option key={mobileAppType}>{mobileAppType}</option>);
+    let mobileAppTypes = mobileApplicationTypes.map(
+        (mobileAppType) => <option value={mobileAppType.categoryType} key={mobileAppType.categoryName}>{mobileAppType.categoryName}</option>);
 
     return (
         <Form>
@@ -40,10 +41,14 @@ function AddEstimationForm2(props) {
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formApplicationType">
+                <Form.Group as={Col} controlId="applicationType">
                     <Form.Label>Application Type (What kind of application is it?)</Form.Label>
-                    <Form.Select defaultValue="Choose...">
-                        <option>Choose...</option>
+                    <Form.Select
+                        defaultValue="Choose..."
+                        name="applicationType"
+                        value={props.formValues.applicationType}
+                        defaultValue="Choose..."
+                        onChange={props.handleChange}>
                         {mobileAppTypes}
                     </Form.Select>
                 </Form.Group>

@@ -48,7 +48,7 @@ function AddEstimationForm1(props) {
                     name="clientAddress"
                     value={props.formValues.clientAddress}
                     onChange={props.handleChange}
-                    placeholder="5 W Cary St" />
+                    defaultValue="5 W Cary St" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
@@ -68,6 +68,7 @@ function AddEstimationForm1(props) {
                         type="text"
                         name="clientAddressCity"
                         placeholder="Richmond"
+                        defaultValue="Richmond"
                         value={props.formValues.clientAddressCity}
                         onChange={props.handleChange} />
                 </Form.Group>
@@ -79,7 +80,7 @@ function AddEstimationForm1(props) {
                         name="clientAddressState"
                         value={props.formValues.clientAddressState}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
+                        defaultValue="VA">
                         <option>Choose...</option>
                         {stateAbreviations}
                     </Form.Select>
@@ -91,6 +92,7 @@ function AddEstimationForm1(props) {
                         type="text"
                         name="clientAddressZip"
                         placeholder="23320"
+                        defaultValue="23320"
                         value={props.formValues.clientAddressZip}
                         onChange={props.handleChange}
                     />

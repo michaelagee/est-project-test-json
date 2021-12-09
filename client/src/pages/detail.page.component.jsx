@@ -11,11 +11,17 @@ import AddEstimationForm8 from '../components/forms/add-estimation-form.8.compon
 import AddEstimationForm9 from '../components/forms/add-estimation-form.9.component';
 import StepWizard from 'react-step-wizard';
 import { InitialFormValues } from '../components/forms/initialValues/form.initial-values';
+import EstimationDetails from '../components/estimation-block/estimation.details.component';
 
 function AddEstimationWizard(props) {
-    // console.log(props, 'detail page props')
+    console.log(props, 'detail page props')
     const rate = 225;
-
+    let requirements = [
+        props.estimation.views,
+        props.estimation.general_estimate_features,
+        props.estimation.capabilities,
+        props.estimation.media]
+    let itemsToBeRequiredForEstimate = [];
     const [form, setForm] = useState({
         ...props.estimation
     });
@@ -29,7 +35,18 @@ function AddEstimationWizard(props) {
             [name]: value
         };
 
-        console.log(updatedForm, 'updatedForm')
+
+        if (e.target.value > 1) {
+            console.log('things happened');
+            requirements.forEach(requirement => {
+                itemsToBeRequiredForEstimate = requirement.filter(field => field.category == 2)
+                itemsToBeRequiredForEstimate.forEach(item => item.required = true)
+
+                console.log(' morethings happened');
+            });
+        }
+
+        console.log(updatedForm, 'updatedForm');
         // let updateForm2 = {...props.estimation}
         // console.log('updated form 2 : ', updateForm2, e.target.value)
 
@@ -120,12 +137,15 @@ function AddEstimationWizard(props) {
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
-                        stepName={"applicationType"} />
+                        stepName={"applicationType"} /> */}
                     <AddEstimationForm9
                         formValues={form}
+                        getTotalCost={props.getTotalCost}
+                        totalCost={props.totalCost}
+                        updateTotalCost={props.updateTotalCost}
                         estimation={props.estimation}
                         handleChange={handleChange}
-                        stepName={"applicationType"} /> */}
+                        stepName={"applicationType"} />
                 </StepWizard>
             }
         </FormContext.Consumer >
