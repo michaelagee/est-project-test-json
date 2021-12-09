@@ -10,7 +10,12 @@ function EstimationInvoice(props) {
         props.estimation.views,
         props.estimation.general_estimate_features,
         props.estimation.capabilities,
-        props.estimation.media]
+        props.estimation.media,
+        props.estimation.build_automation,
+        props.estimation.quality_testing,
+        props.estimation.security,
+        props.estimation.data,
+    ]
     let featureCost = 0
     let totalCost = props.getTotalCost();
 
@@ -81,6 +86,36 @@ function EstimationInvoice(props) {
                             <td></td>
                         </tr>
                         <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.media.filter(view => view.required == true)} />
+
+                        <tr>
+                            <td>Data</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.data.filter(view => view.required == true)} />
+
+                        <tr>
+                            <td>Build & Test Automtion</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.build_automation.filter(view => view.required == true)} />
+
+                        <tr>
+                            <td>Security</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.security.filter(view => view.required == true)} />
 
                         <tr>
                             <td></td>

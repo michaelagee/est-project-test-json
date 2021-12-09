@@ -5,28 +5,24 @@ function AddEstimationForm4(props) {
     return (
         <Form>
             <h4>Images & Media</h4>
-            <p>This includes product images, banners, and content posting images. Also take into consideration how often this content will be updated and by whom</p>
+            <p>This includes product images, banners, and content posting images. Also take into consideration how often this content will be updated and by whom. This will determine the CMS structure.</p>
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formMediaMgmt">
                     <Form.Label>Will this application require dynamic image/video updates?</Form.Label>
                     <Form.Select
                         type="select"
-                        name="formMediaMgmt"
+                        name="dynamicMediaUpdates"
                         value={props.formValues.formMediaMgmt}
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>3rd party service or vendor</option>
-                        <option>West Cary Group</option>
-                        <option>Client</option>
-                        <option>3rd party service or vendor</option>
+                        <option value={20}>Yes</option>
+                        <option value={8}>No</option>
                     </Form.Select>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="mediaUpdateFrequency">
-                    <Form.Label>How often will the content be updated?</Form.Label>
+                    <Form.Label>How often will the media content need to be updated?</Form.Label>
                     <Form.Select
                         type="select"
                         name="mediaUpdateFrequency"
@@ -34,11 +30,11 @@ function AddEstimationForm4(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>Almost never</option>
-                        <option>Occasionally</option>
-                        <option>Often</option>
-                        <option>Frequently</option>
-                        <option>Daily</option>
+                        <option value={4}>Almost never</option>
+                        <option value={8}>Occasionally</option>
+                        <option value={10}>Often</option>
+                        <option value={16}>Frequently</option>
+                        <option value={24}>Daily</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -54,8 +50,8 @@ function AddEstimationForm4(props) {
                         defaultValue="Choose...">
                         <option>Choose...</option>
                         <option label={"Yes"} value={75}>Yes</option>
-                        <option value={"userMediaUpload_125"}>No</option>
-                        <option value={"userMediaUpload_100"}>Users with special permissions can</option>
+                        <option value={125}>No</option>
+                        <option value={160}>Users with special permissions can</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -97,9 +93,9 @@ function AddEstimationForm4(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>West Cary Group</option>
-                        <option>Client</option>
-                        <option>3rd party service or vendor</option>
+                        <option value={40}>West Cary Group</option>
+                        <option value={8}>Client</option>
+                        <option value={4}>3rd party service or vendor</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -112,11 +108,11 @@ function AddEstimationForm4(props) {
                         onChange={props.handleChange}
                         defaultValue="Choose...">
                         <option>Choose...</option>
-                        <option>Almost never</option>
-                        <option>Occasionally</option>
-                        <option>Often</option>
-                        <option>Frequently</option>
-                        <option>Daily</option>
+                        <option value={4}>Almost never</option>
+                        <option value={8}>Occasionally</option>
+                        <option value={16}>Often</option>
+                        <option value={24}>Frequently</option>
+                        <option value={32}>Daily</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
