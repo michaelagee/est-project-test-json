@@ -3,6 +3,7 @@ import { Form, Row, Col, Button, FloatingLabel } from 'react-bootstrap'
 import InlineCheckBoxes from '../add-estimation/inlineCheckBox.component';
 
 function AddEstimationForm6(props) {
+    console.log('form props', props)
     const socialMediaPlatforms = ["Facebook", "Instagram", "Google"]
     return (
         <Form>

@@ -6,12 +6,17 @@ function AddEstimationForm9(props) {
     console.log(props, 'form 9 props')
     const rate = 225
     return (
-        <EstimationInvoice
-            rate={rate}
-            getTotalCost={props.getTotalCost}
-            updateTotalCost={props.updateTotalCost}
-            totalCost={props.totalCost}
-            estimation={props.estimation} />
+        <>
+            <EstimationInvoice
+                rate={rate}
+                getTotalCost={props.getTotalCost}
+                updateTotalCost={props.updateTotalCost}
+                totalCost={props.totalCost}
+                estimation={props.estimation} />
+            <Button variant="primary" onClick={props.previousStep}>
+                Previous Step
+            </Button>
+        </>
     )
 }
 

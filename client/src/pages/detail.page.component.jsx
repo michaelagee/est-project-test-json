@@ -35,20 +35,16 @@ function AddEstimationWizard(props) {
             [name]: value
         };
 
+        requirements.forEach(requirement => {
+            requirement.forEach(item => item.required = false)
+            // console.log( [1,2,3,4,5].includes(parseInt(e.target.value)), e.target.value, 'requirement type')
+            itemsToBeRequiredForEstimate = requirement.filter(field => field.category.includes(parseInt(e.target.value)))
+            console.log(requirement, 'new array');
+            itemsToBeRequiredForEstimate.forEach(item => item.required = true)
 
-        if (e.target.value > 1) {
-            console.log('things happened');
-            requirements.forEach(requirement => {
-                itemsToBeRequiredForEstimate = requirement.filter(field => field.category == 2)
-                itemsToBeRequiredForEstimate.forEach(item => item.required = true)
-
-                console.log(' morethings happened');
-            });
-        }
+        });
 
         console.log(updatedForm, 'updatedForm');
-        // let updateForm2 = {...props.estimation}
-        // console.log('updated form 2 : ', updateForm2, e.target.value)
 
         if (e.target.type === 'checkbox') {
             console.log(e)
