@@ -37,6 +37,7 @@ const EstimationDetails = (props) => {
       <div>
         <h1>Estimate Details : {props.estimation.name} - {props.estimation.application_type}</h1>
         <p>Total Hours: 780 : Rate: ${rate}</p>
+        <p>Author: {props.estimation.clientName || "West Cary Group"}</p>
         <Button variant="primary" onClick={onClick}>
           {showEditForm ? 'Save Changes' : 'Edit form'}
         </Button>

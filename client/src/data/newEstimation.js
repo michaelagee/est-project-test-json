@@ -334,7 +334,7 @@ export const NewEstimation = {
   "clientName": "dfsafds",
   "authorName": "fdasfdsa",
   "stepCompleted": 2,
-  "newOrExistingProject": "new_40",
+  "newOrExistingProject": "40",
   "applicationType": "2",
   "formMediaMgmt": "Yes",
   "mediaUpdateFrequency": "Frequently",

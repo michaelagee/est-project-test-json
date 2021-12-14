@@ -4,8 +4,53 @@ import EstimationTableRow from './estimation-table.row.component';
 import { CurrentEstimationTotalCost } from '../../context/currentEstimationTotal.context';
 
 function EstimationInvoice(props) {
-    console.log('estimation invoice props', props)
     let finalCost = 0;
+    let featureCost = 0
+    let totalCost = props.getTotalCost();
+    const miscInvoiceFields = [
+        {
+            "item": "User Content Storage",
+            "description": "Storing content and verbiage for client management (CMS)",
+            "hours": props.estimation.UserContentStorage,
+            "required": true,
+            "category": [1, 2, 3, 4, 5]
+        },
+        {
+            "item": "Media Management",
+            "description": "Storing images and videos for client management (CMS)",
+            "hours": props.estimation.formUserMediaMgmt,
+            "required": true,
+            "category": [1, 2, 3, 4, 5]
+        },
+        {
+            "item": "Application Start",
+            "description": "New or existing project",
+            "hours": props.estimation.newOrExistingProject,
+            "required": true,
+            "category": [1, 2, 3, 4, 5]
+        },
+        {
+            "item": "Media Sharing",
+            "description": "Users can share content with others",
+            "hours": props.estimation.mediaSharingHours,
+            "required": true,
+            "category": [1, 2, 3, 4, 5]
+        },
+        {
+            "item": "Content Update Frequency",
+            "description": "Frequency of content updates",
+            "hours": props.estimation.contentUpdateFrequency,
+            "required": true,
+            "category": [1, 2, 3, 4, 5]
+        },
+        {
+            "item": "Image and Media Caching",
+            "description": "Image and Media optimization and caching",
+            "hours": props.estimation.imageCachingHours,
+            "required": true,
+            "category": [1, 2, 3, 4, 5]
+        }
+    ]
     let requirements = [
         props.estimation.views,
         props.estimation.general_estimate_features,
@@ -15,22 +60,20 @@ function EstimationInvoice(props) {
         props.estimation.quality_testing,
         props.estimation.security,
         props.estimation.data,
+        miscInvoiceFields
     ]
-    let featureCost = 0
-    let totalCost = props.getTotalCost();
 
     requirements.forEach(requirement =>
         requirement.map(field => {
-            console.log(field.required, 'form 9 field')
             if (field.required == true) {
                 featureCost += (field.hours * props.rate)
                 totalCost += (field.hours * props.rate);
-                // console.log('field', field);
             }
         })
     );
     finalCost = totalCost;
     props.updateTotalCost(finalCost);
+
     return (
         <CurrentEstimationTotalCost.Consumer>
             {({ totalCost }) => (
@@ -116,6 +159,16 @@ function EstimationInvoice(props) {
                             <td></td>
                         </tr>
                         <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.security.filter(view => view.required == true)} />
+
+                        <tr>
+                            <td>Misc</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={miscInvoiceFields.filter(view => view.required == true)} />
 
                         <tr>
                             <td></td>

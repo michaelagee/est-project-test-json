@@ -13,8 +13,7 @@ function AddEstimationForm3(props) {
                             type="checkbox"
                             name="userHotState"
                             checked={props.formValues.userHotState}
-                            value={props.formValues.userHotState}
-                            defaultValue={props.formValues.userHotState}
+                            defaultValue={props.estimation.userHotState}
                             onChange={props.handleChange}
                             label="Will your users need to login to interact with the application?" />
                     </Form.Group>
@@ -24,9 +23,8 @@ function AddEstimationForm3(props) {
                             type="checkbox"
                             name="userSocialLoginOrRegistration"
                             checked={props.formValues.userSocialLoginOrRegistration}
-                            value={props.formValues.userSocialLoginOrRegistration}
                             onChange={props.handleChange}
-                            defaultValue={props.formValues.userSocialLoginOrRegistration}
+                            defaultValue={props.estimation.userSocialLoginOrRegistration}
                             label="Will users be able to register or login with social media accounts?" />
                     </Form.Group>
                     
@@ -35,9 +33,8 @@ function AddEstimationForm3(props) {
                             type="checkbox"
                             name="userProfileRequired"
                             checked={props.formValues.userProfileRequired}
-                            value={props.formValues.userProfileRequired}
                             onChange={props.handleChange}
-                            defaultValue={props.formValues.userProfileRequired}
+                            defaultValue={props.estimation.userProfileRequired}
                             label="Will users be able to manage or update their profile?" />
                     </Form.Group>
                 </Row>

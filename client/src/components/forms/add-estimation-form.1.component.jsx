@@ -27,6 +27,7 @@ function AddEstimationForm1(props) {
                         name="clientName"
                         value={props.formValues.clientName}
                         onChange={props.handleChange}
+                        defaultValue={props.estimation.clientName}
                         placeholder="The Clients Name" />
                 </Form.Group>
 
@@ -37,6 +38,7 @@ function AddEstimationForm1(props) {
                         name="authorName"
                         value={props.formValues.authorName}
                         onChange={props.handleChange}
+                        defaultValue={props.estimation.authorName}
                         placeholder="Your Name" />
                 </Form.Group>
             </Row>
@@ -98,16 +100,6 @@ function AddEstimationForm1(props) {
                     />
                 </Form.Group>
             </Row>
-
-            {/* <Form.Group className="mb-3" id="formGridCheckbox">
-                <Form.Check 
-                type="checkbox" 
-                name="clientBudget"
-                checked={props.formValues.clientBudget}
-                onChange={props.handleChange}
-                value={props.formValues.clientBudget}
-                label="Did the client give a budget estimation?" />
-            </Form.Group> */}
 
             <Button variant="primary" onClick={props.nextStep}>
                 Next Step

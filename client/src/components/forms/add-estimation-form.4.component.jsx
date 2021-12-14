@@ -14,10 +14,9 @@ function AddEstimationForm4(props) {
                         name="dynamicMediaUpdates"
                         value={props.formValues.formMediaMgmt}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option value={20}>Yes</option>
-                        <option value={8}>No</option>
+                        defaultValue={props.estimation.formMediaMgmt || "Choose..."}>
+                        <option label={"Yes"} value={20}>Yes</option>
+                        <option label={"No"} value={8}>No</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -26,15 +25,14 @@ function AddEstimationForm4(props) {
                     <Form.Select
                         type="select"
                         name="mediaUpdateFrequency"
+                        defaultValue={props.estimation.mediaUpdateFrequency || "Choose..."}
                         value={props.formValues.mediaUpdateFrequency}
-                        onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option value={4}>Almost never</option>
-                        <option value={8}>Occasionally</option>
-                        <option value={10}>Often</option>
-                        <option value={16}>Frequently</option>
-                        <option value={24}>Daily</option>
+                        onChange={props.handleChange}>
+                        <option label={"Almost never"} value={4}>Almost never</option>
+                        <option label={"Occasionally"} value={8}>Occasionally</option>
+                        <option label={"Often"} value={10}>Often</option>
+                        <option label={"Frequently"} value={16}>Frequently</option>
+                        <option label={"Daily"} value={24}>Daily</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -47,8 +45,7 @@ function AddEstimationForm4(props) {
                         name="formUserMediaMgmt"
                         value={props.formValues.formUserMediaMgmt}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
+                        defaultValue={props.estimation.formUserMediaMgmt || "Choose..."}>
                         <option label={"Yes"} value={75}>Yes</option>
                         <option value={125}>No</option>
                         <option value={160}>Users with special permissions can</option>
@@ -61,10 +58,9 @@ function AddEstimationForm4(props) {
                     <Form.Check
                         type="checkbox"
                         name="mediaSharing"
-                        checked={props.formValues.mediaSharing}
-                        value={80}
+                        checked={props.estimation.mediaSharing}
                         onChange={props.handleChange}
-                        defaultValue={props.formValues.mediaSharing}
+                        defaultValue={props.estimation.mediaSharing}
                         label="Will users be able to share images or videos with others?" />
                 </Form.Group>
 
@@ -72,10 +68,9 @@ function AddEstimationForm4(props) {
                     <Form.Check
                         type="checkbox"
                         name="imageCaching"
-                        checked={props.formValues.imageCaching}
-                        value={100}
+                        checked={props.estimation.imageCaching}
                         onChange={props.handleChange}
-                        defaultValue={props.formValues.imageCaching}
+                        defaultValue={props.estimation.imageCaching}
                         label="Will the project require image caching?" />
                 </Form.Group>
             </Row>
@@ -84,15 +79,13 @@ function AddEstimationForm4(props) {
             <p>Use this to estimate how content (verbiage) will be managed, who will manage it, and how frequent it will be updated.</p>
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="contentManagement">
-                    <Form.Label>Who will be managing the verbiage & 
-                         content?</Form.Label>
+                    <Form.Label>Who will be managing the verbiage &
+                        content?</Form.Label>
                     <Form.Select
                         type="select"
                         name="contentManagement"
-                        value={props.formValues.contentManagement}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
+                        defaultValue={props.estimation.contentManagement || "Choose..."}>
                         <option value={40}>West Cary Group</option>
                         <option value={8}>Client</option>
                         <option value={4}>3rd party service or vendor</option>
@@ -104,15 +97,13 @@ function AddEstimationForm4(props) {
                     <Form.Select
                         type="select"
                         name="contentUpdateFrequency"
-                        value={props.formValues.contentUpdateFrequency}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option value={4}>Almost never</option>
-                        <option value={8}>Occasionally</option>
-                        <option value={16}>Often</option>
-                        <option value={24}>Frequently</option>
-                        <option value={32}>Daily</option>
+                        defaultValue={props.estimation.contentUpdateFrequency || "Choose..."}>
+                        <option label={"Almost never"} value={4}>Almost never</option>
+                        <option label={"Occasionally"} value={8}>Occasionally</option>
+                        <option label={"Often"} value={10}>Often</option>
+                        <option label={"Frequently"} value={16}>Frequently</option>
+                        <option label={"Daily"} value={24}>Daily</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -123,10 +114,8 @@ function AddEstimationForm4(props) {
                     <Form.Select
                         type="select"
                         name="UserContentMgmt"
-                        value={props.formValues.UserContentMgmt}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
+                        defaultValue={props.estimation.UserContentMgmt || "Choose..."}>
                         <option>Yes</option>
                         <option>No</option>
                         <option>Users with special permissions can</option>
@@ -139,10 +128,9 @@ function AddEstimationForm4(props) {
                     <Form.Check
                         type="checkbox"
                         name="contentSharing"
-                        checked={props.formValues.contentSharing}
-                        value={props.formValues.contentSharing}
+                        checked={props.estimation.contentSharing}
+                        value={props.estimation.contentSharing}
                         onChange={props.handleChange}
-                        defaultValue={props.formValues.contentSharing}
                         label="Will users be able to share posts or content with others?" />
                 </Form.Group>
             </Row>

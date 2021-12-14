@@ -18,12 +18,12 @@ function AddEstimationForm2(props) {
                     <Form.Select
                         type="select"
                         name="newOrExistingProject"
-                        value={props.formValues.newOrExistingProject}
                         onChange={props.handleChange}
-                        defaultValue="Choose...">
+                        defaultValue={props.estimation.newOrExistingProject || "Choose..."}
+                    >
                         <option>Choose...</option>
-                        <option value={"new_40"}>New</option>
-                        <option value={"existing_90"}>Existing</option>
+                        <option label={"New"} value={40}>New</option>
+                        <option label={"Existing"} value={90}>Existing</option>
                     </Form.Select>
                 </Form.Group>
             </Row>
@@ -33,8 +33,7 @@ function AddEstimationForm2(props) {
                     <Form.Label>Web or Mobile?</Form.Label>
                     <Form.Select
                         name="platform"
-                        value={props.formValues.platform}
-                        defaultValue="Choose..."
+                        defaultValue={props.estimation.platform || "Choose..."}
                         onChange={props.handleChange}
                     >
                         {platforms}
@@ -44,11 +43,9 @@ function AddEstimationForm2(props) {
                 <Form.Group as={Col} controlId="applicationType">
                     <Form.Label>Application Type (What kind of application is it?)</Form.Label>
                     <Form.Select
-                        defaultValue="Choose..."
+                        defaultValue={props.estimation.applicationType || "Choose..."}
                         name="applicationType"
-                        value={props.formValues.applicationType}
                         onChange={props.handleChange}>
-                        <option>Choose...</option>
                         {mobileAppTypes}
                     </Form.Select>
                 </Form.Group>
@@ -106,13 +103,13 @@ function AddEstimationForm2(props) {
             </Row> */}
 
 
-                <Button variant="primary" onClick={props.previousStep}>
-                    Previous Step
-                </Button>
-                <br/>
-                <Button variant="primary" onClick={props.nextStep}>
-                    Next Step
-                </Button>
+            <Button variant="primary" onClick={props.previousStep}>
+                Previous Step
+            </Button>
+            <br />
+            <Button variant="primary" onClick={props.nextStep}>
+                Next Step
+            </Button>
         </Form>
     )
 }
