@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import form, { FormContext } from '../context/Form.context';
 import AddEstimationForm1 from '../components/forms/add-estimation-form.1.component';
 import AddEstimationForm2 from '../components/forms/add-estimation-form.2.component';
@@ -14,7 +14,7 @@ import { InitialFormValues } from '../components/forms/initialValues/form.initia
 import EstimationDetails from '../components/estimation-block/estimation.details.component';
 
 function AddEstimationWizard(props) {
-    console.log(props, 'detail page props')
+    // console.log(props, 'detail page props')
     const rate = 225;
     let requirements = [
         props.estimation.views,
@@ -26,7 +26,11 @@ function AddEstimationWizard(props) {
         ...props.estimation
     });
 
-    // console.log('the form', form);
+    useEffect(() => {
+        // setForm(form)
+        // props.updateEstimation(form)
+        console.log(form, 'fsdfds')
+    }, [form])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -39,24 +43,26 @@ function AddEstimationWizard(props) {
             requirement.forEach(item => item.required = false)
             // console.log( [1,2,3,4,5].includes(parseInt(e.target.value)), e.target.value, 'requirement type')
             itemsToBeRequiredForEstimate = requirement.filter(field => field.category.includes(parseInt(e.target.value)))
-            console.log(requirement, 'new array');
+            // console.log(requirement, 'new array');
             itemsToBeRequiredForEstimate.forEach(item => item.required = true)
 
         });
 
-        console.log(updatedForm, 'updatedForm');
+        // console.log(form, 'form');
 
         if (e.target.type === 'checkbox') {
-            console.log(e)
             updatedForm[e.target.name] = e.target.checked;
             updatedForm[e.target.name + "Hours"] = e.target.defaultValue
         } else {
-            console.log(e)
             updatedForm[e.target.name] = e.target.value;
         }
         console.log('form updated: ', updatedForm);
-        setForm(updatedForm);
+        setForm(form => {
+            return {...form, ...updatedForm}
+        });
+        console.log('updated form: ', updatedForm)
         props.updateEstimation(updatedForm)
+        console.log('form: ', form)
     }
 
     const onStepChange = (currentStep, started, completed) => {
@@ -70,7 +76,7 @@ function AddEstimationWizard(props) {
         console.log('formProgressUpdated', updatedFormProgress);
 
         // const response = fetch("http://localhost:1020/estimations", {
-        //     method: "POST",
+        //     method: "PUT",
         //     mode: "cors",
         //     cache: "no-cache",
         //     credentials: "same-origin",
@@ -104,36 +110,16 @@ function AddEstimationWizard(props) {
                         estimation={props.estimation}
                         handleChange={handleChange}
                         stepName={"applicationType"} />
-                    {/* <AddEstimationForm3
-                        formValues={form}
-                        estimation={props.estimation}
-                        handleChange={handleChange}
-                        stepName={"userManagement"} /> */}
                     <AddEstimationForm4
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
                         stepName={"media"} />
-                    {/* <AddEstimationForm5
-                        formValues={form}
-                        estimation={props.estimation}
-                        handleChange={handleChange}
-                        stepName={"applicationType"} /> */}
                     <AddEstimationForm6
                         formValues={form}
                         estimation={props.estimation}
                         handleChange={handleChange}
                         stepName={"applicationType"} />
-                    {/* <AddEstimationForm7
-                        formValues={form}
-                        estimation={props.estimation}
-                        handleChange={handleChange}
-                        stepName={"applicationType"} />
-                    <AddEstimationForm8
-                        formValues={form}
-                        estimation={props.estimation}
-                        handleChange={handleChange}
-                        stepName={"applicationType"} /> */}
                     <AddEstimationForm9
                         formValues={form}
                         getTotalCost={props.getTotalCost}

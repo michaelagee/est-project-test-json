@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 import { NewEstimation } from "./data/newEstimation";
+import { GlobalContext } from "./context/global-state";
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
     this.state = {
       env: "local",
       totalCost: 0,
+      updateGlobalEstimations: this.updateGlobalEstimations,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
       estimations: [
@@ -25,6 +27,10 @@ class App extends Component {
       searchButtonTitle: "Search",
       filteredEstimation: [],
     };
+  }
+
+  updateGlobalEstimations = (newEstimationsCollection) => {
+    this.setState({estimations: newEstimationsCollection})
   }
 
   componentDidMount() {
@@ -84,7 +90,7 @@ class App extends Component {
 
   addNewEstimation = async (e) => {
     e.preventDefault();
-    e.value = ''
+    e.value = "";
     const { estimations } = this.state;
 
     let newEstimation = { ...NewEstimation };
@@ -128,39 +134,41 @@ class App extends Component {
 
   render() {
     const { estimations, searchField } = this.state;
+    // const GlobalContext = React.createContext(this.state)
     const filteredEstimations = estimations.filter((estimation) =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     );
     console.log("re-render");
     return (
-      <CurrentEstimationTotalCost.Provider value={this.state}>
-        <div className="App">
-          <EstimationNavigationBar
-            estimationsCount={filteredEstimations.length}
-            searchHandler={this.handleChange}
-            handleSubmit={
-              filteredEstimations.length > 0
-                ? this.searchEstimations
-                : this.addNewEstimation
-            }
-          />
-          {/* <GlobalContext.Provider value = {this.state} */}
-          <div className="dashboard-container">
-            <EstimationBlock
-              className="dashboard-item"
+      <GlobalContext.Provider value={this.state}>
+        <CurrentEstimationTotalCost.Provider value={this.state}>
+          <div className="App">
+            <EstimationNavigationBar
               estimationsCount={filteredEstimations.length}
-              totalCost={this.state.totalCost}
-              updateTotalCost={this.updateTotalCost}
-              getTotalCost={this.getTotalCost}
-              estimations={
+              searchHandler={this.handleChange}
+              handleSubmit={
                 filteredEstimations.length > 0
-                  ? filteredEstimations
-                  : this.state.estimations
+                  ? this.searchEstimations
+                  : this.addNewEstimation
               }
-            ></EstimationBlock>
+            />
+            <div className="dashboard-container">
+              <EstimationBlock
+                className="dashboard-item"
+                estimationsCount={filteredEstimations.length}
+                totalCost={this.state.totalCost}
+                updateTotalCost={this.updateTotalCost}
+                getTotalCost={this.getTotalCost}
+                estimations={
+                  filteredEstimations.length > 0
+                    ? filteredEstimations
+                    : estimations
+                }
+              ></EstimationBlock>
+            </div>
           </div>
-        </div>
-      </CurrentEstimationTotalCost.Provider>
+        </CurrentEstimationTotalCost.Provider>
+      </GlobalContext.Provider>
     );
   }
 }

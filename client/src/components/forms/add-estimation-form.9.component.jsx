@@ -3,7 +3,7 @@ import { Form, Row, Col, Button } from 'react-bootstrap'
 import EstimationInvoice from '../estimation-invoice/estimation.invoice.component';
 
 function AddEstimationForm9(props) {
-    console.log(props, 'form 9 props')
+    // console.log(props, 'form 9 props')
     const rate = 225
     return (
         <>

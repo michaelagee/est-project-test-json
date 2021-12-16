@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { FormContext } from '../../context/Form.context';
 
 const EstimationDetails = (props) => {
-  // console.log(props, 'estimations details props')
+  console.log(props, 'estimations details props')
   let rate = 225;
   const [showEditForm, setShowEditForm] = useState(false);
   const [estimation, updateEstimation] = useState(props.estimation)
@@ -15,16 +15,25 @@ const EstimationDetails = (props) => {
   const onClick = () => {
     if (showEditForm) {
       toggleEditForm(false);
-      updateEstimation(estimation)
-      props.setCurrentEstimation(estimation)
+      props.updateEstimation(estimation)
+      console.log(props, estimation, 'closed the form')
+      // i think i have to find the current estimation and update all estimations 
+      // at this point.
+      let indexToBeReplaced = props.estimations.findIndex((el) => el.id == estimation.id)
+      let newCollection = props.estimations
+      newCollection.splice(indexToBeReplaced, 1, estimation);
+      props.updateEstimations(newCollection)
     } else {
       toggleEditForm(true)
     }
   };
 
-  function updateCurrentEstimation(estimation) {
-    // console.log(estimation, 'updateCurrentEstimation')
-    updateEstimation(estimation)
+  function updateCurrentEstimation(newEstimation) {
+    console.log(newEstimation, 'updateCurrentEstimation')
+    updateEstimation(estimation => {
+      return{...estimation, ...newEstimation}
+    })
+    console.log(estimation, 'new estimation details component')
   }
 
   function toggleEditForm(showForm) {
@@ -57,7 +66,7 @@ const EstimationDetails = (props) => {
             updateTotalCost={props.updateTotalCost}
             totalCost={props.totalCost}
             rate={rate}
-            estimation={props.estimation} />
+            estimation={estimation} />
         }
       </div>
     </FormContext.Provider>
