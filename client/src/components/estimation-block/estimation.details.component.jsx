@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { FormContext } from '../../context/Form.context';
 
 const EstimationDetails = (props) => {
-  console.log(props, 'estimations details props')
+  // console.log(props, 'estimations details props')
   let rate = 225;
   const [showEditForm, setShowEditForm] = useState(false);
   const [estimation, updateEstimation] = useState(props.estimation)
@@ -16,24 +16,48 @@ const EstimationDetails = (props) => {
     if (showEditForm) {
       toggleEditForm(false);
       props.updateEstimation(estimation)
-      console.log(props, estimation, 'closed the form')
+      // console.log(props, estimation, 'closed the form')
       // i think i have to find the current estimation and update all estimations 
       // at this point.
       let indexToBeReplaced = props.estimations.findIndex((el) => el.id == estimation.id)
       let newCollection = props.estimations
       newCollection.splice(indexToBeReplaced, 1, estimation);
+      console.log(newCollection, "new collection")
       props.updateEstimations(newCollection)
+      updateEstimations(newCollection)
     } else {
       toggleEditForm(true)
     }
   };
 
   function updateCurrentEstimation(newEstimation) {
-    console.log(newEstimation, 'updateCurrentEstimation')
+    // console.log(newEstimation, 'updateCurrentEstimation')
     updateEstimation(estimation => {
       return{...estimation, ...newEstimation}
     })
-    console.log(estimation, 'new estimation details component')
+    // console.log(estimation, 'new estimation details component')
+  }
+
+  function updateEstimations (estimations) {
+    const response = fetch("http://localhost:1020/postEstimations", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-type": "application/json",
+      },
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify({ estimations: estimations }),
+    });
+
+    const body = response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message);
+    }
+    console.log(body, "body");
+    return body;
   }
 
   function toggleEditForm(showForm) {

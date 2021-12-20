@@ -2,6 +2,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "serve": "^13.0.2"
   }
 }

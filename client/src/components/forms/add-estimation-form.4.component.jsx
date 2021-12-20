@@ -128,7 +128,7 @@ function AddEstimationForm4(props) {
                     <Form.Check
                         type="checkbox"
                         name="contentSharing"
-                        checked={props.estimation.contentSharing}
+                        checked={props.formValues.contentSharing}
                         value={props.estimation.contentSharing}
                         onChange={props.handleChange}
                         label="Will users be able to share posts or content with others?" />

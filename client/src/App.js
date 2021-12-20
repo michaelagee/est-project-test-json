@@ -30,8 +30,8 @@ class App extends Component {
   }
 
   updateGlobalEstimations = (newEstimationsCollection) => {
-    this.setState({estimations: newEstimationsCollection})
-  }
+    this.setState({ estimations: newEstimationsCollection });
+  };
 
   componentDidMount() {
     this.getEstimations()
@@ -89,7 +89,7 @@ class App extends Component {
   };
 
   addNewEstimation = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     e.value = "";
     const { estimations } = this.state;
 
@@ -101,30 +101,32 @@ class App extends Component {
     console.log(newEstimationsCollection);
 
     // TODO: MOVE THIS TO AN API LAYER
-    // const response = await fetch("http://localhost:1020/estimations", {
-    //   method: "PUT",
-    //   mode: "cors",
-    //   cache: "no-cache",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   referrerPolicy: "no-referrer",
-    //   body: JSON.stringify({ estimations: newEstimationsCollection }),
-    // });
+    fetch("http://localhost:1020/putEstimations", {
+      method: "PUT",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-type": "application/json",
+      },
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify({ estimations: newEstimationsCollection }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data));
 
-    // const body = await response.json();
+    // const body = response;
 
     // if (response.status !== 200) {
-    //   throw Error(body.message);
+    //   console.log(body)
     // }
     // console.log(body, "body");
+    
+    // this.setState({
+    //   estimations: newEstimationsCollection,
+    // });
+    
     // return body;
-
-    this.setState({
-      estimations: newEstimationsCollection,
-    });
-
     // this.getEstimations();
   };
 
@@ -134,10 +136,15 @@ class App extends Component {
 
   render() {
     const { estimations, searchField } = this.state;
+    let filteredEstimations = [];
     // const GlobalContext = React.createContext(this.state)
-    const filteredEstimations = estimations.filter((estimation) =>
-      estimation.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    // if (estimations.length > 1) {
+      filteredEstimations = estimations.filter((estimation) =>
+        estimation.name.toLowerCase().includes(searchField.toLowerCase())
+      );
+    // } else {
+      // filteredEstimations = estimations;
+    // }
     console.log("re-render");
     return (
       <GlobalContext.Provider value={this.state}>

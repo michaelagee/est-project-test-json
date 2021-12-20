@@ -26,11 +26,11 @@ function AddEstimationWizard(props) {
         ...props.estimation
     });
 
-    useEffect(() => {
+    // useEffect(() => {
         // setForm(form)
         // props.updateEstimation(form)
-        console.log(form, 'fsdfds')
-    }, [form])
+        // console.log(form, 'fsdfds')
+    // }, [form])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -60,9 +60,10 @@ function AddEstimationWizard(props) {
         setForm(form => {
             return {...form, ...updatedForm}
         });
-        console.log('updated form: ', updatedForm)
+        // console.log('updated form: ', updatedForm)
+        setForm(updatedForm)
         props.updateEstimation(updatedForm)
-        console.log('form: ', form)
+        // console.log('form: ', form)
     }
 
     const onStepChange = (currentStep, started, completed) => {
@@ -73,7 +74,7 @@ function AddEstimationWizard(props) {
         let latestStepCompleted = Math.max(updatedFormProgress.stepCompleted, currentStep.activeStep);
         updatedFormProgress.stepCompleted = latestStepCompleted
         setForm(updatedFormProgress)
-        console.log('formProgressUpdated', updatedFormProgress);
+        // console.log('formProgressUpdated', updatedFormProgress);
 
         // const response = fetch("http://localhost:1020/estimations", {
         //     method: "PUT",
