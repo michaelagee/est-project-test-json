@@ -34,6 +34,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    console.log('mounted component')
     this.getEstimations()
       .then((res) => this.setState({ estimations: res.estimations }))
       .catch((err) => console.log(err));
@@ -89,42 +90,42 @@ class App extends Component {
   };
 
   addNewEstimation = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     e.value = "";
     const { estimations } = this.state;
 
     let newEstimation = { ...NewEstimation };
     newEstimation.id = estimations.length + 1;
     newEstimation.name = this.state.searchField;
-    estimations.push(newEstimation);
     let newEstimationsCollection = estimations;
-    console.log(newEstimationsCollection);
+    newEstimationsCollection.push(newEstimation);
+    console.log(newEstimationsCollection, 'estimations');
 
     // TODO: MOVE THIS TO AN API LAYER
-    fetch("http://localhost:1020/putEstimations", {
-      method: "PUT",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-type": "application/json",
-      },
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({ estimations: newEstimationsCollection }),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data));
+    // const response = await fetch("http://localhost:1020/putEstimations", {
+    //   method: "PUT",
+    //   mode: "cors",
+    //   cache: "no-cache",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   referrerPolicy: "no-referrer",
+    //   body: JSON.stringify({ estimations: newEstimationsCollection }),
+    // })
+    // .then(response => response.json())
+    // .then(data => console.log(data));
 
-    // const body = response;
+    // const body = await response.json();
 
     // if (response.status !== 200) {
     //   console.log(body)
     // }
     // console.log(body, "body");
     
-    // this.setState({
-    //   estimations: newEstimationsCollection,
-    // });
+    this.setState({
+      estimations: newEstimationsCollection,
+    });
     
     // return body;
     // this.getEstimations();

@@ -25,9 +25,9 @@ app.get("/estimations", (req, res) => {
 
 app.put("/putEstimations", (req, res) => {
   // res.send(db)
-  // var estimations = req.body;
-  // estimations = _.extend(estimations, req.body);
-  // console.log('estimations', estimations)
+  var estimations = req.body;
+  estimations = _.extend(estimations, req.body);
+  console.log('estimations', estimations)
   // estimations.save(function(error) {
   //   if (error) {
   //     // do some shit here
@@ -49,7 +49,7 @@ app.post("/postEstimations", (req, res) => {
   // res.send(db)
   var estimations = req.body;
   estimations = _.extend(estimations, req.body);
-  console.log("estimations", estimations);
+  console.log("estimations", req.body);
   // estimations.save(function(error) {
   //   if (error) {
   //     // do some shit here
@@ -58,7 +58,7 @@ app.post("/postEstimations", (req, res) => {
   //   }
   // })
   try {
-    writeFileSync(dbFilePath, JSON.stringify(req.body));
+    writeFileSync(dbFilePath, JSON.stringify(req.body.estimations));
   } catch (err) {
     console.log(err);
   }

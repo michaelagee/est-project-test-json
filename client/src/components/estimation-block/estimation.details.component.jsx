@@ -39,25 +39,26 @@ const EstimationDetails = (props) => {
   }
 
   function updateEstimations (estimations) {
-    const response = fetch("http://localhost:1020/postEstimations", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-type": "application/json",
-      },
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({ estimations: estimations }),
-    });
+    console.log(estimations)
+    // const response = fetch("http://localhost:1020/postEstimations", {
+    //   method: "POST",
+    //   mode: "cors",
+    //   cache: "no-cache",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   referrerPolicy: "no-referrer",
+    //   body: JSON.stringify({ estimations: estimations }),
+    // });
 
-    const body = response.json();
+    // const body = response.json();
 
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    console.log(body, "body");
-    return body;
+    // if (response.status !== 200) {
+    //   throw Error(body.message);
+    // }
+    // console.log(body, "body");
+    // return body;
   }
 
   function toggleEditForm(showForm) {
