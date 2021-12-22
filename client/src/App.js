@@ -100,21 +100,24 @@ class App extends Component {
     let newEstimationsCollection = estimations;
     newEstimationsCollection.push(newEstimation);
     console.log(newEstimationsCollection, 'estimations');
+    this.setState({
+      estimations: newEstimationsCollection,
+    });
 
     // TODO: MOVE THIS TO AN API LAYER
-    // const response = await fetch("http://localhost:1020/putEstimations", {
-    //   method: "PUT",
-    //   mode: "cors",
-    //   cache: "no-cache",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   referrerPolicy: "no-referrer",
-    //   body: JSON.stringify({ estimations: newEstimationsCollection }),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log(data));
+    const response = await fetch("http://localhost:1020/putEstimations", {
+      method: "PUT",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-type": "application/json",
+      },
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify({estimations: newEstimationsCollection}),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data));
 
     // const body = await response.json();
 
@@ -123,9 +126,6 @@ class App extends Component {
     // }
     // console.log(body, "body");
     
-    this.setState({
-      estimations: newEstimationsCollection,
-    });
     
     // return body;
     // this.getEstimations();
