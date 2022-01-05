@@ -15,7 +15,7 @@ class App extends Component {
     super();
 
     this.state = {
-      env: "local",
+      env: "amplify",
       totalCost: 0,
       updateGlobalEstimations: this.updateGlobalEstimations,
       getTotalCost: this.getTotalCost,
