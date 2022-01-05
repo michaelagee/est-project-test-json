@@ -7,6 +7,8 @@ import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.c
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 import { NewEstimation } from "./data/newEstimation";
 import { GlobalContext } from "./context/global-state";
+import Data from "./data.json";
+import axios from 'axios'
 
 class App extends Component {
   constructor() {
@@ -35,9 +37,12 @@ class App extends Component {
 
   componentDidMount() {
     console.log('mounted component')
-    this.getEstimations()
-      .then((res) => this.setState({ estimations: res.estimations }))
-      .catch((err) => console.log(err));
+    this.setState({estimations: Data.estimations})
+
+
+    // this.getEstimations()
+    //   .then((res) => this.setState({ estimations: res.estimations }))
+    //   .catch((err) => console.log(err));
     // console.log("app component mount", this.state.estimations);
   }
 
@@ -104,20 +109,25 @@ class App extends Component {
       estimations: newEstimationsCollection,
     });
 
-    // TODO: MOVE THIS TO AN API LAYER
-    const response = await fetch("http://localhost:1020/putEstimations", {
-      method: "PUT",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-type": "application/json",
-      },
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({estimations: newEstimationsCollection}),
+    const url = 'http://localhost:1020/write';
+    axios.post(url, newEstimationsCollection)
+    .then(response => {
+      console.log(response);
     })
-    .then(response => response.json())
-    .then(data => console.log(data));
+    // TODO: MOVE THIS TO AN API LAYER
+    // const response = await fetch("http://localhost:1020/postEstimations", {
+    //   method: "POST",
+    //   mode: "cors",
+    //   cache: "no-cache",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   referrerPolicy: "no-referrer",
+    //   body: JSON.stringify({estimations: newEstimationsCollection}),
+    // })
+    // .then(response => response.json())
+    // .then(data => console.log(data, 'do i even get anything here'));
 
     // const body = await response.json();
 
