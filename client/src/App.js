@@ -38,12 +38,6 @@ class App extends Component {
   componentDidMount() {
     console.log('mounted component')
     this.setState({estimations: Data.estimations})
-
-
-    // this.getEstimations()
-    //   .then((res) => this.setState({ estimations: res.estimations }))
-    //   .catch((err) => console.log(err));
-    // console.log("app component mount", this.state.estimations);
   }
 
   getEstimations = async () => {
