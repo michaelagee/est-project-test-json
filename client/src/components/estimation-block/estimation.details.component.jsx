@@ -3,9 +3,9 @@ import AddEstimationWizard from '../../pages/detail.page.component';
 import EstimationInvoice from '../estimation-invoice/estimation.invoice.component';
 import { Button, Form } from 'react-bootstrap';
 import { FormContext } from '../../context/Form.context';
+import axios from 'axios';
 
 const EstimationDetails = (props) => {
-  // console.log(props, 'estimations details props')
   let rate = 225;
   const [showEditForm, setShowEditForm] = useState(false);
   const [estimation, updateEstimation] = useState(props.estimation)
@@ -40,25 +40,11 @@ const EstimationDetails = (props) => {
 
   function updateEstimations (estimations) {
     console.log(estimations)
-    // const response = fetch("http://localhost:1020/postEstimations", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   cache: "no-cache",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   referrerPolicy: "no-referrer",
-    //   body: JSON.stringify({ estimations: estimations }),
-    // });
-
-    // const body = response.json();
-
-    // if (response.status !=== 200) {
-    //   throw Error(body.message);
-    // }
-    // console.log(body, "body");
-    // return body;
+    const url = 'http://localhost:1020/write';
+    axios.post(url, estimations)
+    .then(response => {
+      console.log(response);
+    })
   }
 
   function toggleEditForm(showForm) {

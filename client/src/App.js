@@ -8,7 +8,7 @@ import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.con
 import { NewEstimation } from "./data/newEstimation";
 import { GlobalContext } from "./context/global-state";
 import Data from "./data.json";
-import axios from 'axios'
+import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -36,8 +36,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log('mounted component')
-    this.setState({estimations: Data.estimations})
+    this.setState({ estimations: Data.estimations });
   }
 
   getEstimations = async () => {
@@ -49,7 +48,6 @@ class App extends Component {
       if (response.status !== 200) {
         throw Error(body.message);
       }
-      // console.log(body, "body");
       return body;
     } else {
       const response = await fetch(
@@ -64,7 +62,6 @@ class App extends Component {
       if (response.status !== 200) {
         throw Error(body.message);
       }
-      // console.log(body, "body");
       return body;
     }
   };
@@ -98,41 +95,14 @@ class App extends Component {
     newEstimation.name = this.state.searchField;
     let newEstimationsCollection = estimations;
     newEstimationsCollection.push(newEstimation);
-    console.log(newEstimationsCollection, 'estimations');
     this.setState({
       estimations: newEstimationsCollection,
     });
 
-    const url = 'http://localhost:1020/write';
-    axios.post(url, newEstimationsCollection)
-    .then(response => {
+    const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/write";
+    axios.post(url, newEstimationsCollection).then((response) => {
       console.log(response);
-    })
-    // TODO: MOVE THIS TO AN API LAYER
-    // const response = await fetch("http://localhost:1020/postEstimations", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   cache: "no-cache",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   referrerPolicy: "no-referrer",
-    //   body: JSON.stringify({estimations: newEstimationsCollection}),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log(data, 'do i even get anything here'));
-
-    // const body = await response.json();
-
-    // if (response.status !== 200) {
-    //   console.log(body)
-    // }
-    // console.log(body, "body");
-    
-    
-    // return body;
-    // this.getEstimations();
+    });
   };
 
   updateTotalCost = (totalCost) => {
@@ -142,15 +112,11 @@ class App extends Component {
   render() {
     const { estimations, searchField } = this.state;
     let filteredEstimations = [];
-    // const GlobalContext = React.createContext(this.state)
-    // if (estimations.length > 1) {
-      filteredEstimations = estimations.filter((estimation) =>
-        estimation.name.toLowerCase().includes(searchField.toLowerCase())
-      );
-    // } else {
-      // filteredEstimations = estimations;
-    // }
-    console.log("re-render");
+
+    filteredEstimations = estimations.filter((estimation) =>
+      estimation.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
     return (
       <GlobalContext.Provider value={this.state}>
         <CurrentEstimationTotalCost.Provider value={this.state}>
