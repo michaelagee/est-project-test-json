@@ -22,7 +22,7 @@ const EstimationBlock = (props) => {
     }
 
     const handleSetCurrentEstimation = async (currentEstimation) => {
-        let indexToBeReplaced = props.estimations.findIndex((el) => el.id == currentEstimation.id)
+        let indexToBeReplaced = props.estimations.findIndex((el) => el.id === currentEstimation.id)
         let newCollection = props.estimations
         newCollection.splice(indexToBeReplaced, 1, currentEstimation);
 
@@ -41,7 +41,7 @@ const EstimationBlock = (props) => {
 
         // const body = await response.json();
 
-        // if (response.status !== 200) {
+        // if (response.status !=== 200) {
         //     throw Error(body.message);
         // }
         // console.log(body, "body");

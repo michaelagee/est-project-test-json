@@ -19,7 +19,7 @@ const EstimationDetails = (props) => {
       // console.log(props, estimation, 'closed the form')
       // i think i have to find the current estimation and update all estimations 
       // at this point.
-      let indexToBeReplaced = props.estimations.findIndex((el) => el.id == estimation.id)
+      let indexToBeReplaced = props.estimations.findIndex((el) => el.id === estimation.id)
       let newCollection = props.estimations
       newCollection.splice(indexToBeReplaced, 1, estimation);
       console.log(newCollection, "new collection")
@@ -54,7 +54,7 @@ const EstimationDetails = (props) => {
 
     // const body = response.json();
 
-    // if (response.status !== 200) {
+    // if (response.status !=== 200) {
     //   throw Error(body.message);
     // }
     // console.log(body, "body");

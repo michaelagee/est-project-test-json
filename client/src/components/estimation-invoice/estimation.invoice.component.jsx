@@ -65,7 +65,7 @@ function EstimationInvoice(props) {
 
     requirements.forEach(requirement =>
         requirement.map(field => {
-            if (field.required == true) {
+            if (field.required === true) {
                 featureCost += (field.hours * props.rate)
                 totalCost += (field.hours * props.rate);
             }
@@ -98,7 +98,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.views.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.views.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Generic Features</td>
@@ -108,7 +108,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.general_estimate_features.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.general_estimate_features.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Native Capabilities</td>
@@ -118,7 +118,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.capabilities.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.capabilities.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Media</td>
@@ -128,7 +128,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.media.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.media.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Data</td>
@@ -138,7 +138,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.data.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.data.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Build & Test Automtion</td>
@@ -148,7 +148,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.build_automation.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.build_automation.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Security</td>
@@ -158,7 +158,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.security.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={props.estimation.security.filter(view => view.required === true)} />
 
                         <tr>
                             <td>Misc</td>
@@ -168,7 +168,7 @@ function EstimationInvoice(props) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={miscInvoiceFields.filter(view => view.required == true)} />
+                        <EstimationTableRow updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={props.rate} dataField={miscInvoiceFields.filter(view => view.required === true)} />
 
                         <tr>
                             <td></td>

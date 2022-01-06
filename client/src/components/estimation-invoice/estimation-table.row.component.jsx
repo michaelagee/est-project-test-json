@@ -3,7 +3,7 @@ import React from 'react';
 function EstimationTableRow(props) {
     let iterator = 0
     props.dataField.forEach(item => {
-        if (item.required == true) {
+        if (item.required === true) {
             // console.log('yay we have a winner', item)
         }
     })
