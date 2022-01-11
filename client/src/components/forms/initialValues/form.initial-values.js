@@ -25,5 +25,9 @@ export const InitialFormValues = {
   UserContentMgmt: "",
   projectAnalytics: false,
   projectCrashReporting: false,
-  socialMediaIntegration: []
+  socialMediaIntegration: [],
+  google: false,
+  facebook: false,
+  Instagram: false,
+  socialContentManagement: ""
 };

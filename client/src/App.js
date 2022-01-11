@@ -6,6 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 import { NewEstimation } from "./data/newEstimation";
+import { GlobalContext } from "./context/global-state";
+import Data from "./data.json";
+import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -14,6 +17,7 @@ class App extends Component {
     this.state = {
       env: "amplify",
       totalCost: 0,
+      updateGlobalEstimations: this.updateGlobalEstimations,
       getTotalCost: this.getTotalCost,
       updateTotalCost: this.updateTotalCost,
       estimations: [
@@ -24,39 +28,27 @@ class App extends Component {
       searchField: "",
       searchButtonTitle: "Search",
       filteredEstimation: [],
-      newEstimation: {
-        name: "",
-        id: 0,
-        views: ["landing"],
-        general_estimate_features: ["geolocationn"],
-        // platform_specific_features: ["camera"],
-        capabilities: ["biometrics"],
-        media: ["Image Optimzation"],
-      },
     };
   }
 
+  updateGlobalEstimations = (newEstimationsCollection) => {
+    this.setState({ estimations: newEstimationsCollection });
+  };
+
   componentDidMount() {
-    console.log("app component mount");
-    this.getEstimations()
-      .then((res) => this.setState({ estimations: res.estimations }))
-      .catch((err) => console.log(err));
+    this.setState({ estimations: Data.estimations });
   }
 
   getEstimations = async () => {
     if (this.state.env === "local") {
-      const response = await fetch("http://localhost:1020/estimations", {
-        cache: "no-cache",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("success: ", data);
-          return data;
-        })
-        .catch((error) => {
-          console.log("Error: ", error);
-        });
-      return response;
+      const response = await fetch("http://localhost:1020/estimations");
+
+      const body = await response.json();
+
+      if (response.status !== 200) {
+        throw Error(body.message);
+      }
+      return body;
     } else {
       const response = await fetch(
         "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations",
@@ -70,7 +62,6 @@ class App extends Component {
       if (response.status !== 200) {
         throw Error(body.message);
       }
-      console.log(body, "body");
       return body;
     }
   };
@@ -96,34 +87,22 @@ class App extends Component {
 
   addNewEstimation = async (e) => {
     e.preventDefault();
+    e.value = "";
     const { estimations } = this.state;
 
     let newEstimation = { ...NewEstimation };
     newEstimation.id = estimations.length + 1;
     newEstimation.name = this.state.searchField;
-    estimations.push(newEstimation);
     let newEstimationsCollection = estimations;
+    newEstimationsCollection.push(newEstimation);
+    this.setState({
+      estimations: newEstimationsCollection,
+    });
 
-    // TODO: MOVE THIS TO AN API LAYER
-    const response = await fetch("http://localhost:1020/estimations", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-type": "application/json",
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({ estimations: newEstimationsCollection }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("success: ", data);
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
+    const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/write";
+    axios.post(url, newEstimationsCollection).then((response) => {
+      console.log(response);
+    });
   };
 
   updateTotalCost = (totalCost) => {
@@ -132,38 +111,42 @@ class App extends Component {
 
   render() {
     const { estimations, searchField } = this.state;
-    const filteredEstimations = estimations.filter((estimation) =>
+    let filteredEstimations = [];
+
+    filteredEstimations = estimations.filter((estimation) =>
       estimation.name.toLowerCase().includes(searchField.toLowerCase())
     );
+
     return (
-      <CurrentEstimationTotalCost.Provider value={this.state}>
-        <div className="App">
-          <EstimationNavigationBar
-            estimationsCount={filteredEstimations.length}
-            searchHandler={this.handleChange}
-            handleSubmit={
-              filteredEstimations.length > 0
-                ? this.searchEstimations
-                : this.addNewEstimation
-            }
-          />
-          {/* <GlobalContext.Provider value = {this.state} */}
-          <div className="dashboard-container">
-            <EstimationBlock
-              className="dashboard-item"
+      <GlobalContext.Provider value={this.state}>
+        <CurrentEstimationTotalCost.Provider value={this.state}>
+          <div className="App">
+            <EstimationNavigationBar
               estimationsCount={filteredEstimations.length}
-              totalCost={this.state.totalCost}
-              updateTotalCost={this.updateTotalCost}
-              getTotalCost={this.getTotalCost}
-              estimations={
+              searchHandler={this.handleChange}
+              handleSubmit={
                 filteredEstimations.length > 0
-                  ? filteredEstimations
-                  : this.state.estimations
+                  ? this.searchEstimations
+                  : this.addNewEstimation
               }
-            ></EstimationBlock>
+            />
+            <div className="dashboard-container">
+              <EstimationBlock
+                className="dashboard-item"
+                estimationsCount={filteredEstimations.length}
+                totalCost={this.state.totalCost}
+                updateTotalCost={this.updateTotalCost}
+                getTotalCost={this.getTotalCost}
+                estimations={
+                  filteredEstimations.length > 0
+                    ? filteredEstimations
+                    : estimations
+                }
+              ></EstimationBlock>
+            </div>
           </div>
-        </div>
-      </CurrentEstimationTotalCost.Provider>
+        </CurrentEstimationTotalCost.Provider>
+      </GlobalContext.Provider>
     );
   }
 }

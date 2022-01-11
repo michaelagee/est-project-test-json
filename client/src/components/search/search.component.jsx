@@ -3,7 +3,7 @@ import './search.styles.css';
 import { InputGroup } from "react-bootstrap";
 import { FormControl, Button } from "react-bootstrap";
 
-// TODO: Disable this on interior routes
+
 const Search = ({ placeholder, handleChange, onSubmit, buttonTitle, count }) => {
     return (
         <form onSubmit={onSubmit} className="d-flex">

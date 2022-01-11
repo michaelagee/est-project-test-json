@@ -1,15 +1,12 @@
 import React, { createContext} from 'react';
 import { estimationList } from '../data/data';
 
-const initialState = {
+export const GlobalContext = React.createContext({
     env: "local",
     totalCost: 1,
-    estimations: [
-      ...estimationList
-    ],
+    estimations: [],
     searchField: "",
     searchButtonTitle: "Search",
-    filteredEstimation: []
-  };
-
-  export const GlobalContext = createContext(initialState);
+    filteredEstimation: [],
+    updateGlobalEstimations: () => {}
+  });

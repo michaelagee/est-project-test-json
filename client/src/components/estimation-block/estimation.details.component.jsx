@@ -3,9 +3,9 @@ import AddEstimationWizard from '../../pages/detail.page.component';
 import EstimationInvoice from '../estimation-invoice/estimation.invoice.component';
 import { Button, Form } from 'react-bootstrap';
 import { FormContext } from '../../context/Form.context';
+import axios from 'axios';
 
 const EstimationDetails = (props) => {
-  // console.log(props, 'estimations details props')
   let rate = 225;
   const [showEditForm, setShowEditForm] = useState(false);
   const [estimation, updateEstimation] = useState(props.estimation)
@@ -15,16 +15,36 @@ const EstimationDetails = (props) => {
   const onClick = () => {
     if (showEditForm) {
       toggleEditForm(false);
-      updateEstimation(estimation)
-      props.setCurrentEstimation(estimation)
+      props.updateEstimation(estimation)
+      // console.log(props, estimation, 'closed the form')
+      // i think i have to find the current estimation and update all estimations 
+      // at this point.
+      let indexToBeReplaced = props.estimations.findIndex((el) => el.id === estimation.id)
+      let newCollection = props.estimations
+      newCollection.splice(indexToBeReplaced, 1, estimation);
+      console.log(newCollection, "new collection")
+      props.updateEstimations(newCollection)
+      updateEstimations(newCollection)
     } else {
       toggleEditForm(true)
     }
   };
 
-  function updateCurrentEstimation(estimation) {
-    // console.log(estimation, 'updateCurrentEstimation')
-    updateEstimation(estimation)
+  function updateCurrentEstimation(newEstimation) {
+    // console.log(newEstimation, 'updateCurrentEstimation')
+    updateEstimation(estimation => {
+      return{...estimation, ...newEstimation}
+    })
+    // console.log(estimation, 'new estimation details component')
+  }
+
+  function updateEstimations (estimations) {
+    console.log(estimations)
+    const url = 'http://localhost:1020/write';
+    axios.post(url, estimations)
+    .then(response => {
+      console.log(response);
+    })
   }
 
   function toggleEditForm(showForm) {
@@ -37,6 +57,7 @@ const EstimationDetails = (props) => {
       <div>
         <h1>Estimate Details : {props.estimation.name} - {props.estimation.application_type}</h1>
         <p>Total Hours: 780 : Rate: ${rate}</p>
+        <p>Author: {props.estimation.clientName || "West Cary Group"}</p>
         <Button variant="primary" onClick={onClick}>
           {showEditForm ? 'Save Changes' : 'Edit form'}
         </Button>
@@ -56,7 +77,7 @@ const EstimationDetails = (props) => {
             updateTotalCost={props.updateTotalCost}
             totalCost={props.totalCost}
             rate={rate}
-            estimation={props.estimation} />
+            estimation={estimation} />
         }
       </div>
     </FormContext.Provider>
