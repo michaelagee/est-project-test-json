@@ -104,7 +104,7 @@ class App extends Component {
       estimations: newEstimationsCollection,
     });
 
-    const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/write";
+    const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/postEstimations-dev";
     axios.post(url, newEstimationsCollection).then((response) => {
       console.log(response);
     });
