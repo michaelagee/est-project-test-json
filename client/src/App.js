@@ -36,7 +36,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({ estimations: Data.estimations });
+    // this.getEstimations()
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+    // // this.setState({ estimations: Data.estimations });
+    this.getEstimations()
+      .then((res) => this.setState({estimations: res.estimations}));
   }
 
   getEstimations = async () => {
