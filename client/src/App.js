@@ -62,12 +62,13 @@ class App extends Component {
         }
       );
 
-      const body = await response.json();
+      const res = await response.json();
 
       if (response.status !== 200) {
-        throw Error(body.message);
+        throw Error(res.message);
       }
-      return body;
+      console.log("RETURN BODY", JSON.parse(res.body))
+      return JSON.parse(res.body);
     }
   };
 
@@ -117,10 +118,13 @@ class App extends Component {
   render() {
     const { estimations, searchField } = this.state;
     let filteredEstimations = [];
-
-    filteredEstimations = estimations.filter((estimation) =>
-      estimation.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    // if (estimations > 0) {
+      filteredEstimations = estimations.filter((estimation) =>
+        estimation.name.toLowerCase().includes(searchField.toLowerCase())
+      );
+    // } else {
+    //   filteredEstimations = [NewEstimation];
+    // }
 
     return (
       <GlobalContext.Provider value={this.state}>
