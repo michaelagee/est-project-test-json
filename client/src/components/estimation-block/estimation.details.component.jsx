@@ -11,7 +11,6 @@ const EstimationDetails = (props) => {
   const [estimation, updateEstimation] = useState(props.estimation)
   const { form } = useContext(FormContext)
 
-
   const onClick = () => {
     if (showEditForm) {
       toggleEditForm(false);
@@ -22,7 +21,6 @@ const EstimationDetails = (props) => {
       let indexToBeReplaced = props.estimations.findIndex((el) => el.id === estimation.id)
       let newCollection = props.estimations
       newCollection.splice(indexToBeReplaced, 1, estimation);
-      console.log(newCollection, "new collection")
       props.updateEstimations(newCollection)
       updateEstimations(newCollection)
     } else {
@@ -30,21 +28,26 @@ const EstimationDetails = (props) => {
     }
   };
 
-  function updateCurrentEstimation(newEstimation) {
-    // console.log(newEstimation, 'updateCurrentEstimation')
-    updateEstimation(estimation => {
-      return{...estimation, ...newEstimation}
-    })
-    // console.log(estimation, 'new estimation details component')
+  const deleteEstimation = () => {
+    const filteredCollection = props.estimations.filter(currentEstimation => currentEstimation.id != props.estimation.id);
+    console.log(filteredCollection, props, 'FILTERED COLLECTION');
+    updateEstimations(filteredCollection);
+    toggleEditForm(false)
+    props.updateEstimations(filteredCollection)
   }
 
-  function updateEstimations (estimations) {
-    console.log(estimations)
-    const url = 'http://localhost:1020/write';
-    axios.post(url, estimations)
-    .then(response => {
-      console.log(response);
+  function updateCurrentEstimation(newEstimation) {
+    updateEstimation(estimation => {
+      return { ...estimation, ...newEstimation }
     })
+  }
+
+  function updateEstimations(estimations) {
+    const url = 'https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations';
+    axios.post(url, estimations)
+      .then(response => {
+        console.log('POST_RESPONSE:updateEstimations ', response);
+      })
   }
 
   function toggleEditForm(showForm) {
@@ -61,7 +64,12 @@ const EstimationDetails = (props) => {
         <Button variant="primary" onClick={onClick}>
           {showEditForm ? 'Save Changes' : 'Edit form'}
         </Button>
-        {/* <AddEstimationWizard getTotalCost={props.getTotalCost} updateTotalCost={props.updateTotalCost} totalCost={props.totalCost} rate={rate} estimation={props.estimation} /> */}
+        {showEditForm ?
+          <Button variant="primary" onClick={deleteEstimation}>
+            Delete Estimation
+          </Button> : null
+        }
+
         {showEditForm ?
           <AddEstimationWizard
             initialStep={1}

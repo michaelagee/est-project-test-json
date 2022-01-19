@@ -52,6 +52,7 @@ class App extends Component {
       return body;
     } else {
       const response = await fetch(
+        //TODO: create a constant file which contains this, as its used in several places.
         "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations",
         {
           cache: "no-cache",
