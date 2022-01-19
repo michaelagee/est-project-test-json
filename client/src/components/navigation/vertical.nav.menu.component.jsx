@@ -1,7 +1,7 @@
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import Search from '../search/search.component'
 
-// TODO: Create a page component that wraps all routes
+// TODO: change name to header or something like that....
 const EstimationNavigationBar = props => {
   return (
     <Navbar bg='light' expand='lg'>
