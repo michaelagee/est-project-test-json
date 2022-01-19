@@ -3,6 +3,7 @@ import Search from '../search/search.component'
 
 // TODO: change name to header or something like that....
 const EstimationNavigationBar = props => {
+  console.log(props, 'NAV PROPS')
   return (
     <Navbar bg='light' expand='lg'>
       <Container fluid>
