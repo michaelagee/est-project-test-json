@@ -67,8 +67,9 @@ class App extends Component {
       if (response.status !== 200) {
         throw Error(res.message);
       }
-      console.log("RETURN BODY", JSON.parse(res.body))
-      return JSON.parse(res.body);
+
+      console.log("RETURN BODY", JSON.parse(res.body.toString()))
+      return JSON.parse(res.body.toString());
     }
   };
 
