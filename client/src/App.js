@@ -36,10 +36,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // this.getEstimations()
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-    // // this.setState({ estimations: Data.estimations });
     this.getEstimations()
       .then((res) => this.setState({estimations: res.estimations}));
   }
@@ -110,7 +106,7 @@ class App extends Component {
     axios.post(url, newEstimationsCollection).then((response) => {
       console.log('response from POST', JSON.parse(response.config.data));
       this.setState({estimations: JSON.parse(response.config.data)})
-      console.log('should be set to state', this.state.estimations)
+      console.log('should be set to state', this.state.estimations);
     });
   };
 
@@ -121,13 +117,9 @@ class App extends Component {
   render() {
     const { estimations, searchField } = this.state;
     let filteredEstimations = [];
-    // if (estimations > 0) {
       filteredEstimations = estimations.filter((estimation) =>
         estimation.name.toLowerCase().includes(searchField.toLowerCase())
       );
-    // } else {
-    //   filteredEstimations = [NewEstimation];
-    // }
 
     return (
       <GlobalContext.Provider value={this.state}>
