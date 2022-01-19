@@ -7,10 +7,8 @@ import { GlobalContext } from '../../context/global-state';
 import axios from "axios";
 
 const EstimationBlock = (props) => {
-    console.log(props.estimations)
     const [currentEstimation, setCurrentEstimation] = useState('');
     const [showStepWizard, setShowStepWizard] = useState(false);
-    const [estimations, updateEstimations] = useState(props.estimations);
 
     function handleShowEvent(estimation) {
         if (showStepWizard) {
@@ -29,9 +27,7 @@ const EstimationBlock = (props) => {
         const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations";
         axios.post(url, newCollection).then((response) => {
             console.log('response from POST:handleSetCurrentEstimation', JSON.parse(response.config.data));
-            updateEstimations(newCollection);
             setCurrentEstimation(currentEstimation)
-            console.log('should be set to state', this.state.estimations);
         });
     }
 

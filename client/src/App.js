@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import EstimationBlock from "./components/estimation-block/estimation-block.component";
 import "./App.css";
-import "./dashboard/dashboard.styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.component";
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
