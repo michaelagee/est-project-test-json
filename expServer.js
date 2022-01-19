@@ -1,3 +1,4 @@
+const db = require("./client/public/db.json");
 const express = require('express');
 const fs = require('fs');
 const morgan = require('morgan');
@@ -16,6 +17,10 @@ app.use(morgan('dev'));
 app.get('/', (req, res) => res.status(200).send({
     message: "server is running"
 }));
+
+app.get('/estimations', (req, res) => {
+  res.json(db);
+});
 
 
 const writeTextToFileAsync = async (contentToWrite) => {

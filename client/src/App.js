@@ -36,7 +36,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({ estimations: Data.estimations });
+    this.getEstimations()
+      .then((res) => this.setState({estimations: res.estimations}));
   }
 
   getEstimations = async () => {
@@ -57,12 +58,14 @@ class App extends Component {
         }
       );
 
-      const body = await response.json();
+      const res = await response.json();
 
       if (response.status !== 200) {
-        throw Error(body.message);
+        throw Error(res.message);
       }
-      return body;
+
+      console.log("RETURN BODY", JSON.parse(res.body.toString()))
+      return JSON.parse(res.body.toString());
     }
   };
 
@@ -99,9 +102,11 @@ class App extends Component {
       estimations: newEstimationsCollection,
     });
 
-    const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/write";
+    const url = "https://ej1wmnqenl.execute-api.us-east-1.amazonaws.com/dev/estimations";
     axios.post(url, newEstimationsCollection).then((response) => {
-      console.log(response);
+      console.log('response from POST', JSON.parse(response.config.data));
+      this.setState({estimations: JSON.parse(response.config.data)})
+      console.log('should be set to state', this.state.estimations);
     });
   };
 
@@ -112,10 +117,9 @@ class App extends Component {
   render() {
     const { estimations, searchField } = this.state;
     let filteredEstimations = [];
-
-    filteredEstimations = estimations.filter((estimation) =>
-      estimation.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+      filteredEstimations = estimations.filter((estimation) =>
+        estimation.name.toLowerCase().includes(searchField.toLowerCase())
+      );
 
     return (
       <GlobalContext.Provider value={this.state}>
