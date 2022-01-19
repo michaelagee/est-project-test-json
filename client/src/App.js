@@ -7,7 +7,6 @@ import EstimationNavigationBar from "./components/navigation/vertical.nav.menu.c
 import { CurrentEstimationTotalCost } from "./context/currentEstimationTotal.context";
 import { NewEstimation } from "./data/newEstimation";
 import { GlobalContext } from "./context/global-state";
-import Data from "./data.json";
 import axios from "axios";
 
 class App extends Component {
@@ -109,6 +108,8 @@ class App extends Component {
       this.setState({estimations: JSON.parse(response.config.data)})
       console.log('should be set to state', this.state.estimations);
     });
+
+    this.setState({ searchField: "" })
   };
 
   updateTotalCost = (totalCost) => {
