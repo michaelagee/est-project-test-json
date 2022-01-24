@@ -30,7 +30,6 @@ const EstimationDetails = (props) => {
 
   const deleteEstimation = () => {
     const filteredCollection = props.estimations.filter(currentEstimation => currentEstimation.id != props.estimation.id);
-    console.log(filteredCollection, props, 'FILTERED COLLECTION');
     updateEstimations(filteredCollection);
     toggleEditForm(false)
     props.updateEstimations(filteredCollection)

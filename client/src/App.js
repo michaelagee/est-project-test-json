@@ -89,7 +89,6 @@ class App extends Component {
 
   addNewEstimation = async (e) => {
     e.preventDefault();
-    e.value = "";
     const { estimations } = this.state;
 
     let newEstimation = { ...NewEstimation };
@@ -109,6 +108,7 @@ class App extends Component {
     });
 
     this.setState({ searchField: "" })
+    e.target.value = ""
   };
 
   updateTotalCost = (totalCost) => {

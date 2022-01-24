@@ -3,7 +3,6 @@ import Search from '../search/search.component'
 
 // TODO: change name to header or something like that....
 const EstimationNavigationBar = props => {
-  console.log(props, 'NAV PROPS')
   return (
     <Navbar bg='light' expand='lg'>
       <Container fluid>
@@ -19,7 +18,7 @@ const EstimationNavigationBar = props => {
           <Search
             onSubmit={props.handleSubmit}
             count={props.estimationsCount}
-            placeholder='Search Estimations'
+            placeholder='Search or Add Estimations'
             buttonTitle={props.buttonTitle}
             handleChange={props.searchHandler}
           />
